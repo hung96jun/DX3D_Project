@@ -1,3 +1,6 @@
+# Visual Studio 2022 user specific files
+.vs/
+
 # Prerequisites
 *.d
 

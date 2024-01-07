@@ -1,0 +1,17 @@
+﻿  Color.h
+  Framework.h
+  Vector.h
+  Mouse.cpp
+C:\Users\hung9\OneDrive\Desktop\DirectX3D_Project\Framework\Systems\Mouse.cpp(19,38): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  D3D.cpp
+  Time.cpp
+  코드를 생성하고 있습니다...
+Keyboard.obj : warning LNK4006: "bool __cdecl operator==(int const &,enum KeyState const &)" (??8@YA_NAEBHAEBW4KeyState@@@Z)이(가) D3D.obj에 이미 정의되어 있습니다. 초 정의가 무시됩니다.
+Keyboard.obj : warning LNK4006: "bool __cdecl operator!=(int const &,enum KeyState const &)" (??9@YA_NAEBHAEBW4KeyState@@@Z)이(가) D3D.obj에 이미 정의되어 있습니다. 초 정의가 무시됩니다.
+Mouse.obj : warning LNK4006: "bool __cdecl operator==(int const &,enum KeyState const &)" (??8@YA_NAEBHAEBW4KeyState@@@Z)이(가) D3D.obj에 이미 정의되어 있습니다. 초 정의가 무시됩니다.
+Mouse.obj : warning LNK4006: "bool __cdecl operator!=(int const &,enum KeyState const &)" (??9@YA_NAEBHAEBW4KeyState@@@Z)이(가) D3D.obj에 이미 정의되어 있습니다. 초 정의가 무시됩니다.
+Vector.obj : warning LNK4006: "bool __cdecl operator==(int const &,enum KeyState const &)" (??8@YA_NAEBHAEBW4KeyState@@@Z)이(가) D3D.obj에 이미 정의되어 있습니다. 초 정의가 무시됩니다.
+Vector.obj : warning LNK4006: "bool __cdecl operator!=(int const &,enum KeyState const &)" (??9@YA_NAEBHAEBW4KeyState@@@Z)이(가) D3D.obj에 이미 정의되어 있습니다. 초 정의가 무시됩니다.
+Framework.obj : warning LNK4006: "bool __cdecl operator==(int const &,enum KeyState const &)" (??8@YA_NAEBHAEBW4KeyState@@@Z)이(가) D3D.obj에 이미 정의되어 있습니다. 초 정의가 무시됩니다.
+Framework.obj : warning LNK4006: "bool __cdecl operator!=(int const &,enum KeyState const &)" (??9@YA_NAEBHAEBW4KeyState@@@Z)이(가) D3D.obj에 이미 정의되어 있습니다. 초 정의가 무시됩니다.
+  Framework.vcxproj -> C:\Users\hung9\OneDrive\Desktop\DirectX3D_Project\Framework\x64\Debug\Framework.lib
