@@ -1,5 +1,7 @@
 # Visual Studio 2022 user specific files
-.vs/
+Framework/.vs/
+Framework/Debug/
+Framework/Debug_Framework/
 
 # Prerequisites
 *.d

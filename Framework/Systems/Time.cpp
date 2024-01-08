@@ -135,7 +135,7 @@ const bool Timer::SetStartEvent(string key, function<void()> func)
 	{
 		pair<string, int> keyPair;
 		keyPair.first = key;
-		keyPair.second = TimerEventKeys.size();
+		keyPair.second = static_cast<int>(TimerEventKeys.size());
 
 		TimerEventKeys.insert(keyPair);
 		
@@ -162,7 +162,7 @@ const bool Timer::SetTicktEvent(string key, const float time, function<void()> f
 	{
 		pair<string, int> keyPair;
 		keyPair.first = key;
-		keyPair.second = TimerEventKeys.size();
+		keyPair.second = static_cast<int>(TimerEventKeys.size());
 
 		TimerEventKeys.insert(keyPair);
 
@@ -191,7 +191,7 @@ const bool Timer::SetEndtEvent(string key, const float time, function<void()> fu
 	{
 		pair<string, int> keyPair;
 		keyPair.first = key;
-		keyPair.second = TimerEventKeys.size();
+		keyPair.second = static_cast<int>(TimerEventKeys.size());
 
 		TimerEventKeys.insert(keyPair);
 

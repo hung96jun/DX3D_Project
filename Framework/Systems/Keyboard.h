@@ -49,8 +49,8 @@ private:
 	bitset<MAX_INPUT_KEY> AssignedKeys;
 	map<DWORD, vector<function<void()>>> KeyEvents;
 
-	byte KeyCurState[MAX_INPUT_KEY];
-	byte KeyBeforeState[MAX_INPUT_KEY];
-	byte KeyMap[MAX_INPUT_KEY];
+	byte KeyCurState[MAX_INPUT_KEY] = {};
+	byte KeyBeforeState[MAX_INPUT_KEY] = {};
+	byte KeyMap[MAX_INPUT_KEY] = {};
 };
 

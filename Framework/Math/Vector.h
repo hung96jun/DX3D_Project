@@ -122,11 +122,11 @@ public:
 	}
 	//////////////////////////////////////////////////////////////////////////////
 
-	XMVECTOR GetValue() { return XMVectorSet((float)X, (float)Y, 0.0f, 0.0f); }
+	XMVECTOR GetValue() { return XMVectorSet(static_cast<float>(X), static_cast<float>(Y), 0.0f, 0.0f); }
 
 public:
-	double X;
-	double Y;
+	double X = 0.0;
+	double Y = 0.0;
 };
 
 struct Vector3
@@ -145,76 +145,85 @@ public:
 	//////////////////////////////////////////////////////////////////////////////
 	// operator overloading
 	//////////////////////////////////////////////////////////////////////////////
-	const bool operator==(const Vector3& Value)
+	const bool operator==(const Vector3& value)
 	{
-		return (X == Value.X && Y == Value.Y && Z == Value.Z);
+		return (X == value.X && Y == value.Y && Z == value.Z);
 	}
-	const bool operator!=(const Vector3& Value)
+	const bool operator!=(const Vector3& value)
 	{
-		return (X != Value.X || Y != Value.Y || Z != Value.Z);
+		return (X != value.X || Y != value.Y || Z != value.Z);
 	}
 
-	Vector3& operator=(const Float3& Value)
+	Vector3& operator=(const Float3& value)
 	{
-		X = Value.x;
-		Y = Value.y;
-		Z = Value.z;
+		X = value.x;
+		Y = value.y;
+		Z = value.z;
 
 		return *this;
 	}
 
-	const Vector3 operator+(const double& Value) const { return Vector3(X + Value, Y + Value, Z + Value); }
-	const Vector3 operator-(const double& Value) const { return Vector3(X - Value, Y - Value, Z - Value); }
-	const Vector3 operator+(const Vector3& Value) const { return Vector3(X + Value.X, Y + Value.Y, Z + Value.Z); }
-	const Vector3 operator-(const Vector3& Value) const { return Vector3(X - Value.X, Y - Value.Y, Z - Value.Z); }
-	const Vector3 operator*(const double& Value) const { return Vector3(X * Value, Y * Value, Z * Value); }
-	const Vector3 operator/(const double& Value) const { return Vector3(X / Value, Y / Value, Z / Value); }
+	const Vector3 operator+(const double& value) const { return Vector3(X + value, Y + value, Z + value); }
+	const Vector3 operator-(const double& value) const { return Vector3(X - value, Y - value, Z - value); }
+	const Vector3 operator+(const Vector3& value) const { return Vector3(X + value.X, Y + value.Y, Z + value.Z); }
+	const Vector3 operator-(const Vector3& value) const { return Vector3(X - value.X, Y - value.Y, Z - value.Z); }
+	const Vector3 operator*(const double& value) const { return Vector3(X * value, Y * value, Z * value); }
+	const Vector3 operator/(const double& value) const { return Vector3(X / value, Y / value, Z / value); }
 
-	Vector3& operator+=(const double& Value)
+	Vector3& operator+=(const double& value)
 	{
-		X += Value;
-		Y += Value;
-		Z += Value;
-
-		return *this;
-	}
-	Vector3& operator-=(const double& Value)
-	{
-		X -= Value;
-		Y -= Value;
-		Z -= Value;
+		X += value;
+		Y += value;
+		Z += value;
 
 		return *this;
 	}
-	Vector3& operator+=(const Vector3& Value)
+	Vector3& operator-=(const double& value)
 	{
-		X += Value.X;
-		Y += Value.Y;
-		Z += Value.Z;
+		X -= value;
+		Y -= value;
+		Z -= value;
 
 		return *this;
 	}
-	Vector3& operator-=(const Vector3& Value)
+	Vector3& operator+=(const Vector3& value)
 	{
-		X -= Value.X;
-		Y -= Value.Y;
-		Z -= Value.Z;
+		X += value.X;
+		Y += value.Y;
+		Z += value.Z;
 
 		return *this;
 	}
-	Vector3& operator*=(const double& Value)
+	Vector3& operator-=(const Vector3& value)
 	{
-		X *= Value;
-		Y *= Value;
-		Z *= Value;
+		X -= value.X;
+		Y -= value.Y;
+		Z -= value.Z;
 
 		return *this;
 	}
-	Vector3& operator/=(const double& Value)
+	Vector3& operator*=(const double& value)
 	{
-		X /= Value;
-		Y /= Value;
-		Z /= Value;
+		X *= value;
+		Y *= value;
+		Z *= value;
+
+		return *this;
+	}
+	Vector3& operator/=(const double& value)
+	{
+		X /= value;
+		Y /= value;
+		Z /= value;
+
+		return *this;
+	}
+
+	Vector3& operator=(const XMVECTOR& value)
+	{
+		X = XMVectorGetX(value);
+		Y = XMVectorGetY(value);
+		Z = XMVectorGetZ(value);
 
 		return *this;
 	}
@@ -250,10 +259,10 @@ public:
 	}
 	//////////////////////////////////////////////////////////////////////////////
 
-	XMVECTOR GetValue() { return XMVectorSet((float)X, (float)Y, (float)Z, 0.0f); }
+	XMVECTOR GetValue() { return XMVectorSet(static_cast<float>(X), static_cast<float>(Y), static_cast<float>(Z), 0.0f); }
 
 public:
-	double X;
-	double Y;
-	double Z;
+	double X = 0.0;
+	double Y = 0.0;
+	double Z = 0.0;
 };

@@ -39,7 +39,7 @@ public:
 	static ID3D11DeviceContext* GetDC() { return DeviceContext; }
 	static IDXGISwapChain* GetSwapChain() { return SwapChain; }
 	static const D3DDesc& GetDesc() { return Desc; }
-	static void SeDesc(D3DDesc& desc) { Desc = desc; }
+	static void SetDesc(D3DDesc& desc) { Desc = desc; }
 
 	void SetRendertarget(ID3D11RenderTargetView* rtv = nullptr, ID3D11DepthStencilView* dsv = nullptr);
 

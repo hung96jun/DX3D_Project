@@ -85,7 +85,7 @@ void Mouse::Update()
 	WheelMoveValue = WheelCurStatus - WheelBeforeStatus;
 	WheelBeforeStatus.Z = WheelCurStatus.Z;
 
-	DWORD buttonStatus = GetTickCount();
+	DWORD buttonStatus = static_cast<DWORD>(GetTickCount64());
 	for (DWORD i = 0; i < MAX_INPUT_MOUSE; i++)
 	{
 		if (ButtonMap[i] == ButtonInputState::DOWN)

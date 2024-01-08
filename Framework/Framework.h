@@ -58,7 +58,9 @@ typedef XMFLOAT4X4 Float4x4;
 #include "Math/Vector.h"
 
 #include "Systems/D3D.h"
-#include "Systems/Keyboard.h"
+//#include "Systems/Keyboard.h"
+#include "Systems/Mouse.h"
+//#include "Systems/Time.h"
 /**
 * Framwork에 keyboard 헤더를 참조하고, keyboard에서 Framework 헤더를 참조해서 LNK4006 경고가 발생.
 * 아마 Mosue도 Framework에 참조하면 동일한 문제가 추가로 발생할 것 같다.

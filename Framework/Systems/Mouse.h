@@ -73,7 +73,7 @@ public:
 		return ButtonMap[button] == ButtonInputState::PRESS;
 	}
 
-	Vector3 GetMoveValue()
+	Vector3 GetWheelValue()
 	{
 		return WheelMoveValue;
 	}
@@ -81,7 +81,7 @@ public:
 private:
 	static Mouse* Instance;
 
-	HWND Handle;
+	HWND Handle = nullptr;
 	Vector3 Position;
 
 	byte ButtonCurState[MAX_INPUT_MOUSE];

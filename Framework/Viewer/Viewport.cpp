@@ -26,11 +26,23 @@ void Viewport::Projection(OUT Vector3* position, Vector3& source, Matrix& w, Mat
 {
 	Matrix wvp = w * v * p;
 	Vector3 temp = source;
-	
+	*position = XMVector3TransformCoord(temp.GetValue(), wvp);
+
+	position->X = ((position->X + 1.0f) * 0.5f) * Width + X;
+	position->Y = ((-position->Y + 1.0f) * 0.5f) * Height + Y;
+	position->Z = (position->Z * (MaxDepth - MinDepth)) + MinDepth;
 }
 
 void Viewport::Unprojection(OUT Vector3* position, Vector3& source, Matrix& w, Matrix& v, Matrix& p)
 {
+	Vector3 temp = source;
+	position->X = ((temp.X - X) / Width) * 2.0f - 1.0f;
+	position->Y = (((temp.Y - Y) / Height) * 2.0f - 1.0f) * -1.0f;
+	position->Z = (temp.Z - MinDepth) / (MaxDepth - MinDepth);
+
+	Matrix wvp = w * v * p;
+	wvp	= XMMatrixInverse(nullptr, wvp);
+	*position = XMVector3TransformCoord(position->GetValue(), wvp);
 }
 
 void Viewport::RSSetViewport()
