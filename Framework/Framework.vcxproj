@@ -115,7 +115,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>Framework.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>./</AdditionalIncludeDirectories>
       <LanguageStandard>Default</LanguageStandard>
@@ -147,17 +147,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Framework.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="Viewer\Orthgraphic.cpp" />
     <ClCompile Include="Viewer\Perspective.cpp" />
     <ClCompile Include="Renders\Context.cpp" />
     <ClCompile Include="DataStructs\Color.h" />
-    <ClCompile Include="Framework.h">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+    <ClCompile Include="Libraries.h">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Math\Vector.h" />
     <ClCompile Include="Systems\Mouse.cpp" />
@@ -165,9 +160,12 @@
     <ClCompile Include="Systems\D3D.cpp" />
     <ClCompile Include="Systems\Window.cpp" />
     <ClCompile Include="Systems\Time.cpp" />
+    <ClCompile Include="Viewer\Projection.cpp" />
     <ClCompile Include="Viewer\Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Framework.h" />
+    <ClInclude Include="Viewer\Orthgraphic.h" />
     <ClInclude Include="Viewer\Perspective.h" />
     <ClInclude Include="Renders\Context.h" />
     <ClInclude Include="Systems\Mouse.h" />
@@ -279,6 +277,7 @@
     <ClInclude Include="Systems\Time.h" />
     <ClInclude Include="Utilities\Defines.h" />
     <ClInclude Include="Systems\Window.h" />
+    <ClInclude Include="Viewer\Projection.h" />
     <ClInclude Include="Viewer\Viewport.h" />
   </ItemGroup>
   <ItemGroup>

@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Framework.h">
+    <ClCompile Include="Libraries.h">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Systems\Window.cpp">
@@ -48,7 +48,10 @@
     <ClCompile Include="Viewer\Perspective.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Framework.cpp">
+    <ClCompile Include="Viewer\Projection.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Viewer\Orthgraphic.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -387,6 +390,15 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Viewer\Perspective.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Viewer\Projection.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Viewer\Orthgraphic.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
