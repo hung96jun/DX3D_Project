@@ -19,7 +19,7 @@ Projection::~Projection()
 
 void Projection::GetMatrix(Matrix* matrix)
 {
-	memcpy(matrix, &Perspective, sizeof(Matrix));
+	memcpy(matrix, &ProjMatrix, sizeof(Matrix));
 }
 
 void Projection::Set(const float width, const float height, const float zn, const float zf, const float fov)

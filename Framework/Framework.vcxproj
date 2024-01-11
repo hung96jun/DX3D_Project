@@ -71,11 +71,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)Libraries\DirectXTex;$(ProjectDir)Libraries\ImGui;$(ProjectDir)Libraries;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Libraries\DirectXTex\;$(SolutionDir)Libraries\ImGui\;$(SolutionDir)Libraries\;$(IncludePath)</IncludePath>
     <LibraryWPath>$(WindowsSDK_MetadataPath);</LibraryWPath>
     <IntDir>$(SolutionDir)Debug_$(ProjectName)\</IntDir>
-    <LibraryPath>$(ProjectDir)Libraries\Lib;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <LibraryPath>$(SolutionDir)Libraries\Lib\;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)Libraries\Framework\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

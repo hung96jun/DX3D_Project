@@ -103,10 +103,34 @@ void Window::Create()
 	);
 	assert(desc.Handle != NULL);
 	D3D::SetDesc(desc);
+
+	RECT rect = { 0, 0, static_cast<LONG>(desc.Width), static_cast<LONG>(desc.Height) };
+	UINT centerX = (GetSystemMetrics(SM_CXSCREEN) - static_cast<UINT>(desc.Width)) / 2;
+	UINT centerY = (GetSystemMetrics(SM_CYSCREEN) - static_cast<UINT>(desc.Height)) / 2;
+
+	AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, FALSE);
+	MoveWindow
+	(
+		desc.Handle,
+		centerX, centerY,
+		rect.right - rect.left, rect.bottom - rect.top,
+		TRUE
+	);
+	ShowWindow(desc.Handle, SW_SHOWNORMAL);
+	SetForegroundWindow(desc.Handle);
+	SetFocus(desc.Handle);
+	ShowCursor(true);
 }
 
 void Window::Destroy()
 {
+	D3DDesc desc = D3D::GetDesc();
+
+	if (desc.bFullScreen == true)
+		ChangeDisplaySettings(nullptr, 0);
+
+	DestroyWindow(desc.Handle);
+	UnregisterClass(desc.AppName.c_str(), desc.Instance);
 }
 
 LRESULT Window::WndProc(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
@@ -145,5 +169,18 @@ LRESULT Window::WndProc(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
 
 void Window::MainRender()
 {
-	
+	Time::Get()->Update();
+
+	MainScene->Update();
+	MainScene->PreRender();
+
+	D3DDesc desc = D3D::GetDesc();
+
+	D3D::Get()->SetRendertarget();
+	D3D::Get()->Clear(desc.Background);
+
+	MainScene->Render();
+	MainScene->PostRender();
+
+	D3D::Get()->Present();
 }
