@@ -136,7 +136,6 @@ void Window::Destroy()
 LRESULT Window::WndProc(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	Mouse::Get()->InputProc(message, wParam, lParam);
-
 	
 	switch (message)
 	{

@@ -23,7 +23,7 @@ private:
 	void SetGPUInfo();
 	void CreateSwapChainAndDevice();
 
-	void CreateVackBuffer(float width, float height);
+	void CreateBackBuffer(float width, float height);
 	void DeleteBackBuffer();
 
 public:

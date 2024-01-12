@@ -13,7 +13,7 @@ D3D::D3D()
 {
 	SetGPUInfo();
 	CreateSwapChainAndDevice();
-	CreateVackBuffer(Desc.Width, Desc.Height);
+	CreateBackBuffer(Desc.Width, Desc.Height);
 }
 
 D3D::~D3D()
@@ -151,7 +151,7 @@ void D3D::CreateSwapChainAndDevice()
 	CHECK(hResult);
 }
 
-void D3D::CreateVackBuffer(float width, float height)
+void D3D::CreateBackBuffer(float width, float height)
 {
 	HRESULT hResult;
 
@@ -171,7 +171,7 @@ void D3D::CreateVackBuffer(float width, float height)
 		desc.Width = static_cast<UINT>(width);
 		desc.Height = static_cast<UINT>(height);
 		desc.MipLevels = 1;
-		desc.BindFlags = 1;
+		desc.ArraySize = 1;
 		desc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
 		desc.SampleDesc.Count = 1;
 		desc.SampleDesc.Quality = 0;
@@ -207,13 +207,19 @@ void D3D::DeleteBackBuffer()
 
 D3D* D3D::Get()
 {
-	assert(Instance != nullptr);
+	//assert(Instance != nullptr);
+	if (Instance == nullptr)
+		Create();
+
 	return Instance;
 }
 
 void D3D::Create()
 {
-	assert(Instance == nullptr);
+	//assert(Instance == nullptr);
+	if (Instance != nullptr) 
+		return;
+
 	Instance = new D3D();
 }
 
@@ -263,5 +269,5 @@ void D3D::ResizeScreen(float width, float height)
 	HRESULT hResult = SwapChain->ResizeBuffers(0, static_cast<UINT>(width), static_cast<UINT>(height), DXGI_FORMAT_UNKNOWN, 0);
 	CHECK(hResult);
 
-	CreateVackBuffer(width, height);
+	CreateBackBuffer(width, height);
 }

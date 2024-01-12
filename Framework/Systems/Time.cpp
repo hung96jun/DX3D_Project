@@ -6,6 +6,8 @@ bool Time::bTimeStopped = true;
 float Time::ElapsedTime = 0.0f;
 
 Timer* Timer::Instance = nullptr;
+vector<TimerEvent> Timer::TimerEvents;
+list<int> Timer::RunningEventKeys;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Time class
@@ -24,13 +26,19 @@ Time::~Time()
 
 Time* Time::Get()
 {
-	assert(Instance != nullptr);
+	//assert(Instance != nullptr);
+	if (Instance == nullptr)
+		Create();
+
 	return Instance;
 }
 
 void Time::Create()
 {
-	assert(Instance == nullptr);
+	//assert(Instance == nullptr);
+	if (Instance != nullptr)
+		return;
+
 	Instance = new Time();
 }
 
@@ -92,8 +100,20 @@ void Time::Stop()
 ///////////////////////////////////////////////////////////////////////////////
 Timer* Timer::Get()
 {
-	assert(Instance != nullptr);
+	//assert(Instance != nullptr);
+	if (Instance == nullptr)
+		Create();
+
 	return Instance;
+}
+
+void Timer::Create()
+{
+	//assert(Instance == nullptr);
+	if (Instance != nullptr)
+		return;
+
+	Instance = new Timer();
 }
 
 void Timer::Delete()

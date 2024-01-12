@@ -13,16 +13,6 @@ enum class KeyState : int
 	PRESS,
 };
 
-bool operator==(const int& value1, const KeyState& value2)
-{
-	return value1 == static_cast<int>(value2);
-}
-
-bool operator!=(const int& value1, const KeyState& value2)
-{
-	return value1 != static_cast<int>(value2);
-}
-
 class Keyboard
 {
 private:
@@ -37,9 +27,9 @@ public:
 
 	void Update();
 
-	const bool IsDown(const DWORD key) { return KeyMap[key] == KeyState::DOWN; }
-	const bool IsUp(const DWORD key) { return KeyMap[key] == KeyState::UP; }
-	const bool IsPress(const DWORD key) { return KeyMap[key] == KeyState::PRESS; }
+	const bool IsDown(const DWORD key) { return KeyMap[key] == static_cast<DWORD>(KeyState::DOWN); }
+	const bool IsUp(const DWORD key) { return KeyMap[key] == static_cast<DWORD>(KeyState::UP); }
+	const bool IsPress(const DWORD key) { return KeyMap[key] == static_cast<DWORD>(KeyState::PRESS); }
 
 	const bool AddDynamic(const DWORD key, const KeyState state, function<void()> func);
 
@@ -53,4 +43,3 @@ private:
 	byte KeyBeforeState[MAX_INPUT_KEY] = {};
 	byte KeyMap[MAX_INPUT_KEY] = {};
 };
-

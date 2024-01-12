@@ -257,12 +257,52 @@ public:
 	{
 		return ("X : " + to_string(X) + ", Y : " + to_string(Y) + ", Z : " + to_string(Z));
 	}
-	//////////////////////////////////////////////////////////////////////////////
 
 	XMVECTOR GetValue() { return XMVectorSet(static_cast<float>(X), static_cast<float>(Y), static_cast<float>(Z), 0.0f); }
+	//////////////////////////////////////////////////////////////////////////////
 
 public:
 	double X = 0.0;
 	double Y = 0.0;
 	double Z = 0.0;
+};
+
+
+struct Vector4
+{
+public:
+	Vector4() {}
+	Vector4(double n) : X(n), Y(n), Z(n), W(n) {}
+	Vector4(double x, double y, double z, double w) : X(x), Y(y), Z(z), W(w) {}
+	Vector4(XMVECTOR value)
+	{
+		X = XMVectorGetX(value);
+		Y = XMVectorGetY(value);
+		Z = XMVectorGetZ(value);
+		W = XMVectorGetW(value);
+	}
+
+
+
+	//////////////////////////////////////////////////////////////////////////////
+	// functions
+	//////////////////////////////////////////////////////////////////////////////
+	static const Vector4 ZeroVector() { return Vector4(0.0, 0.0, 0.0, 0.0); }
+	static const Vector4 Right() { return Vector4(1.0, 0.0, 0.0, 0.0); }
+	static const Vector4 Up() { return Vector4(0.0, 1.0, 0.0, 0.0); }
+	static const Vector4 Forward() { return Vector4(0.0, 0.0, 1.0, 0.0); }
+
+	string ToString() const
+	{
+		return ("X : " + to_string(X) + ", Y : " + to_string(Y) + ", Z : " + to_string(Z) + ", W : " + to_string(W));
+	}
+
+	XMVECTOR GetValue() { return XMVectorSet(static_cast<float>(X), static_cast<float>(Y), static_cast<float>(Z), static_cast<float>(W)); }
+	//////////////////////////////////////////////////////////////////////////////
+
+public:
+	double X = 0.0;
+	double Y = 0.0;
+	double Z = 0.0;
+	double W = 0.0;
 };

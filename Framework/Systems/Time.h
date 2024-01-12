@@ -133,13 +133,15 @@ private:
 class Timer
 {
 private:
-	Timer();
-	~Timer();
+	Timer() {}
+	~Timer() {}
 
 public:
 	static Timer* Get();
-	void Delete();
-	void Update();
+
+	static void Create();
+	static void Delete();
+	static void Update();
 	
 	void ExcuteEvent(const string key);
 	void AbortEvent(const string key);
@@ -151,7 +153,8 @@ public:
 private:
 	static Timer* Instance;
 
+	static vector<TimerEvent> TimerEvents;
+	static list<int> RunningEventKeys;
+
 	map<string, int> TimerEventKeys;
-	vector<TimerEvent> TimerEvents;
-	list<int> RunningEventKeys;
 };

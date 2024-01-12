@@ -27,7 +27,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -71,11 +71,17 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Libraries\DirectXTex\;$(SolutionDir)Libraries\ImGui\;$(SolutionDir)Libraries\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Libraries\DirectXTex\;$(SolutionDir)Libraries\ImGui\;$(SolutionDir)Framework\;$(SolutionDir)Libraries\;$(IncludePath)</IncludePath>
     <LibraryWPath>$(WindowsSDK_MetadataPath);</LibraryWPath>
     <IntDir>$(SolutionDir)Debug_$(ProjectName)\</IntDir>
     <LibraryPath>$(SolutionDir)Libraries\Lib\;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)Libraries\Framework\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(SolutionDir)Libraries\DirectXTex\;$(SolutionDir)Libraries\ImGui\;$(SolutionDir)Framework\;$(SolutionDir)Libraries\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libraries\Lib\;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)Libraries\Framework\</OutDir>
+    <IntDir>$(SolutionDir)Debug_$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -83,7 +89,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>Framework.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -147,13 +153,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Renders\Vertex.h" />
+    <ClCompile Include="Renders\ShaderBase.cpp" />
     <ClCompile Include="Viewer\Orthgraphic.cpp" />
     <ClCompile Include="Viewer\Perspective.cpp" />
     <ClCompile Include="Renders\Context.cpp" />
     <ClCompile Include="DataStructs\Color.h" />
-    <ClCompile Include="Libraries.h">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="Math\Vector.h" />
     <ClCompile Include="Systems\Mouse.cpp" />
     <ClCompile Include="Systems\Keyboard.cpp" />
@@ -165,6 +170,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework.h" />
+    <ClInclude Include="Libraries.h" />
+    <ClInclude Include="Renders\ShaderBase.h" />
     <ClInclude Include="Viewer\Orthgraphic.h" />
     <ClInclude Include="Viewer\Perspective.h" />
     <ClInclude Include="Renders\Context.h" />

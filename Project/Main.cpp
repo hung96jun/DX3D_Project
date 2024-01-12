@@ -70,10 +70,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	D3D::SetDesc(desc);
 
 	Main* main = new Main();
-	//WPARAM wParam = Window::Run(main);
+	WPARAM wParam = Window::Run(main);
 
 	SAFE_DELETE(main);
 
-	//return static_cast<int>(wParam);
-	return 0;
+	return static_cast<int>(wParam);
 }

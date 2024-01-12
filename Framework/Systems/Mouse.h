@@ -9,16 +9,6 @@ enum class MouseRotation : int
 	RIGHT,
 };
 
-bool operator==(const int& value1, const MouseRotation& value2)
-{
-	return value1 == static_cast<int>(value2);	
-}
-
-bool operator!=(const int& value1, const MouseRotation & value2)
-{
-	return value1 != static_cast<int>(value2);
-}
-
 enum class ButtonInputState : int
 {
 	NONE = 0,
@@ -27,16 +17,6 @@ enum class ButtonInputState : int
 	PRESS,
 	DBLCLK,
 };
-
-bool operator==(const int& value1, const ButtonInputState& value2)
-{
-	return value1 == static_cast<int>(value2);
-}
-
-bool operator!=(const int& value1, const ButtonInputState& value2)
-{
-	return value1 != static_cast<int>(value2);
-}
 
 class Mouse
 {
@@ -47,7 +27,7 @@ private:
 public:
 	void SetHandle(HWND handle)
 	{
-		this->Handle = handle;
+		Handle = handle;
 	}
 
 	static Mouse* Get();
@@ -60,18 +40,9 @@ public:
 	LRESULT InputProc(UINT message, WPARAM wParam, LPARAM lParam);
 	Vector3 GetPosition() { return Position; }
 
-	bool IsDown(DWORD button)
-	{
-		return ButtonMap[button] == ButtonInputState::DOWN;
-	}
-	bool IsUp(DWORD button)
-	{
-		return ButtonMap[button] == ButtonInputState::UP;
-	}
-	bool IsPress(DWORD button)
-	{
-		return ButtonMap[button] == ButtonInputState::PRESS;
-	}
+	bool IsDown(DWORD button) { return ButtonMap[button] == static_cast<DWORD>(ButtonInputState::DOWN); }
+	bool IsUp(DWORD button) { return ButtonMap[button] == static_cast<DWORD>(ButtonInputState::UP); }
+	bool IsPress(DWORD button) { return ButtonMap[button] == static_cast<DWORD>(ButtonInputState::PRESS); }
 
 	Vector3 GetWheelValue()
 	{

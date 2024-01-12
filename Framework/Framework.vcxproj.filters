@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Libraries.h">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Systems\Window.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -52,6 +49,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Viewer\Orthgraphic.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Renders\Vertex.h">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Renders\ShaderBase.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -399,6 +402,12 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Viewer\Orthgraphic.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\ShaderBase.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

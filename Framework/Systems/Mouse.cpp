@@ -1,6 +1,9 @@
 #include "Libraries.h"
 #include "Framework.h"
 #include "Mouse.h"
+//#include "Math/Vector.h"
+
+Mouse* Mouse::Instance = nullptr;
 
 Mouse::Mouse()
 {
@@ -32,13 +35,19 @@ Mouse::~Mouse()
 
 Mouse* Mouse::Get()
 {
-	assert(Instance != nullptr);
+	//assert(Instance != nullptr);
+	if (Instance == nullptr)
+		Create();
+
 	return Instance;
 }
 
 void Mouse::Create()
 {
-	assert(Instance == nullptr);
+	//assert(Instance == nullptr);
+	if (Instance != nullptr)
+		return;
+
 	Instance = new Mouse();
 }
 
@@ -89,7 +98,7 @@ void Mouse::Update()
 	DWORD buttonStatus = static_cast<DWORD>(GetTickCount64());
 	for (DWORD i = 0; i < MAX_INPUT_MOUSE; i++)
 	{
-		if (ButtonMap[i] == ButtonInputState::DOWN)
+		if (ButtonMap[i] == static_cast<byte>(ButtonInputState::DOWN))
 		{
 			if (ButtonCount[i] == 1)
 			{
@@ -102,7 +111,7 @@ void Mouse::Update()
 				StartDoubleClick[i] = buttonStatus;
 		}
 
-		if (ButtonMap[i] == ButtonInputState::UP)
+		if (ButtonMap[i] == static_cast<byte>(ButtonInputState::UP))
 		{
 			if (ButtonCount[i] == 1)
 			{

@@ -13,13 +13,19 @@ Keyboard::~Keyboard()
 
 Keyboard* Keyboard::Get()
 {
-	assert(Instance != nullptr);
+	//assert(Instance != nullptr);
+	if (Instance == nullptr)
+		Create();
+
 	return Instance;
 }
 
 void Keyboard::Create()
 {
-	assert(Instance == nullptr);
+	//assert(Instance == nullptr);
+	if (Instance != nullptr)
+		return;
+
 	Instance = new Keyboard();
 }
 
