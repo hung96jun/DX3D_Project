@@ -71,10 +71,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Libraries\DirectXTex\;$(SolutionDir)Libraries\ImGui\;$(SolutionDir)Framework\;$(SolutionDir)Libraries\;$(IncludePath)</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(DH);$(SolutionDir)Libraries\DirectXTex\;$(SolutionDir)Libraries\ImGui\;$(SolutionDir)Framework\;$(SolutionDir)Libraries\;$(IncludePath);</IncludePath>
     <LibraryWPath>$(WindowsSDK_MetadataPath);</LibraryWPath>
     <IntDir>$(SolutionDir)Debug_$(ProjectName)\</IntDir>
-    <LibraryPath>$(SolutionDir)Libraries\Lib\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Libraries\Lib\;$(LibraryPath);</LibraryPath>
     <OutDir>$(SolutionDir)Libraries\Framework\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -123,15 +123,16 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>Framework.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>./</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;$(SolutionDir)Libraries;</AdditionalIncludeDirectories>
       <LanguageStandard>Default</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>./</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>./;$(SolutionDir)Libraries;</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -153,8 +154,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Framework\ShaderManager.cpp" />
+    <ClCompile Include="Renders\PixelShader.cpp" />
+    <ClCompile Include="Renders\Shader.cpp" />
     <ClCompile Include="Renders\Vertex.h" />
-    <ClCompile Include="Renders\ShaderBase.cpp" />
+    <ClCompile Include="Renders\ShaderBase.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Renders\VertexShader.cpp" />
     <ClCompile Include="Viewer\Orthgraphic.cpp" />
     <ClCompile Include="Viewer\Perspective.cpp" />
     <ClCompile Include="Renders\Context.cpp" />
@@ -170,8 +177,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework.h" />
+    <ClInclude Include="Framework\ShaderManager.h" />
     <ClInclude Include="Libraries.h" />
-    <ClInclude Include="Renders\ShaderBase.h" />
+    <ClInclude Include="Renders\PixelShader.h" />
+    <ClInclude Include="Renders\Shader.h" />
+    <ClInclude Include="Renders\ShaderBase.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Renders\VertexShader.h" />
     <ClInclude Include="Viewer\Orthgraphic.h" />
     <ClInclude Include="Viewer\Perspective.h" />
     <ClInclude Include="Renders\Context.h" />

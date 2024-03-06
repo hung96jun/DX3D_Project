@@ -5,7 +5,7 @@ class Main : public Scene
 {
 public:
 	virtual void Initializer() override;
-	//virtual void Ready() override;
+	virtual void Ready() override;
 	virtual void Destroy() override;
 	virtual void Update() override;
 	virtual void PreRender() override;

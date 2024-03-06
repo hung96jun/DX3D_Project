@@ -7,9 +7,9 @@ void Main::Initializer()
 	
 }
 
-//void Main::Ready()
-//{
-//}
+void Main::Ready()
+{
+}
 
 void Main::Destroy()
 {

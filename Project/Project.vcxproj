@@ -82,8 +82,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Debug_$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir)Libraries\DirectXTex\;$(SolutionDir)Libraries\ImGui\;$(SolutionDir)Libraries\;$(ProjectDir);$(SolutionDir)Framework\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Libraries\Framework\;$(SolutionDir)Libraries\Lib\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Libraries\DirectXTex\;$(SolutionDir)Libraries\ImGui\;$(SolutionDir)Libraries\;$(ProjectDir);$(SolutionDir)Framework\;$(IncludePath);</IncludePath>
+    <LibraryPath>$(SolutionDir)Libraries\Framework\;$(SolutionDir)Libraries\Lib\;$(LibraryPath);</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -125,10 +125,13 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>./;$(SolutionDir)Libraries;$(SolutionDir)Framework\;</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>./;$(SolutionDir)Libraries;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

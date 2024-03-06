@@ -4,7 +4,7 @@ class Scene
 {
 public:
 	virtual void Initializer() = 0;
-	// virtual void Ready() = 0;
+	 virtual void Ready() = 0;
 	virtual void Destroy() = 0;
 
 	virtual void Update() = 0;
