@@ -11,7 +11,7 @@ WPARAM Window::Run(Scene* main)
 	MainScene = main;
 	Create();
 
-	D3DDesc desc = D3D::GetDesc();
+	//D3DDesc desc = D3D::GetDesc();
 
 	D3D::Create();
 	Keyboard::Create();
@@ -57,7 +57,8 @@ void Window::Create()
 {
 	D3DDesc desc = D3D::GetDesc();
 
-	WNDCLASSEX wndClass;
+	//WNDCLASSEX wndClass;
+	WNDCLASSEXW wndClass;
 	wndClass.cbClsExtra = 0;
 	wndClass.cbWndExtra = 0;
 	wndClass.hbrBackground = static_cast<HBRUSH>(GetStockObject(WHITE_BRUSH));
@@ -71,7 +72,7 @@ void Window::Create()
 	wndClass.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
 	wndClass.cbSize = sizeof(WNDCLASSEX);
 
-	WORD wHr = RegisterClassEx(&wndClass);
+	WORD wHr = RegisterClassExW(&wndClass);
 	assert(wHr != 0);
 
 	if (desc.bFullScreen == true)

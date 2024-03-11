@@ -54,9 +54,6 @@
     <ClCompile Include="Renders\Vertex.h">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Renders\ShaderBase.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Renders\Shader.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -67,6 +64,21 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Framework\ShaderManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Object.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Buffers\IndexBuffer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Buffers\VertexBuffer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Managers\ShaderManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Math.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -419,9 +431,6 @@
     <ClInclude Include="Libraries.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Renders\ShaderBase.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Renders\Shader.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -432,6 +441,24 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Framework\ShaderManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Object.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\VertexLayout.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Buffers\IndexBuffer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Buffers\VertexBuffer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Managers\ShaderManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Math.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,6 +1,8 @@
 #pragma once
 #include "Systems/Scene.h"
 
+class Test;
+
 class TestScene : public Scene
 {
 public:
@@ -14,6 +16,14 @@ public:
 	virtual void ResizeScreen() override {}
 
 private:
-	
+	////Shader* TestShader;
+	//VertexShader* VShader;
+	////PixelShader* PShader;
+
+	//Vertex Vertices[3];
+
+	//ID3D11Buffer* VertexBuffer;
+
+	Object* Test;
 };
 

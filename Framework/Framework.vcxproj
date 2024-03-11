@@ -154,13 +154,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Framework\Buffers\IndexBuffer.cpp" />
+    <ClCompile Include="Framework\Buffers\VertexBuffer.cpp" />
+    <ClCompile Include="Framework\Managers\ShaderManager.cpp" />
     <ClCompile Include="Framework\ShaderManager.cpp" />
+    <ClCompile Include="Math\Math.cpp" />
+    <ClCompile Include="Objects\Object.cpp" />
     <ClCompile Include="Renders\PixelShader.cpp" />
     <ClCompile Include="Renders\Shader.cpp" />
     <ClCompile Include="Renders\Vertex.h" />
-    <ClCompile Include="Renders\ShaderBase.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="Renders\VertexShader.cpp" />
     <ClCompile Include="Viewer\Orthgraphic.cpp" />
     <ClCompile Include="Viewer\Perspective.cpp" />
@@ -177,13 +179,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework.h" />
+    <ClInclude Include="Framework\Buffers\IndexBuffer.h" />
+    <ClInclude Include="Framework\Buffers\VertexBuffer.h" />
+    <ClInclude Include="Framework\Managers\ShaderManager.h" />
     <ClInclude Include="Framework\ShaderManager.h" />
     <ClInclude Include="Libraries.h" />
+    <ClInclude Include="Math\Math.h" />
+    <ClInclude Include="Objects\Object.h" />
     <ClInclude Include="Renders\PixelShader.h" />
     <ClInclude Include="Renders\Shader.h" />
-    <ClInclude Include="Renders\ShaderBase.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="Renders\VertexLayout.h" />
     <ClInclude Include="Renders\VertexShader.h" />
     <ClInclude Include="Viewer\Orthgraphic.h" />
     <ClInclude Include="Viewer\Perspective.h" />

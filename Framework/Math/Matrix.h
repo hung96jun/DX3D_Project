@@ -1,7 +1,7 @@
 #pragma once
 #include "Libraries.h"
 
-template<size_t T>
+template<size_t T = 16>
 class Matrix
 {
 public:
@@ -16,6 +16,17 @@ public:
 	static void* operator delete(void* memory)
 	{
 		return _aligned_free(memory);
+	}
+
+	Matrix operator=(XMATRIX& Mat)
+	{
+		Value = Mat;
+		return *this;
+	}
+
+	XMATRIX opreator=(Matrix Mat)
+	{
+		return Value = Mat;
 	}
 
 	XMMATRIX Get() { return Value; }

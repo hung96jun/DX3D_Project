@@ -2,9 +2,11 @@
 #include "Main.h"
 #include "Systems/Window.h"
 
+#include "Scenes/TestScene.h"
+
 void Main::Initializer()
 {
-	
+	Push(new TestScene());
 }
 
 void Main::Ready()
@@ -56,6 +58,7 @@ void Main::Push(Scene* scene)
 	scene->Initializer();
 }
 
+// 프로그램 시작
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nShowCmd)
 {
 	D3DDesc desc;

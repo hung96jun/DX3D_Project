@@ -10,6 +10,11 @@ public:
 
 	virtual void Set() override;
 
-public:
+private:
+	void CreateInputLayout();
 
+public:
+	ID3D11VertexShader* VS;
+	ID3D11InputLayout* InputLayout;
+	ID3D11ShaderReflection* Reflection;
 };
