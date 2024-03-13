@@ -16,14 +16,15 @@ public:
 	virtual void ResizeScreen() override {}
 
 private:
-	////Shader* TestShader;
-	//VertexShader* VShader;
-	////PixelShader* PShader;
+	Object* Test;
+
+	//VertexShader* VShader = nullptr;
 
 	//Vertex Vertices[3];
+	//ID3D11Buffer* VBuffer;
 
-	//ID3D11Buffer* VertexBuffer;
-
-	Object* Test;
+	VertexShader* VShader = nullptr;
+	XMFLOAT3 vertices[3];
+	ID3D11Buffer* pVertexBuffer;
 };
 

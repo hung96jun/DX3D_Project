@@ -23,7 +23,7 @@ private:
 	void SetGPUInfo();
 	void CreateSwapChainAndDevice();
 
-	void CreateBackBuffer(float width, float height);
+	void CreateBackBuffer(float Width, float Height);
 	void DeleteBackBuffer();
 
 public:
@@ -47,6 +47,8 @@ public:
 	void Present();
 
 	void ResizeScreen(float width, float height);
+
+	ID3D11RenderTargetView* GetRenderTargetViewAddress() { return RenderTargetView; }
 
 private:
 	static D3D* Instance;

@@ -62,7 +62,7 @@ void Main::Push(Scene* scene)
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nShowCmd)
 {
 	D3DDesc desc;
-	desc.AppName = L"DX3D_Project";
+	desc.AppName = L"DX3D_Project"; 
 	desc.Instance = hInstance;
 	desc.bFullScreen = false;
 	desc.bVsync = false;

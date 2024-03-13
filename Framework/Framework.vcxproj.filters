@@ -63,9 +63,6 @@
     <ClCompile Include="Renders\PixelShader.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\ShaderManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\Object.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -438,9 +435,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Renders\VertexShader.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\ShaderManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Object.h">

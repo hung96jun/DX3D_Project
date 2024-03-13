@@ -11,7 +11,7 @@ WPARAM Window::Run(Scene* main)
 	MainScene = main;
 	Create();
 
-	//D3DDesc desc = D3D::GetDesc();
+	D3DDesc desc = D3D::GetDesc();
 
 	D3D::Create();
 	Keyboard::Create();

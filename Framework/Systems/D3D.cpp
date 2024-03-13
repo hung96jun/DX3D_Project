@@ -26,6 +26,7 @@ D3D::~D3D()
 	SAFE_RELEASE(DeviceContext);
 	SAFE_RELEASE(Device);
 	SAFE_RELEASE(SwapChain);
+	SAFE_RELEASE(RenderTargetView);
 }
 
 void D3D::SetGPUInfo()
@@ -151,7 +152,7 @@ void D3D::CreateSwapChainAndDevice()
 	CHECK(hResult);
 }
 
-void D3D::CreateBackBuffer(float width, float height)
+void D3D::CreateBackBuffer(float Width, float Height)
 {
 	HRESULT hResult;
 
@@ -168,8 +169,8 @@ void D3D::CreateBackBuffer(float width, float height)
 
 	{
 		D3D11_TEXTURE2D_DESC desc = { 0 };
-		desc.Width = static_cast<UINT>(width);
-		desc.Height = static_cast<UINT>(height);
+		desc.Width = static_cast<UINT>(Width);
+		desc.Height = static_cast<UINT>(Height);
 		desc.MipLevels = 1;
 		desc.ArraySize = 1;
 		desc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
@@ -185,17 +186,32 @@ void D3D::CreateBackBuffer(float width, float height)
 	}
 
 	{
-		D3D11_DEPTH_STENCIL_VIEW_DESC desc;
-		ZeroMemory(&desc, sizeof(D3D11_DEPTH_STENCIL_VIEW_DESC));
-		desc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-		desc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
-		desc.Texture2D.MipSlice = 0;
+		//D3D11_DEPTH_STENCIL_VIEW_DESC desc;
+		//ZeroMemory(&desc, sizeof(D3D11_DEPTH_STENCIL_VIEW_DESC));
+		//desc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+		//desc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+		//desc.Texture2D.MipSlice = 0;
 
-		hResult = Device->CreateDepthStencilView(BackBuffer, &desc, &DepthStencilView);
-		CHECK(hResult);
+		//hResult = Device->CreateDepthStencilView(BackBuffer, &desc, &DepthStencilView);
+		//CHECK(hResult);
 
-		SetRendertarget(RenderTargetView, DepthStencilView);
+		// OMSerRenderTargetView
+		//SetRendertarget(RenderTargetView, DepthStencilView);
+		SetRendertarget(RenderTargetView, nullptr);
 	}
+
+	{
+		D3D11_VIEWPORT view;
+		view.Width = Width;
+		view.Height = Height;
+		view.MinDepth = 0.0f;
+		view.MaxDepth = 1.0f;
+		view.TopLeftX = 0.0f;
+		view.TopLeftY = 0.0f;
+
+		DeviceContext->RSSetViewports(1, &view);
+	}
+
 }
 
 void D3D::DeleteBackBuffer()

@@ -157,7 +157,6 @@
     <ClCompile Include="Framework\Buffers\IndexBuffer.cpp" />
     <ClCompile Include="Framework\Buffers\VertexBuffer.cpp" />
     <ClCompile Include="Framework\Managers\ShaderManager.cpp" />
-    <ClCompile Include="Framework\ShaderManager.cpp" />
     <ClCompile Include="Math\Math.cpp" />
     <ClCompile Include="Objects\Object.cpp" />
     <ClCompile Include="Renders\PixelShader.cpp" />
@@ -182,7 +181,6 @@
     <ClInclude Include="Framework\Buffers\IndexBuffer.h" />
     <ClInclude Include="Framework\Buffers\VertexBuffer.h" />
     <ClInclude Include="Framework\Managers\ShaderManager.h" />
-    <ClInclude Include="Framework\ShaderManager.h" />
     <ClInclude Include="Libraries.h" />
     <ClInclude Include="Math\Math.h" />
     <ClInclude Include="Objects\Object.h" />
