@@ -11,3 +11,4 @@ public:
 private:
 	ID3D11Buffer* Buffer;
 };
+

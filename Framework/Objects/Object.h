@@ -3,7 +3,7 @@
 class Object
 {
 public:
-	Object() {}
+	Object() = delete;
 	Object(const Vector2 Pos, const Vector2 Size);
 	virtual ~Object();
 
@@ -16,6 +16,6 @@ private:
 	VertexBuffer* VBuffer = nullptr;
 	IndexBuffer* IBuffer = nullptr;
 
-	vector<Vertex> Vertices;
+	vector<VertexColor> Vertices;
 	vector<UINT> Indices;
 };

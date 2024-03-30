@@ -13,23 +13,13 @@ Keyboard::~Keyboard()
 
 Keyboard* Keyboard::Get()
 {
-	//assert(Instance != nullptr);
 	if (Instance == nullptr)
-		Create();
+		Instance = new Keyboard();
 
 	return Instance;
 }
 
-void Keyboard::Create()
-{
-	//assert(Instance == nullptr);
-	if (Instance != nullptr)
-		return;
-
-	Instance = new Keyboard();
-}
-
-void Keyboard::Delete()
+void Keyboard::Destroyt()
 {
 	SAFE_DELETE(Instance);
 }

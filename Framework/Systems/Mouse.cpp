@@ -35,23 +35,13 @@ Mouse::~Mouse()
 
 Mouse* Mouse::Get()
 {
-	//assert(Instance != nullptr);
 	if (Instance == nullptr)
-		Create();
+		Instance = new Mouse();
 
 	return Instance;
 }
 
-void Mouse::Create()
-{
-	//assert(Instance == nullptr);
-	if (Instance != nullptr)
-		return;
-
-	Instance = new Mouse();
-}
-
-void Mouse::Delete()
+void Mouse::Destroyt()
 {
 	SAFE_DELETE(Instance);
 }

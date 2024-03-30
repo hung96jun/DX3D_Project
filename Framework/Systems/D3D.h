@@ -1,17 +1,16 @@
 #pragma once
-//#include "Utilities/DataStructs.h "
-#include "DataStructs/Color.h"
+#include "Libraries.h"
 
-struct D3DDesc
+struct WindowDesc
 {
 	wstring AppName;
 	HINSTANCE Instance;
 	HWND Handle;
-	float Width;
-	float Height;
+	UINT Width;
+	UINT Height;
 	bool bVsync;
 	bool bFullScreen;
-	Color Background;
+	Float4 Background;
 };
 
 class D3D
@@ -20,53 +19,29 @@ private:
 	D3D();
 	~D3D();
 
-	void SetGPUInfo();
-	void CreateSwapChainAndDevice();
-
-	void CreateBackBuffer(float Width, float Height);
-	void DeleteBackBuffer();
-
 public:
 	static D3D* Get();
+	static void Destroy();
+	void Create();
 
-	static void Create();
-	static void Delete();
+	void Clear();
+	void Present();
 
-	static const float Width() { return Desc.Width; }
-	static const float Height() { return Desc.Height; }
+	void SetDesc(WindowDesc& Value) { Desc = Value; }
+	static WindowDesc& GetDesc() { return Desc; }
 
 	static ID3D11Device* GetDevice() { return Device; }
 	static ID3D11DeviceContext* GetDC() { return DeviceContext; }
-	static IDXGISwapChain* GetSwapChain() { return SwapChain; }
-	static const D3DDesc& GetDesc() { return Desc; }
-	static void SetDesc(D3DDesc& desc) { Desc = desc; }
-
-	void SetRendertarget(ID3D11RenderTargetView* rtv = nullptr, ID3D11DepthStencilView* dsv = nullptr);
-
-	void Clear(Color color = Color(0.0f, 0.125f, 0.3f, 1.0f), ID3D11RenderTargetView* rtv = nullptr, ID3D11DepthStencilView* dsv = nullptr);
-	void Present();
-
-	void ResizeScreen(float width, float height);
-
-	ID3D11RenderTargetView* GetRenderTargetViewAddress() { return RenderTargetView; }
 
 private:
 	static D3D* Instance;
 
-	static D3DDesc Desc;
 	static ID3D11Device* Device;
 	static ID3D11DeviceContext* DeviceContext;
-	static IDXGISwapChain* SwapChain;
 
-	ID3D11Debug* DebugDevice;
+	static WindowDesc Desc;
 
-	UINT GPUMenorySize;
-	wstring GPUDescriptoin;
-
-	UINT Numerator;
-	UINT Denominator;
-
-	ID3D11Texture2D* BackBuffer;
-	ID3D11DepthStencilView* DepthStencilView;
+	IDXGISwapChain* SwapChain;
 	ID3D11RenderTargetView* RenderTargetView;
 };
+

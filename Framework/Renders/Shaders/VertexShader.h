@@ -5,16 +5,14 @@
 class VertexShader : public Shader
 {
 public:
+	VertexShader() = default;
 	VertexShader(wstring File);
-	~VertexShader();
+	virtual ~VertexShader();
 
 	virtual void Set() override;
 
 private:
-	void CreateInputLayout();
-
-public:
-	ID3D11VertexShader* VS;
-	ID3D11InputLayout* InputLayout;
-	ID3D11ShaderReflection* Reflection;
+	ID3D11VertexShader* VShader = nullptr;
+	ID3D11InputLayout* InputLayout = nullptr;
 };
+

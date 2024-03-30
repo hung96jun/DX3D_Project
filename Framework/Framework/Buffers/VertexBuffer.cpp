@@ -1,11 +1,12 @@
-#include "Libraries.h"
+#include "Framework.h"
 #include "VertexBuffer.h"
 #include "Systems/D3D.h"
 
 VertexBuffer::VertexBuffer(void* Data, UINT Stride, UINT Count)
 	:Stride(Stride)
 {
-	D3D11_BUFFER_DESC desc = {};
+	D3D11_BUFFER_DESC desc;
+	ZeroMemory(&desc, sizeof(D3D11_BUFFER_DESC));
 	desc.Usage = D3D11_USAGE_DEFAULT;
 	desc.ByteWidth = Stride * Count;
 	desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
@@ -18,7 +19,7 @@ VertexBuffer::VertexBuffer(void* Data, UINT Stride, UINT Count)
 
 VertexBuffer::~VertexBuffer()
 {
-	Buffer->Release();
+	SAFE_RELEASE(Buffer);
 }
 
 void VertexBuffer::Set(D3D11_PRIMITIVE_TOPOLOGY Type)

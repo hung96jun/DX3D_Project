@@ -31,9 +31,7 @@ public:
 	}
 
 	static Mouse* Get();
-
-	static void Create();
-	static void Delete();
+	static void Destroyt();
 
 	void Update();
 

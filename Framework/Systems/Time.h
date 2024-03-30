@@ -8,9 +8,7 @@ private:
 
 public:
 	static Time* Get();
-
-	static void Create();
-	static void Delete();
+	static void Destroyt();
 
 	static const bool IsStopped() { return bTimeStopped; }
 	static float GetDeltaTime() { return bTimeStopped ? 0.0f : ElapsedTime; }

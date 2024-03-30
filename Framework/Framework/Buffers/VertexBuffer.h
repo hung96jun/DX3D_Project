@@ -10,8 +10,9 @@ public:
 	void Update(void* Data, UINT Count);
 
 private:
-	ID3D11Buffer* Buffer;
+	ID3D11Buffer* Buffer = nullptr;;
 
 	UINT Stride = 0;
 	UINT Offset = 0;
 };
+

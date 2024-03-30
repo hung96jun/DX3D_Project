@@ -26,23 +26,13 @@ Time::~Time()
 
 Time* Time::Get()
 {
-	//assert(Instance != nullptr);
 	if (Instance == nullptr)
-		Create();
+		Instance = new Time();
 
 	return Instance;
 }
 
-void Time::Create()
-{
-	//assert(Instance == nullptr);
-	if (Instance != nullptr)
-		return;
-
-	Instance = new Time();
-}
-
-void Time::Delete()
+void Time::Destroyt()
 {
 	SAFE_DELETE(Instance);
 }
