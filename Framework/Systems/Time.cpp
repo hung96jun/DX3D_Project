@@ -92,21 +92,12 @@ Timer* Timer::Get()
 {
 	//assert(Instance != nullptr);
 	if (Instance == nullptr)
-		Create();
+		Instance = new Timer();
 
 	return Instance;
 }
 
-void Timer::Create()
-{
-	//assert(Instance == nullptr);
-	if (Instance != nullptr)
-		return;
-
-	Instance = new Timer();
-}
-
-void Timer::Delete()
+void Timer::Destroy()
 {
 	SAFE_DELETE(Instance);
 }

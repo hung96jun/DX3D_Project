@@ -1,12 +1,11 @@
 #pragma once
 
-class Object;
 
-class TestScene : public Scene
+class AnimGraphEditor : public Scene
 {
 public:
-	TestScene();
-	~TestScene();
+	AnimGraphEditor();
+	~AnimGraphEditor();
 
 	void Initialize() override;
 	void Disable() override;
@@ -20,8 +19,5 @@ public:
 	void GUIRender() override;
 
 	void ResizeScreen() override;
-
-private:
-	Object* TestObject = nullptr;
 };
 

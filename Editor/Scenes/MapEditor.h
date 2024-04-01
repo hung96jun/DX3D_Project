@@ -1,12 +1,10 @@
 #pragma once
 
-class Object;
-
-class TestScene : public Scene
+class MapEditor : public Scene
 {
 public:
-	TestScene();
-	~TestScene();
+	MapEditor();
+	~MapEditor();
 
 	void Initialize() override;
 	void Disable() override;
@@ -21,7 +19,5 @@ public:
 
 	void ResizeScreen() override;
 
-private:
-	Object* TestObject = nullptr;
 };
 

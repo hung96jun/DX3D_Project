@@ -60,6 +60,12 @@
     <ClCompile Include="Framework\Buffers\IndexBuffer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Math\Transformation.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Managers\SceneManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utilities\Defines.h">
@@ -371,9 +377,6 @@
     <ClInclude Include="Libraries\inc\fmod_output.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\Scene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Systems\Keyboard.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -426,6 +429,12 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Scene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Transformation.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Managers\SceneManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

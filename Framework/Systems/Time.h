@@ -137,8 +137,7 @@ private:
 public:
 	static Timer* Get();
 
-	static void Create();
-	static void Delete();
+	static void Destroy();
 	static void Update();
 	
 	void ExcuteEvent(const string key);

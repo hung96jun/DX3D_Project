@@ -1,5 +1,5 @@
 #pragma once
-#include "Systems/Scene.h"
+#include "Framework/Scene.h"
 #include "Resource.h"
 
 class Main : public Scene

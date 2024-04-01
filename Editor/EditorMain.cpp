@@ -1,7 +1,6 @@
 #include "stdafx.h"
-#include "Main.h"
-//#include "Systems/Window.h"
-#include "Framework/Managers/GameManager.h"
+#include "EditorMain.h"
+
 
 #define MAX_LOADSTRING 100
 
@@ -56,8 +55,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         D3D::Get()->Create();
     }
 
-    GameManager::Create();
-
     while (msg.message != WM_QUIT)
     {
         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
@@ -70,13 +67,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
         else
         {
-            GameManager::Get()->Update();
-            GameManager::Get()->Render();
+            //GameManager::Get()->Update();
+            //GameManager::Get()->Render();
         }
     }
 
-    GameManager::Destroy();
-    
+    //GameManager::Destroy();
+
     return (int)msg.wParam;
 }
 

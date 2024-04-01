@@ -4,7 +4,7 @@
 struct Vector2
 {
 public:
-	Vector2() {}
+	Vector2() : X(0.0f), Y(0.0f) {}
 	//Vector2(double n) : X(static_cast<float>(n)), Y(static_cast<float>(n)) {}
 	//Vector2(double x, double y) : X(static_cast<float>(x)), Y(static_cast<float>(y)) {}
 	Vector2(float n) : X(n), Y(n) {}
@@ -132,7 +132,7 @@ public:
 struct Vector3
 {
 public:
-	Vector3() {}
+	Vector3() : X(0.0f), Y(0.0f), Z(0.0f) {}
 	Vector3(float n) : X(n), Y(n), Z(n) {}
 	Vector3(float x, float y, float z) : X(x), Y(y), Z(z) {}
 	Vector3(XMVECTOR value)
@@ -227,6 +227,7 @@ public:
 
 		return *this;
 	}
+
 	//////////////////////////////////////////////////////////////////////////////
 
 	//////////////////////////////////////////////////////////////////////////////

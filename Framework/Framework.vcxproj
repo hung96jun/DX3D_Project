@@ -155,6 +155,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Buffers\IndexBuffer.cpp" />
+    <ClCompile Include="Framework\Managers\SceneManager.cpp" />
+    <ClCompile Include="Math\Transformation.cpp" />
     <ClCompile Include="Systems\D3D.cpp" />
     <ClCompile Include="Math\Math.cpp" />
     <ClCompile Include="Objects\Object.cpp">
@@ -175,6 +177,8 @@
   <ItemGroup>
     <ClInclude Include="Framework\Buffers\IndexBuffer.h" />
     <ClInclude Include="Framework\Scene.h" />
+    <ClInclude Include="Framework\Managers\SceneManager.h" />
+    <ClInclude Include="Math\Transformation.h" />
     <ClInclude Include="Renders\VertexLayout.h" />
     <ClInclude Include="Systems\D3D.h" />
     <ClInclude Include="Framework.h" />
@@ -291,7 +295,6 @@
     <ClInclude Include="Libraries\inc\fmod_dsp_effects.h" />
     <ClInclude Include="Libraries\inc\fmod_errors.h" />
     <ClInclude Include="Libraries\inc\fmod_output.h" />
-    <ClInclude Include="Systems\Scene.h" />
     <ClInclude Include="Systems\Time.h" />
     <ClInclude Include="Utilities\Defines.h" />
     <ClInclude Include="Systems\Window.h" />

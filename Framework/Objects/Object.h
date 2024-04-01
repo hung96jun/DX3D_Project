@@ -18,4 +18,7 @@ private:
 
 	vector<VertexColor> Vertices;
 	vector<UINT> Indices;
+
+	Object* Parent = nullptr;
+	Transformation Transform;
 };

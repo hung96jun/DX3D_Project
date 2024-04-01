@@ -15,44 +15,28 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Scenes\TestScene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\Managers\GameManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Main.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
+    <ClInclude Include="Scenes\AnimGraphEditor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\TestScene.h">
+    <ClInclude Include="Scenes\MapEditor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Managers\GameManager.h">
+    <ClInclude Include="EditorMain.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="DirectX2D.rc">
-      <Filter>리소스 파일</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="small.ico">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="DirectX2D.ico">
-      <Filter>리소스 파일</Filter>
-    </Image>
+    <ClCompile Include="Scenes\AnimGraphEditor.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\MapEditor.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="EditorMain.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
