@@ -13,10 +13,10 @@ Object::Object(const Vector2 Pos, const Vector2 Size)
 	float top = Pos.Y + Size.Y;
 	float bottom = Pos.Y - Size.Y;
 
-	Vertices.emplace_back(left, top, 0.0f, 1.0f, 0.0f, 0.0f);
-	Vertices.emplace_back(right, top, 0.0f, 1.0f, 0.0f, 0.0f);
-	Vertices.emplace_back(left, bottom, 0.0f, 1.0f, 0.0f, 0.0f);
-	Vertices.emplace_back(right, bottom, 0.0f, 1.0f, 0.0f, 0.0f);
+	Vertices.emplace_back(left, top, 0.0f, 0.1f, 0.0f, 0.0f);
+	Vertices.emplace_back(right, top, 0.0f, 0.1f, 0.0f, 0.0f);
+	Vertices.emplace_back(left, bottom, 0.0f, 0.1f, 0.0f, 0.0f);
+	Vertices.emplace_back(right, bottom, 0.0f, 0.1f, 0.0f, 0.0f);
 
 	Indices = { 0, 1, 2, 2, 1, 3 };
 
@@ -31,6 +31,7 @@ Object::~Object()
 
 void Object::Update()
 {
+	Transform.Update();
 }
 
 void Object::Render()

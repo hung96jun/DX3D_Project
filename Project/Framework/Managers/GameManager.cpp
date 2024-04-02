@@ -36,13 +36,13 @@ void GameManager::Create()
 		Timer::Get();
 	}
 
-	//{
-	//	ImGui::CreateContext();
-	//	ImGui::StyleColorsDark();
+	{
+		ImGui::CreateContext();
+		ImGui::StyleColorsDark();
 
-	//	ImGui_ImplWin32_Init(D3D::GetDesc().Handle);
-	//	ImGui_ImplDX11_Init(D3D::GetDevice(), D3D::GetDC());
-	//}
+		ImGui_ImplWin32_Init(D3D::GetDesc().Handle);
+		ImGui_ImplDX11_Init(D3D::GetDevice(), D3D::GetDC());
+	}
 }
 
 void GameManager::Destroy()
@@ -54,12 +54,12 @@ void GameManager::Destroy()
 		SceneManager::Destroy();
 	}
 
-	//{
-	//	ImGui_ImplDX11_Shutdown;
-	//	ImGui_ImplWin32_Shutdown;
+	{
+		ImGui_ImplDX11_Shutdown();
+		ImGui_ImplWin32_Shutdown();
 
-	//	ImGui::DestroyContext();
-	//}
+		ImGui::DestroyContext();
+	}
 
 	delete Instance;
 }
@@ -82,6 +82,15 @@ void GameManager::Render()
 	CurScene->PreRender();
 	CurScene->Render();
 	CurScene->PostRender();
+
+	ImGui_ImplDX11_NewFrame();
+	ImGui_ImplWin32_NewFrame();
+	ImGui::NewFrame();
+
+	CurScene->GUIRender();
+
+	ImGui::Render();
+	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
 	D3D::Get()->Present();
 }

@@ -4,11 +4,12 @@
 
 TestScene::TestScene()
 {
-	TestObject = new Object({ 0.0f, 0.0f }, { 0.5f, 0.5f });
+	TestObject = new Object({ 0.0f, 0.0f }, { 0.3f, 0.3f });
 }
 
 TestScene::~TestScene()
 {
+	SAFE_DELETE(TestObject);
 }
 
 void TestScene::Initialize()
@@ -23,27 +24,14 @@ void TestScene::Update()
 {
 }
 
-void TestScene::PreRender()
-{
-}
-
 void TestScene::Render()
 {
 	TestObject->Render();
 }
 
-void TestScene::PostRender()
-{
-}
-
-void TestScene::ResizeScreen()
-{
-}
-
 void TestScene::GUIRender()
 {
-}
+	ImGui::Begin("Test");
 
-void TestScene::Disable()
-{
+	ImGui::End();
 }

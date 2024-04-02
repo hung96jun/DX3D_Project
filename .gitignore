@@ -3,6 +3,7 @@
 Debug/
 Debug_Framework/
 Debug_Project/
+Debug_Editor/
 
 # Prerequisites
 *.d

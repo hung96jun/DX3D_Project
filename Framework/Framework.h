@@ -24,4 +24,5 @@
 
 #include "Framework/Scene.h"
 
+#include "Framework/Managers/ShaderManager.h"
 #include "Framework/Managers/SceneManager.h"
