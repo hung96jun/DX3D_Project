@@ -1,15 +1,17 @@
 #include "stdafx.h"
 #include "TestScene.h"
 #include "Objects/Object.h"
+#include "Objects/Environment/Grid.h"
 
 TestScene::TestScene()
 {
-	TestObject = new Object({ 0.0f, 0.0f }, { 0.3f, 0.3f });
+	//TestObject = new Object({ 0.0f, 0.0f }, { 0.3f, 0.3f });
+	TestGrid = new Grid();
 }
 
 TestScene::~TestScene()
 {
-	SAFE_DELETE(TestObject);
+	SAFE_DELETE(TestGrid);
 }
 
 void TestScene::Initialize()
@@ -26,7 +28,7 @@ void TestScene::Update()
 
 void TestScene::Render()
 {
-	TestObject->Render();
+	TestGrid->Render();
 }
 
 void TestScene::GUIRender()

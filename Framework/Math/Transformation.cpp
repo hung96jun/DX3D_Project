@@ -3,21 +3,11 @@
 
 Transformation::Transformation()
 {
-	Pivot = Vector3();
-	Position = Vector3();
-	Rotation = Vector3();
-	Scale = Vector3();
-
 	World = XMMatrixIdentity();
 }
 
 Transformation::Transformation(Vector3 P, Vector3 R, Vector3 S)
 {
-	Pivot = Vector3();
-	Position = P;
-	Rotation = R;
-	Scale = S;
-
 	World = XMMatrixIdentity();
 }
 

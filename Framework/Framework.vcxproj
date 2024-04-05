@@ -154,6 +154,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Framework\Buffers\ConstBuffer.cpp" />
+    <ClCompile Include="Objects\Environment\Grid.cpp" />
+    <ClCompile Include="Viewer\FreeCamera.cpp" />
+    <ClCompile Include="Viewer\Orthographic.cpp" />
+    <ClCompile Include="Viewer\Perspective.cpp" />
+    <ClCompile Include="Viewer\Projection.cpp" />
+    <ClCompile Include="Renders\Context.cpp" />
+    <ClCompile Include="Viewer\Camera.cpp" />
     <ClCompile Include="Framework\Buffers\IndexBuffer.cpp" />
     <ClCompile Include="Framework\Managers\SceneManager.cpp" />
     <ClCompile Include="Math\Transformation.cpp" />
@@ -173,8 +181,18 @@
     <ClCompile Include="Systems\Window.cpp" />
     <ClCompile Include="Renders\Shaders\VertexShader.cpp" />
     <ClCompile Include="Framework\Buffers\VertexBuffer.cpp" />
+    <ClCompile Include="Viewer\Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Framework\Buffers\ConstBuffer.h" />
+    <ClInclude Include="Framework\Buffers\GlobalBuffer.h" />
+    <ClInclude Include="Objects\Environment\Grid.h" />
+    <ClInclude Include="Viewer\FreeCamera.h" />
+    <ClInclude Include="Viewer\Orthographic.h" />
+    <ClInclude Include="Viewer\Perspective.h" />
+    <ClInclude Include="Viewer\Projection.h" />
+    <ClInclude Include="Renders\Context.h" />
+    <ClInclude Include="Viewer\Camera.h" />
     <ClInclude Include="Framework\Buffers\IndexBuffer.h" />
     <ClInclude Include="Framework\Scene.h" />
     <ClInclude Include="Framework\Managers\SceneManager.h" />
@@ -300,6 +318,7 @@
     <ClInclude Include="Systems\Window.h" />
     <ClInclude Include="Renders\Shaders\VertexShader.h" />
     <ClInclude Include="Framework\Buffers\VertexBuffer.h" />
+    <ClInclude Include="Viewer\Viewport.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Libraries\Assimp\color4.inl" />
@@ -311,6 +330,12 @@
     <None Include="Libraries\Assimp\vector2.inl" />
     <None Include="Libraries\Assimp\vector3.inl" />
     <None Include="Libraries\DirectXTex\DirectXTex.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="_Shaders\GridShader.hlsl">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS</EntryPointName>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -59,3 +59,5 @@ typedef XMFLOAT2 Float2;
 //typedef XMVECTOR Vector4;
 typedef XMMATRIX Matrix;
 typedef XMFLOAT4X4 Float4x4;
+
+#define SUPER __super

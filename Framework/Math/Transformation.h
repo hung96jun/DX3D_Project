@@ -27,6 +27,8 @@ public:
 		return bActive;
 	}
 
+	Matrix& GetWorld() { return World; }
+
 	void SetParent(Transformation* Parent) { this->Parent = Parent; }
 	void SetPivot(const Vector3 Pivot) { this->Pivot = Pivot; }
 	Vector3 GetPivot() const { return Pivot; }
@@ -43,19 +45,21 @@ private:
 	Matrix World;
 	Transformation* Parent = nullptr;
 
-	Vector3 Pivot;
+	Vector3 Pivot = Vector3::ZeroVector();;
 
 	// Local
-	Vector3 Position;
-	Vector3 Rotation;
-	Vector3 Scale;
+	Vector3 Position = Vector3::ZeroVector();
+	Vector3 Rotation = Vector3::ZeroVector();
+	Vector3 Scale = Vector3::ZeroVector();
 
 	// Global
-	Vector3 GPosition;
-	Vector3 GRotation;
-	Vector3 GScale;
+	Vector3 GPosition = Vector3::ZeroVector();
+	Vector3 GRotation = Vector3::ZeroVector();
+	Vector3 GScale = Vector3::ZeroVector();
 
-	Vector3 Forward, Right, Up;
+	Vector3 Forward = Vector3::ZeroVector();
+	Vector3 Right = Vector3::ZeroVector();
+	Vector3 Up = Vector3::ZeroVector();
 
 	Float4x4 MatWorld;
 

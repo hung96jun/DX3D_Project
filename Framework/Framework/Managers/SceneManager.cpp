@@ -13,6 +13,11 @@ SceneManager::SceneManager()
 
 SceneManager::~SceneManager()
 {
+	for (pair<string, Scene*> scenes : Scenes)
+	{
+		if (scenes.second != nullptr)
+			delete scenes.second;
+	}
 }
 
 SceneManager* SceneManager::Get()
@@ -34,12 +39,6 @@ SceneManager* SceneManager::Get()
 
 void SceneManager::Destroy()
 {
-	for (pair<string, Scene*> scenes : Scenes)
-	{
-		if (scenes.second != nullptr)
-			delete scenes.second;
-	}
-
 	//ImGui_ImplDX11_Shutdown;
 	//ImGui_ImplWin32_Shutdown;
 	//

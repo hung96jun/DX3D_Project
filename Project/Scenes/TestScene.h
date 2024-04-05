@@ -1,6 +1,7 @@
 #pragma once
 
 class Object;
+class Grid;
 
 class TestScene : public Scene
 {
@@ -22,6 +23,7 @@ public:
 	void ResizeScreen() override {};
 
 private:
-	Object* TestObject = nullptr;
+	//Object* TestObject = nullptr;
+	Grid* TestGrid = nullptr;
 };
 

@@ -18,39 +18,17 @@ public:
 	//////////////////////////////////////////////////////////////////////////////
 	// operator overloading
 	//////////////////////////////////////////////////////////////////////////////
-	const bool operator==(const Vector2& value) const
-	{
-		return (X == value.X) && (Y == value.Y);
-	}
-	const bool operator!=(const Vector2& value) const
-	{
-		return (X != value.X) || (Y != value.Y);
-	}
+	const bool operator==(const Vector2& value) const { return (X == value.X) && (Y == value.Y); }
+	const bool operator!=(const Vector2& value) const { return (X != value.X) || (Y != value.Y); }
+	
+	Vector2 operator+(const float& value) const { return Vector2(X + value, Y + value); }
+	Vector2 operator-(const float& value) const { return Vector2(X - value, Y - value); }
+	Vector2 operator*(const float& value) const { return Vector2(X * value, Y * value); }
+	Vector2 operator/(const float& value) const { return Vector2(X / value, Y / value); }
+	Vector2 operator+(const Vector2& value) const { return Vector2(X + value.X, Y + value.Y); }
+	Vector2 operator-(const Vector2& value) const { return Vector2(X - value.X, Y - value.Y); }
 
-	Vector2 operator+(const float& value) const
-	{
-		return Vector2(X + value, Y + value);
-	}
-	Vector2 operator-(const float& value) const
-	{
-		return Vector2(X - value, Y - value);
-	}
-	Vector2 operator*(const float& value) const
-	{
-		return Vector2(X * value, Y * value);
-	}
-	Vector2 operator/(const float& value) const
-	{
-		return Vector2(X / value, Y / value);
-	}
-	Vector2 operator+(const Vector2& value) const
-	{
-		return Vector2(X + value.X, Y + value.Y);
-	}
-	Vector2 operator-(const Vector2& value) const
-	{
-		return Vector2(X - value.X, Y - value.Y);
-	}
+	const Vector2 operator-() const { return Vector2(-X, -Y); }
 
 	Vector2& operator+=(const float& value)
 	{
@@ -170,6 +148,8 @@ public:
 	const Vector3 operator*(const float& value) const { return Vector3(X * value, Y * value, Z * value); }
 	const Vector3 operator/(const float& value) const { return Vector3(X / value, Y / value, Z / value); }
 
+	const Vector3 operator-() const { return Vector3(-X, -Y, -Z); }
+
 	Vector3& operator+=(const float& value)
 	{
 		X += value;
@@ -227,7 +207,6 @@ public:
 
 		return *this;
 	}
-
 	//////////////////////////////////////////////////////////////////////////////
 
 	//////////////////////////////////////////////////////////////////////////////
@@ -259,7 +238,7 @@ public:
 		return ("X : " + to_string(X) + ", Y : " + to_string(Y) + ", Z : " + to_string(Z));
 	}
 
-	XMVECTOR GetValue() { return XMVectorSet(X, Y, Z, 0.0f); }
+	XMVECTOR GetValue() const { return XMVectorSet(X, Y, Z, 0.0f); }
 	//////////////////////////////////////////////////////////////////////////////
 
 public:

@@ -32,6 +32,9 @@ void GameManager::Create()
 
 	{
 		SceneManager::Get();
+		ShaderManager::Get();
+		Context::Get();
+
 		Keyboard::Get();
 		Timer::Get();
 	}
@@ -51,6 +54,8 @@ void GameManager::Destroy()
 		Timer::Get();
 		Keyboard::Get();
 
+		Context::Destroy();
+		ShaderManager::Destroy();
 		SceneManager::Destroy();
 	}
 
@@ -69,6 +74,7 @@ void GameManager::Update()
 	if (CurScene == nullptr)
 		return;
 
+	Context::Get()->Update();
 	CurScene->Update();
 }
 
@@ -78,6 +84,8 @@ void GameManager::Render()
 
 	if (CurScene == nullptr)
 		return;
+
+	Context::Get()->Render();
 
 	CurScene->PreRender();
 	CurScene->Render();
