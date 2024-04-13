@@ -1,8 +1,11 @@
 #pragma once
+
+class MatrixBuffer;
+
 class Projection
 {
 protected:
-	Projection();
+	Projection() = delete;
 
 public:
 	Projection(float Width, float Height, float Zn, float Zf, float Fov);
@@ -19,5 +22,6 @@ protected:
 	float Fov;
 
 	Matrix Mat;
+	MatrixBuffer* PBuffer;
 };
 

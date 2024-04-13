@@ -7,7 +7,7 @@ ConstBuffer::ConstBuffer(void* Data, UINT DatatSize)
 	D3D11_BUFFER_DESC desc;
 	ZeroMemory(&desc, sizeof(D3D11_BUFFER_DESC));
 	desc.Usage = D3D11_USAGE_DYNAMIC;
-	desc.ByteWidth = DataSize;
+	desc.ByteWidth = DatatSize;
 	desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 	desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 

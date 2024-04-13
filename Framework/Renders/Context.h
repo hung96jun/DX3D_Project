@@ -17,7 +17,7 @@ public:
 	void Update();
 	void Render();
 
-	Perspective* GetPerspective() { return Perspec; }
+	Perspective* GetPerspective() { return Persp; }
 	Viewport* GetViewport() { return View; }
 	Camera* GetCamera() { return Cam; }
 
@@ -27,7 +27,8 @@ public:
 private:
 	static Context* Instance;
 
-	Perspective* Perspec;
+	Perspective* Persp;
+	Orthographic* Ortho;
 	Viewport* View;
 	Camera* Cam;
 };

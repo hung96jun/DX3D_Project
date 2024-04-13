@@ -37,6 +37,10 @@ public:
 	Vector3 GetRotation() const { return Rotation; }
 	Vector3 GetScale() const { return Scale; }
 
+	const Vector3 GetGlobalPosition() const { return GPosition; }
+	const Vector3 GetGlobalRotation() const { return GRotation; }
+	const Vector3 GetGlobalScale() const { return GScale; }
+
 	void SetPosition(const Vector3 Value) { Position = Value; }
 	void SetRotation(const Vector3 Value) { Rotation = Value; }
 	void SetScale(const Vector3 Value) { Scale = Value; }
@@ -50,12 +54,12 @@ private:
 	// Local
 	Vector3 Position = Vector3::ZeroVector();
 	Vector3 Rotation = Vector3::ZeroVector();
-	Vector3 Scale = Vector3::ZeroVector();
+	Vector3 Scale = Vector3(1.0f, 1.0f, 1.0f);
 
 	// Global
 	Vector3 GPosition = Vector3::ZeroVector();
 	Vector3 GRotation = Vector3::ZeroVector();
-	Vector3 GScale = Vector3::ZeroVector();
+	Vector3 GScale = Vector3(1.0f, 1.0f, 1.0f);
 
 	Vector3 Forward = Vector3::ZeroVector();
 	Vector3 Right = Vector3::ZeroVector();

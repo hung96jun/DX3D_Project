@@ -4,19 +4,22 @@
 /**
 * 브레이크 포인터 적중되지 않으면 해당 생성자 delete
 */
-Projection::Projection()
-	:Width(0.0f), Height(0.0f), Zn(0.0f), Zf(0.0f), Fov(0.0f)
-{
-	this->Mat = XMMatrixIdentity();
-}
+//Projection::Projection()
+//	:Width(0.0f), Height(0.0f), Zn(0.0f), Zf(0.0f), Fov(0.0f)
+//{
+//	this->Mat = XMMatrixIdentity();
+//}
 
 Projection::Projection(float Width, float Height, float Zn, float Zf, float Fov)
 	:Width(Width), Height(Height), Zn(Zn), Zf(Zf), Fov(Fov)
 {
+	this->Mat = XMMatrixIdentity();
+	PBuffer = new MatrixBuffer();
 }
 
 Projection::~Projection()
 {
+	SAFE_DELETE(PBuffer);
 }
 
 void Projection::GetMatrix(Matrix* Mat)

@@ -178,7 +178,6 @@
     <ClCompile Include="Systems\Mouse.cpp" />
     <ClCompile Include="Systems\Keyboard.cpp" />
     <ClCompile Include="Systems\Time.cpp" />
-    <ClCompile Include="Systems\Window.cpp" />
     <ClCompile Include="Renders\Shaders\VertexShader.cpp" />
     <ClCompile Include="Framework\Buffers\VertexBuffer.cpp" />
     <ClCompile Include="Viewer\Viewport.cpp" />
@@ -315,7 +314,6 @@
     <ClInclude Include="Libraries\inc\fmod_output.h" />
     <ClInclude Include="Systems\Time.h" />
     <ClInclude Include="Utilities\Defines.h" />
-    <ClInclude Include="Systems\Window.h" />
     <ClInclude Include="Renders\Shaders\VertexShader.h" />
     <ClInclude Include="Framework\Buffers\VertexBuffer.h" />
     <ClInclude Include="Viewer\Viewport.h" />
@@ -332,7 +330,7 @@
     <None Include="Libraries\DirectXTex\DirectXTex.inl" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="_Shaders\GridShader.hlsl">
+    <FxCompile Include="_Shaders\SimpleShader.hlsl">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS</EntryPointName>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
     </FxCompile>

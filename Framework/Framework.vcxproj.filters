@@ -36,9 +36,6 @@
     <ClCompile Include="Math\Math.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Systems\Window.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Renders\Shaders\VertexShader.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -428,9 +425,6 @@
     <ClInclude Include="Resource.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\Window.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Renders\Shaders\VertexShader.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -525,6 +519,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="_Shaders\GridShader.hlsl" />
+    <FxCompile Include="_Shaders\SimpleShader.hlsl" />
   </ItemGroup>
 </Project>

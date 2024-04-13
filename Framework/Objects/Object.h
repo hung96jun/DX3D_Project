@@ -13,7 +13,7 @@ public:
 	virtual void PreRender() {}
 	virtual void Render();
 	virtual void PostRender() {}
-	virtual void GUIRender() {}
+	virtual void GUIRender();
 
 private:
 	VertexShader* VShader = nullptr;
@@ -22,11 +22,13 @@ private:
 protected:
 	VertexBuffer* VBuffer = nullptr;
 	IndexBuffer* IBuffer = nullptr;
-	//WorldBuffer* WBuffer = nullptr;
+	WorldBuffer* WBuffer = nullptr;
 
 	vector<VertexColor> Vertices;
 	vector<UINT> Indices;
 
 	Object* Owner = nullptr;
 	Transformation Transform;
+
+	int VertexStart = 0;
 };

@@ -18,6 +18,7 @@
 #include "Viewer/Perspective.h"
 #include "Viewer/Viewport.h"
 #include "Viewer/Orthographic.h"
+#include "Viewer/FreeCamera.h"
 
 #include "Renders/Context.h"
 #include "Renders/VertexLayout.h"

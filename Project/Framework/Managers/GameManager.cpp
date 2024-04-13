@@ -84,12 +84,12 @@ void GameManager::Render()
 
 	if (CurScene == nullptr)
 		return;
-
+	
 	Context::Get()->Render();
 
-	CurScene->PreRender();
+	//CurScene->PreRender();
 	CurScene->Render();
-	CurScene->PostRender();
+	//CurScene->PostRender();
 
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();

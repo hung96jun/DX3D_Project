@@ -15,9 +15,13 @@ struct VertexOutput
 VertexOutput VS(VertexInput Input)
 {
     VertexOutput output;
-    output.Position = mul(Input.Position, World);
-    output.Position = mul(Input.Position, View);
-    output.Position = mul(Input.Position, Projection);
+    output.Position = Input.Position;
+    
+    //output.Position = mul(Input.Position, World);
+    //output.Position = mul(output.Position, View);
+    //output.Position = mul(output.Position, Projection);
+    
+    //output.Position = mul(Input.Position, mul(World, mul(View, Projection)));
     
     output.Color = Input.Color;
     

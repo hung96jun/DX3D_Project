@@ -18,6 +18,9 @@ public:
 	PixelShader* AddPS(wstring File);
 
 private:
+	wstring MakeFilePath(const wstring File);
+
+private:
 	static ShaderManager* Instance;
 	static unordered_map<wstring, Shader*> Shaders;
 };

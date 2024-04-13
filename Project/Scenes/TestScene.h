@@ -24,6 +24,18 @@ public:
 
 private:
 	//Object* TestObject = nullptr;
-	Grid* TestGrid = nullptr;
+	//Grid* TestObject = nullptr;
+
+	vector<VertexColor> Vertices;
+	vector<int> Indices;
+
+	Vector3 Pos, Rot, Scale;
+
+	VertexShader* VShader;
+	PixelShader* PShader;
+
+	VertexBuffer* VBuffer;
+	IndexBuffer* IBuffer;
+	MatrixBuffer* WBuffer;
 };
 

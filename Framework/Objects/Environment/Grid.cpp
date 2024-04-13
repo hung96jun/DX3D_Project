@@ -1,9 +1,9 @@
 #include "Grid.h"
 
 Grid::Grid(const UINT Width, const UINT Height)
-	:Object(L"GridShader.hlsl"), Width(Width), Height(Height)
+	:Object(L"GridShader"), Width(Width), Height(Height)
 {
-	Vertices.reserve((Width + 1) * (Height+ 1));
+	Vertices.resize((Width + 1) * (Height+ 1));
 
 	for (UINT y = 0; y <= Height; y++)
 	{
@@ -16,7 +16,7 @@ Grid::Grid(const UINT Width, const UINT Height)
 		}
 	}
 
-	Indices.reserve((Width * Height * 6));
+	Indices.resize((Width * Height * 6));
 	
 	UINT index = 0;
 	for (UINT y = 0; y < Height; y++)
