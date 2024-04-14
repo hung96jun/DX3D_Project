@@ -7,7 +7,9 @@ public:
 	FreeCamera();
 	~FreeCamera();
 
-	void Update();
+	void Update() override;
+	void GUIRender() override;
+
 	void SetSpeed(const float Move, const float Rotation = 2.0f);
 
 private:

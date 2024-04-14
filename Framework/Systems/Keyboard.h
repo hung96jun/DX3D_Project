@@ -7,7 +7,7 @@
 
 enum class KeyState : int
 {
-	NONE = 0,
+	NONE,
 	DOWN,
 	UP,
 	PRESS,
@@ -25,9 +25,13 @@ public:
 
 	void Update();
 
-	const bool IsDown(const DWORD key) { return KeyMap[key] == static_cast<DWORD>(KeyState::DOWN); }
-	const bool IsUp(const DWORD key) { return KeyMap[key] == static_cast<DWORD>(KeyState::UP); }
-	const bool IsPress(const DWORD key) { return KeyMap[key] == static_cast<DWORD>(KeyState::PRESS); }
+	//const bool IsDown(const DWORD key) { return KeyMap[key] == static_cast<DWORD>(KeyState::DOWN); }
+	//const bool IsUp(const DWORD key) { return KeyMap[key] == static_cast<DWORD>(KeyState::UP); }
+	//const bool IsPress(const DWORD key) { return KeyMap[key] == static_cast<DWORD>(KeyState::PRESS); }
+
+	const bool IsDown(const UINT key) { return KeyMap[key] == KeyState::DOWN; }
+	const bool IsUp(const UINT key) { return KeyMap[key] == KeyState::UP; }
+	const bool IsPress(const UINT key) { return KeyMap[key] == KeyState::PRESS; }
 
 	const bool AddDynamic(const DWORD key, const KeyState state, function<void()> func);
 
@@ -39,5 +43,5 @@ private:
 
 	byte KeyCurState[MAX_INPUT_KEY] = {};
 	byte KeyBeforeState[MAX_INPUT_KEY] = {};
-	byte KeyMap[MAX_INPUT_KEY] = {};
+	KeyState KeyMap[MAX_INPUT_KEY] = {};
 };

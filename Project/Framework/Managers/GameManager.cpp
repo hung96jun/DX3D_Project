@@ -74,6 +74,10 @@ void GameManager::Update()
 	if (CurScene == nullptr)
 		return;
 
+	Time::Get()->Update();
+	Mouse::Get()->Update();
+	Keyboard::Get()->Update();
+
 	Context::Get()->Update();
 	CurScene->Update();
 }
@@ -95,6 +99,7 @@ void GameManager::Render()
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
 
+	Context::Get()->GUIRender();
 	CurScene->GUIRender();
 
 	ImGui::Render();

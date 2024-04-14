@@ -8,14 +8,20 @@ Camera::Camera()
 
 	ApplyRotation();
 	ApplyMove();
+
+	VBuffer = new ViewBuffer();
 }
 
 Camera::~Camera()
 {
+	SAFE_DELETE(VBuffer);
 }
 
 void Camera::Update()
 {
+	Transform.SetPosition(Position);
+	Transform.SetRotation(Rotation);
+	Transform.Update();
 }
 
 void Camera::SetPosition(const float X, const float Y, const float Z)
@@ -52,7 +58,16 @@ void Camera::SetRotationDegree(const Vector3& Vec)
 
 void Camera::GetMatrix(Matrix* Mat)
 {
-	memcpy(Mat, &MatView, sizeof(Matrix));
+	//memcpy(Mat, &MatView, sizeof(Matrix));
+	memcpy(Mat, &Transform.GetWorld(), sizeof(Matrix));
+}
+
+void Camera::Set()
+{
+	Transform.Update();
+	MatView = XMMatrixInverse(nullptr, Transform.GetWorld());
+	VBuffer->Set(MatView, Transform.GetWorld());
+	VBuffer->SetVS(1);
 }
 
 void Camera::ApplyRotation()
@@ -65,7 +80,7 @@ void Camera::ApplyRotation()
 	MatRotation = x * y * z;
 
 	Forward = XMVector3TransformNormal(Vector3(0.0f, 0.0f, 1.0f).GetValue(), MatRotation);
-	Up = XMVector3TransformNormal(Vector3(0.0f, 0.0f, 1.0f).GetValue(), MatRotation);
+	Up = XMVector3TransformNormal(Vector3(0.0f, 1.0f, 0.0f).GetValue(), MatRotation);
 	Right = XMVector3TransformNormal(Vector3(1.0f, 0.0f, 0.0f).GetValue(), MatRotation);
 }
 

@@ -2,7 +2,7 @@
 #include "Time.h"
 
 Time* Time::Instance = nullptr;
-bool Time::bTimeStopped = true;
+bool Time::bTimeStopped = false;
 float Time::ElapsedTime = 0.0f;
 
 Timer* Timer::Instance = nullptr;

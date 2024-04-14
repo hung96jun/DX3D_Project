@@ -16,6 +16,7 @@ public:
 
 	void Update();
 	void Render();
+	void GUIRender();
 
 	Perspective* GetPerspective() { return Persp; }
 	Viewport* GetViewport() { return View; }

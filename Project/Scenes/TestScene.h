@@ -37,5 +37,9 @@ private:
 	VertexBuffer* VBuffer;
 	IndexBuffer* IBuffer;
 	MatrixBuffer* WBuffer;
+	
+	Matrix World;
+
+	float Color[3] = { 0.5, 0.0, 0.0 };
 };
 

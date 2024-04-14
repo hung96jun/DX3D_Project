@@ -6,8 +6,8 @@ Context::Context()
 {
 	WindowDesc desc = D3D::GetDesc();
 
-	Persp = new Perspective(static_cast<float>(desc.Width), static_cast<float>(desc.Height));
-	Ortho = new Orthographic(static_cast<float>(desc.Width), static_cast<float>(desc.Height));
+	Persp = new Perspective(static_cast<float>(desc.Width), static_cast<float>(desc.Height), 0.1f, 1000.0f);
+	Ortho = new Orthographic(static_cast<float>(desc.Width), static_cast<float>(desc.Height), -1.0f, 1.0f);
 	View = new Viewport(static_cast<float>(desc.Width), static_cast<float>(desc.Height));
 	Cam = new FreeCamera();
 }
@@ -41,8 +41,14 @@ void Context::Update()
 void Context::Render()
 {
 	View->RSSetViewport();
-	//Persp->Set();
-	Ortho->Set();
+	Cam->Set();
+	Persp->Set();
+	//Ortho->Set();
+}
+
+void Context::GUIRender()
+{
+	Cam->GUIRender();
 }
 
 Matrix Context::GetView()

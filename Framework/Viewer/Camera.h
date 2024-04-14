@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Math/Vector.h"
+#include "Framework/Buffers/GlobalBuffer.h"
+#include "Math/Transformation.h"
 
 class Camera
 {
@@ -9,6 +10,7 @@ public:
 	virtual ~Camera();
 
 	virtual void Update() = 0;
+	virtual void GUIRender() = 0;
 
 	void SetPosition(const float X, const float Y, const float Z);
 	void SetPosition(const Vector3& Vec);
@@ -24,6 +26,7 @@ public:
 	const Vector3 GetRotationDegree() const { return Vector3(Rotation * 57.29577957f); }
 
 	void GetMatrix(Matrix* Mat);
+	void Set();
 
 	Vector3 GetForward() { return Forward; }
 	Vector3 GetUp() { return Up; }
@@ -35,7 +38,13 @@ protected:
 
 	void View();
 
+protected:
+	Transformation Transform;
+
 private:
+	/* ViewBuffer */
+	ViewBuffer* VBuffer = nullptr;
+
 	Vector3 Position = Vector3::ZeroVector();
 	Vector3 Rotation = Vector3::ZeroVector();
 
@@ -44,6 +53,7 @@ private:
 	Vector3 Up = Vector3(1.0f, 0.0f, 0.0f);
 
 	Matrix MatRotation;
+	//Matrix MatView;
 	Matrix MatView;
 };
 

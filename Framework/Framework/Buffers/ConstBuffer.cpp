@@ -1,13 +1,14 @@
 #include "ConstBuffer.h"
 #include "Systems/D3D.h"
+#include "Framework.h"
 
-ConstBuffer::ConstBuffer(void* Data, UINT DatatSize)
+ConstBuffer::ConstBuffer(void* Data, UINT DataSize)
 	:Data(Data), DataSize(DataSize)
 {
 	D3D11_BUFFER_DESC desc;
 	ZeroMemory(&desc, sizeof(D3D11_BUFFER_DESC));
 	desc.Usage = D3D11_USAGE_DYNAMIC;
-	desc.ByteWidth = DatatSize;
+	desc.ByteWidth = DataSize;
 	desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 	desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 
@@ -21,6 +22,8 @@ ConstBuffer::~ConstBuffer()
 
 void ConstBuffer::SetVS(UINT Slot)
 {
+	XMMATRIX* test = static_cast<XMMATRIX*>(Data);
+
 	D3D::GetDC()->Map(Buffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &SubResource);
 	memcpy(SubResource.pData, Data, DataSize);
 	D3D::GetDC()->Unmap(Buffer, 0);

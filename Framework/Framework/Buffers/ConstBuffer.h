@@ -4,7 +4,7 @@
 class ConstBuffer
 {
 public:
-	ConstBuffer(void* Data, UINT DatatSize);
+	ConstBuffer(void* Data, UINT DataSize);
 	virtual ~ConstBuffer();
 
 	void SetVS(UINT Slot);

@@ -28,28 +28,46 @@ void Keyboard::Update()
 {
 	memcpy(KeyBeforeState, KeyCurState, sizeof(KeyBeforeState));
 
-	ZeroMemory(KeyCurState, sizeof(KeyCurState));
-	ZeroMemory(KeyMap, sizeof(KeyMap));
+	//ZeroMemory(KeyCurState, sizeof(KeyCurState));
+	//ZeroMemory(KeyMap, sizeof(KeyMap));
 
 	GetKeyboardState(KeyCurState);
 
-	for (pair<DWORD, vector<function<void()>>> keys : KeyEvents)
-	{
-		DWORD index = keys.first;
-		byte key = KeyCurState[index] & 0x80;
-		KeyCurState[index] = key ? 1 : 0;
+	//for (pair<DWORD, vector<function<void()>>> keys : KeyEvents)
+	//{
+	//	DWORD index = keys.first;
+	//	byte key = KeyCurState[index] & 0x80;
+	//	KeyCurState[index] = key ? 1 : 0;
 
-		int beforeState = KeyBeforeState[index];
-		int curState = KeyCurState[index];
+	//	int beforeState = KeyBeforeState[index];
+	//	int curState = KeyCurState[index];
+
+	//	if (beforeState == 0 && curState == 1)
+	//		KeyMap[index] = KeyState::DOWN;
+	//	else if (beforeState == 1 && curState == 0)
+	//		KeyMap[index] = KeyState::UP;
+	//	else if(beforeState == 1 && curState == 1)
+	//		KeyMap[index] = KeyState::PRESS;
+	//	else
+	//		KeyMap[index] = KeyState::NONE;
+	//}
+
+	for (int i = 0; i < MAX_INPUT_KEY; i++)
+	{
+		byte key = KeyCurState[i] & 0x80;
+		KeyCurState[i] = key ? 1 : 0;
+
+		int beforeState = KeyBeforeState[i];
+		int curState = KeyCurState[i];
 
 		if (beforeState == 0 && curState == 1)
-			KeyMap[index] = static_cast<byte>(KeyState::DOWN);
+			KeyMap[i] = KeyState::DOWN;
 		else if (beforeState == 1 && curState == 0)
-			KeyMap[index] = static_cast<byte>(KeyState::UP);
-		else if(beforeState == 1 && curState == 1)
-			KeyMap[index] = static_cast<byte>(KeyState::PRESS);
+			KeyMap[i] = KeyState::UP;
+		else if (beforeState == 1 && curState == 1)
+			KeyMap[i] = KeyState::PRESS;
 		else
-			KeyMap[index] = static_cast<byte>(KeyState::NONE);
+			KeyMap[i] = KeyState::NONE;
 	}
 }
 
