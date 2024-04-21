@@ -34,3 +34,5 @@
 #define	ANIM_MODE 0
 
 #define DEBUG 0
+
+#define DIALOG ImGuiFileDialog::Instance()

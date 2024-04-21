@@ -88,7 +88,7 @@ void GameManager::Render()
 
 	if (CurScene == nullptr)
 		return;
-	
+
 	Context::Get()->Render();
 
 	//CurScene->PreRender();

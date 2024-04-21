@@ -10,9 +10,9 @@ Grid::Grid(const UINT Width, const UINT Height)
 		for (UINT x = 0; x <= Width; x++)
 		{
 			UINT index = (Width + 1) * y + x;
-			Vertices[index].Pos.X = static_cast<float>(x);
-			Vertices[index].Pos.Y = 0.0f;
-			Vertices[index].Pos.Z = static_cast<float>(y);
+			Vertices[index].Position.X = static_cast<float>(x);
+			Vertices[index].Position.Y = 0.0f;
+			Vertices[index].Position.Z = static_cast<float>(y);
 		}
 	}
 

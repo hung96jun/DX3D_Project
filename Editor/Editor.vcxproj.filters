@@ -27,6 +27,9 @@
     <ClInclude Include="EditorMain.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Framwrok\EditorSceneManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scenes\AnimGraphEditor.cpp">
@@ -36,6 +39,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="EditorMain.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framwrok\EditorSceneManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

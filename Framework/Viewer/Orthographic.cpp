@@ -21,7 +21,7 @@ void Orthographic::Set(const float Width, const float Height, const float Zn, co
 {
 	SUPER::Set(Width, Height, Zn, Zf, Fov);
 
-	this->Mat = XMMatrixOrthographicOffCenterLH(0.0f, Width, 0.0f, Height, Zn, Zf);
+	XMMatrixOrthographicOffCenterLH(0.0, Width, 0.0, Height, -1.0f, 1.0f);
 
 	PBuffer->Set(Mat);
 	PBuffer->SetVS(2);

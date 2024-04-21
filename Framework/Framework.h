@@ -25,8 +25,12 @@
 #include "Renders/Shaders/Shader.h"
 #include "Renders/Shaders/VertexShader.h"
 #include "Renders/Shaders/PixelShader.h"
+#include "Renders/Texture.h"
 
 #include "Framework/Scene.h"
 
 #include "Framework/Managers/ShaderManager.h"
 #include "Framework/Managers/SceneManager.h"
+
+#include "Utilities/BinaryFile.h"
+#include "Utilities/Utility.h"

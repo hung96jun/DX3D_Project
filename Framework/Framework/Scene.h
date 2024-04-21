@@ -15,6 +15,7 @@ public:
 	virtual void Render() = 0;
 	virtual void PostRender() = 0;
 
+	virtual void UIRender() = 0;
 	virtual void GUIRender() = 0;
 
 	virtual void ResizeScreen() = 0;

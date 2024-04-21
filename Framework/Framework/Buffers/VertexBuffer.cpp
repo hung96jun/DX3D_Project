@@ -22,9 +22,9 @@ VertexBuffer::~VertexBuffer()
 	SAFE_RELEASE(Buffer);
 }
 
-void VertexBuffer::Set(D3D11_PRIMITIVE_TOPOLOGY Type)
+void VertexBuffer::Set(UINT Slot, D3D11_PRIMITIVE_TOPOLOGY Type)
 {
-	D3D::GetDC()->IASetVertexBuffers(0, 1, &Buffer, &Stride, &Offset);
+	D3D::GetDC()->IASetVertexBuffers(Slot, 1, &Buffer, &Stride, &Offset);
 	D3D::GetDC()->IASetPrimitiveTopology(Type);
 }
 

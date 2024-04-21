@@ -3,6 +3,8 @@
 class Perspective;
 class Viewport;
 class Camera;
+class SamplerState;
+class RasterizerState;
 
 class Context
 {
@@ -28,9 +30,14 @@ public:
 private:
 	static Context* Instance;
 
-	Perspective* Persp;
-	Orthographic* Ortho;
-	Viewport* View;
-	Camera* Cam;
+	Perspective* Persp = nullptr;
+	Orthographic* Ortho = nullptr;
+	Viewport* View = nullptr;
+	Camera* Cam = nullptr;
+
+	SamplerState* Sampler = nullptr;
+	RasterizerState* Rasterizer[2] = { nullptr };
+
+	bool bWireMode = false;
 };
 

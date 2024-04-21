@@ -2,6 +2,7 @@
 #include "Systems/Time.h"
 #include "Systems/Mouse.h"
 #include "Systems/Keyboard.h"
+#include "Utilities/BinaryFile.h"
 
 FreeCamera::FreeCamera()
 {
@@ -73,6 +74,51 @@ void FreeCamera::GUIRender()
 	debug += "\nPos : " + Transform.GetPosition().ToString();
 	debug += "\nRot : " + Transform.GetRotation().ToString();
 	ImGui::Text(debug.c_str());
+
+	if (ImGui::Button("Save"))
+	{
+		DIALOG->OpenDialog("SaveFolder", "FindFolder", ".so", "../Datas/Binary/");
+	}
+
+	if (DIALOG->Display("SaveFolder"))
+	{
+		if (DIALOG->IsOk())
+		{
+			string str = DIALOG->GetFilePathName();
+			wstring path(str.begin(), str.end());
+			BinaryWrite* writer = new BinaryWrite(path);
+
+			writer->WriteFloat(Move);
+			writer->WriteFloat(Rotation);
+
+			delete writer;
+		}
+
+		DIALOG->Close();
+	}
+
+	ImGui::SameLine();
+
+	if (ImGui::Button("Load"))
+	{
+		DIALOG->OpenDialog("LoadFolder", "FindFolder", ".so", "../Datas/Binary/");
+	}
+
+	if (DIALOG->Display("LoadFolder"))
+	{
+		if (DIALOG->IsOk())
+		{
+			string str = DIALOG->GetFilePathName();
+			wstring path(str.begin(), str.end());
+			BinaryRead* reader = new BinaryRead(path);
+
+			Move = reader->ReadFloat();
+			Rotation = reader->ReadFloat();
+
+			delete reader;
+		}
+		DIALOG->Close();
+	}
 
 	ImGui::End();
 }
