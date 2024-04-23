@@ -12,13 +12,22 @@ TestScene::TestScene()
 	PShader = ShaderManager::Get()->AddPS(L"TextureShader");
 
 	//{
-	//	Vertices.emplace_back(-0.5f, -0.5f, +0.0f, Color[0], Color[1], Color[2]);
-	//	Vertices.emplace_back(-0.5f, +0.5f, +0.0f, Color[0], Color[1], Color[2]);
-	//	Vertices.emplace_back(+0.5f, -0.5f, +0.0f, Color[0], Color[1], Color[2]);
-	//	Vertices.emplace_back(+0.5f, +0.5f, +0.0f, Color[0], Color[1], Color[2]);
-
+	//	Vertices.emplace_back(-0.5f, -0.5f, +0.0f, 1.0f, 1.0f, 0.5f);
+	//	Vertices.emplace_back(-0.5f, +0.5f, +0.0f, 1.0f, 1.0f, 0.5f);
+	//	Vertices.emplace_back(+0.5f, -0.5f, +0.0f, 1.0f, 1.0f, 0.5f);
+	//	Vertices.emplace_back(+0.5f, +0.5f, +0.0f, 1.0f, 1.0f, 0.5f);
+	//
 	//	Indices = { 0, 1, 2, 2, 1, 3 };
 	//}
+
+	{
+		Vertices.emplace_back(-0.5f, -0.5f, +0.5f, 0.0f, 1.0f);
+		Vertices.emplace_back(-0.5f, +0.5f, +0.5f, 0.0f, 0.0f);
+		Vertices.emplace_back(+0.5f, -0.5f, +0.5f, 1.0f, 1.0f);
+		Vertices.emplace_back(+0.5f, +0.5f, +0.5f, 1.0f, 0.0f);
+	
+		Indices = { 0, 1, 2, 2, 1, 3 };
+	}
 
 	//{
 	//	Vertices.emplace_back(-0.5f, -0.5f, +0.5f, Color[0], Color[1], Color[2]);
@@ -41,20 +50,12 @@ TestScene::TestScene()
 	//	};
 	//}
 
-	{
-		Vertices.emplace_back(-0.5f, -0.5f, +0.5f, 0.0f, 1.0f);
-		Vertices.emplace_back(-0.5f, +0.5f, +0.5f, 0.0f, 0.0f);
-		Vertices.emplace_back(+0.5f, -0.5f, +0.5f, 1.0f, 1.0f);
-		Vertices.emplace_back(+0.5f, +0.5f, +0.5f, 1.0f, 0.0f);
-
-		Indices = { 0, 1, 2, 2, 1, 3 };
-	}
-
 	VBuffer = new VertexBuffer(Vertices.data(), sizeof(VertexTexture), Vertices.size());
 	IBuffer = new IndexBuffer(Indices.data(), Indices.size());
 	WBuffer = new MatrixBuffer();
 
 	Scale = Vector3(1.0f, 1.0f, 1.0f);
+
 }
 
 TestScene::~TestScene()
@@ -70,10 +71,10 @@ TestScene::~TestScene()
 
 void TestScene::Initialize()
 {
-	//DiffuseMap = Texture::Add(L"../Datas/Textures/Landscape/Box.png");
+	DiffuseMap = Texture::Add(L"../Datas/Textures/Landscape/Box.png");
 	//DiffuseMap = Texture::Add(L"../Datas/Textures/Color/Blue.png");
 	//DiffuseMap = Texture::Add(L"../Datas/Textures/Block/Dirt.png");
-	DiffuseMap = Texture::Add(L"../Datas/Textures/HeightMaps/AlphaMap1.png");
+	//DiffuseMap = Texture::Add(L"../Datas/Textures/HeightMaps/AlphaMap1.png");
 	DiffuseMap->ReadPixels(Colors);
 }
 
@@ -122,7 +123,7 @@ void TestScene::GUIRender()
 	ImGui::Begin("Test");
 
 	string log = "";
-	log += "FPS : " + to_string(1 / Time::GetDeltaTime());
+	log += "FPS : " + to_string(1 / Time::Get()->GetDeltaTime());
 	ImGui::Text(log.c_str());
 
 	float pos[3];
@@ -137,6 +138,25 @@ void TestScene::GUIRender()
 	string debug = "";
 	debug += "\nPos : " + Pos.ToString();
 	ImGui::Text(debug.c_str());
+
+	for (int i = 0; i < 4; i++)
+	{
+		string temp = "UV " + to_string(i);
+		int x, y;
+		x = Vertices[i].Uv.x;
+		y = Vertices[i].Uv.y;
+		ImGui::InputInt((temp + "_x").c_str(), &x);
+		ImGui::InputInt((temp + "_y").c_str(), &y);
+		Vertices[i].Uv.x = x;
+		Vertices[i].Uv.y = y;
+
+		ImGui::TextWrapped("");
+	}
+
+	if (ImGui::Button("Accept"))
+	{
+		VBuffer->Update(Vertices.data(), Vertices.size());
+	}
 
 	//ImGui::ColorEdit3("Color", Color);
 	//Vertices[0].Color = {Color[0], Color[1], Color[2], 1.0f};

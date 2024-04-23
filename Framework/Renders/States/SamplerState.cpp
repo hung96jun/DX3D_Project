@@ -7,7 +7,7 @@ SamplerState::SamplerState()
 	Desc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
 	Desc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
 	Desc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
-	Desc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+	Desc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;;
 	Desc.ComparisonFunc = D3D11_COMPARISON_NEVER;
 	Desc.MinLOD = 0;
 	Desc.MaxLOD = D3D11_FLOAT32_MAX;

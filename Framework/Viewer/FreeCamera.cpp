@@ -27,19 +27,19 @@ void FreeCamera::Update()
 		Vector3 pos = Vector3::ZeroVector();
 
 		if (Keyboard::Get()->IsPress('W'))
-			pos = forward * Move * Time::GetDeltaTime();
+			pos = forward * Move * Time::Get()->GetDeltaTime();
 		else if (Keyboard::Get()->IsPress('S'))
-			pos = -forward * Move * Time::GetDeltaTime();
+			pos = -forward * Move * Time::Get()->GetDeltaTime();
 
 		if (Keyboard::Get()->IsPress('D'))
-			pos = right * Move * Time::GetDeltaTime();
+			pos = right * Move * Time::Get()->GetDeltaTime();
 		else if (Keyboard::Get()->IsPress('A'))
-			pos = -right * Move * Time::GetDeltaTime();
+			pos = -right * Move * Time::Get()->GetDeltaTime();
 
 		if (Keyboard::Get()->IsPress('E'))
-			pos = up * Move * Time::GetDeltaTime();
+			pos = up * Move * Time::Get()->GetDeltaTime();
 		else if(Keyboard::Get()->IsPress('Q'))
-			pos = -up * Move * Time::GetDeltaTime();
+			pos = -up * Move * Time::Get()->GetDeltaTime();
 
 		SetPosition(GetPosition() + pos);
 	}
@@ -49,8 +49,8 @@ void FreeCamera::Update()
 		Vector3 rot, value;
 		value = Mouse::Get()->GetWheelValue();
 
-		rot.X += value.Y * Rotation * Time::GetDeltaTime();
-		rot.Y += value.X * Rotation * Time::GetDeltaTime();
+		rot.X += value.Y * Rotation * Time::Get()->GetDeltaTime();
+		rot.Y += value.X * Rotation * Time::Get()->GetDeltaTime();
 		rot.Z = 0.0f;
 
 		SetRotation(GetRotation() + rot);

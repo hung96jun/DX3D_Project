@@ -10,6 +10,7 @@ public:
 	~Transformation();
 
 	void Update();
+	void GUIRender();
 
 	const Vector3 GetRight() const { return Right.GetNormalize(); }
 	const Vector3 GetUp() const { return Up.GetNormalize(); }
@@ -45,7 +46,12 @@ public:
 	void SetRotation(const Vector3 Value) { Rotation = Value; }
 	void SetScale(const Vector3 Value) { Scale = Value; }
 
+	void SetTag(const string Tag) { this->Tag = Tag; }
+	const string& GetTag() const { return Tag; }
+
 private:
+	string Tag = "";
+
 	Matrix World;
 	Transformation* Parent = nullptr;
 

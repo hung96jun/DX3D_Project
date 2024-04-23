@@ -15,6 +15,9 @@ public:
 	virtual void PostRender() {}
 	virtual void GUIRender();
 
+	void SetTag(const string Tag) { Transform.SetTag(Tag); }
+	const string& GetTag() const { return Transform.GetTag(); }
+
 private:
 	VertexShader* VShader = nullptr;
 	PixelShader* PShader = nullptr;
@@ -29,6 +32,4 @@ protected:
 
 	Object* Owner = nullptr;
 	Transformation Transform;
-
-	int VertexStart = 0;
 };

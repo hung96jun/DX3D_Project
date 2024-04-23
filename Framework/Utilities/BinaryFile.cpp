@@ -88,14 +88,14 @@ void BinaryWrite::WriteMatrix(const Matrix& Data)
 
 void BinaryWrite::WriteString(const string& Data)
 {
-	WriteUInt(Data.size());
+	WriteUInt(static_cast<UINT>(Data.size()));
 	const char* str = Data.c_str();
-	WriteFile(FileHandle, str, sizeof(char) * Data.size(), &Size, nullptr);
+	WriteFile(FileHandle, str, static_cast<DWORD>(sizeof(char) * Data.size()), &Size, nullptr);
 }
 
 void BinaryWrite::WriteWString(const wstring& Data)
 {
-	WriteUInt(Data.size());
+	WriteUInt(static_cast<UINT>(Data.size()));
 	const WCHAR* str = Data.c_str();
 	WriteFile(FileHandle, str, sizeof(WCHAR) * Data.size(), &Size, nullptr);
 }

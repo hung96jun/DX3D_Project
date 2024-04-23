@@ -1,8 +1,9 @@
 #include "Grid.h"
 
 Grid::Grid(const UINT Width, const UINT Height)
-	:Object(L"GridShader"), Width(Width), Height(Height)
+	:Object(L"SimpleShader"), Width(Width), Height(Height)
 {
+	Vertices.clear();
 	Vertices.resize((Width + 1) * (Height+ 1));
 
 	for (UINT y = 0; y <= Height; y++)
@@ -10,12 +11,15 @@ Grid::Grid(const UINT Width, const UINT Height)
 		for (UINT x = 0; x <= Width; x++)
 		{
 			UINT index = (Width + 1) * y + x;
-			Vertices[index].Position.X = static_cast<float>(x);
-			Vertices[index].Position.Y = 0.0f;
-			Vertices[index].Position.Z = static_cast<float>(y);
+			Vertices[index].Position.x = static_cast<float>(x);
+			Vertices[index].Position.y = 0.0f;
+			Vertices[index].Position.z = static_cast<float>(y);
+
+			Vertices[index].Color = Float4(0.2f, 0.2f, 0.2f, 1.0f);
 		}
 	}
 
+	Indices.clear();
 	Indices.resize((Width * Height * 6));
 	
 	UINT index = 0;
@@ -37,6 +41,7 @@ Grid::Grid(const UINT Width, const UINT Height)
 	VBuffer = new VertexBuffer(Vertices.data(), sizeof(VertexColor), static_cast<UINT>(Vertices.size()));
 	IBuffer = new IndexBuffer(Indices.data(), sizeof(Indices.size()));
 	WBuffer = new MatrixBuffer();
+	Transform.Update();
 }
 
 Grid::~Grid()
@@ -46,9 +51,9 @@ Grid::~Grid()
 
 void Grid::Render()
 {
-	VBuffer->Set();
-	IBuffer->Set();
-	WBuffer->SetVS(0);
+	//VBuffer->Set();
+	//IBuffer->Set();
+	//WBuffer->SetVS(0);
 
 	SUPER::Render();
 }
@@ -57,4 +62,5 @@ void Grid::GUIRender()
 {
 	SUPER::GUIRender();
 
+	Transform.GUIRender();
 }

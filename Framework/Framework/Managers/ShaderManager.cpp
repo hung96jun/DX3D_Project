@@ -27,7 +27,7 @@ ShaderManager* ShaderManager::Get()
 
 void ShaderManager::Destroy()
 {
-	SAFE_DELETE(Instance);
+	delete Instance;
 }
 
 VertexShader* ShaderManager::AddVS(wstring File)
@@ -76,7 +76,7 @@ wstring ShaderManager::MakeFilePath(const wstring File)
 		GetModuleFileName(nullptr, path, 256);
 		filePath = path;
 
-		int a = std::count(filePath.begin(), filePath.end(), L'\\');
+		int a = static_cast<int>(std::count(filePath.begin(), filePath.end(), L'\\'));
 		for (int i = 0; i < a - 2; i++)
 		{
 			size_t index = filePath.find(L"\\");

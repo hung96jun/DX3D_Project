@@ -2,15 +2,22 @@
 #include "Framework.h"
 #include "GameManager.h"
 
+#include "Scenes/GridScene.h"
 #include "Scenes/TestScene.h"
+#include "Scenes/TextureScene.h"
 
 GameManager* GameManager::Instance = nullptr;
 
 GameManager::GameManager()
 {
-	SceneManager::Get()->Add("Test", new TestScene());
+	SceneManager::Get()->Add("Grid", new GridScene());
 
-	CallScene("Test");
+	SceneManager::Get()->Add("Test", new TestScene());
+	SceneManager::Get()->Add("Texture", new TextureScene());
+
+	CallScene("Grid");
+	//CallScene("Test");
+	//CallScene("Texture");
 }
 
 GameManager::~GameManager()
@@ -36,7 +43,9 @@ void GameManager::Create()
 		Context::Get();
 
 		Keyboard::Get();
+		Mouse::Get();
 		Timer::Get();
+		Time::Get();
 	}
 
 	{
@@ -51,9 +60,12 @@ void GameManager::Create()
 void GameManager::Destroy()
 {
 	{
-		Timer::Get();
-		Keyboard::Get();
+		Time::Destroy();
+		Timer::Destroy();
+		Mouse::Destroyt();
+		Keyboard::Destroy();
 
+		D3D::Destroy();
 		Context::Destroy();
 		ShaderManager::Destroy();
 		SceneManager::Destroy();
@@ -75,6 +87,7 @@ void GameManager::Update()
 		return;
 
 	Time::Get()->Update();
+	Timer::Get()->Update();
 	Mouse::Get()->Update();
 	Keyboard::Get()->Update();
 

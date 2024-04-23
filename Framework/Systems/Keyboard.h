@@ -21,7 +21,7 @@ private:
 
 public:
 	static Keyboard* Get();
-	static void Destroyt();
+	static void Destroy();
 
 	void Update();
 

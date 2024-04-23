@@ -551,5 +551,6 @@
   <ItemGroup>
     <FxCompile Include="_Shaders\SimpleShader.hlsl" />
     <FxCompile Include="_Shaders\TextureShader.hlsl" />
+    <FxCompile Include="_Shaders\GridShader.hlsl" />
   </ItemGroup>
 </Project>

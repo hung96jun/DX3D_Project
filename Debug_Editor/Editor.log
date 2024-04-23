@@ -1,7 +1,1 @@
-﻿  EditorMain.cpp
-  EditorSceneManager.cpp
-  AnimGraphEditor.cpp
-  MapEditor.cpp
-  코드를 생성하고 있습니다...
-ImGui.lib(ImGuiFileDialog.obj) : warning LNK4099: '' PDB를 'ImGui.lib(ImGuiFileDialog.obj)' 또는 ''에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-  Editor.vcxproj -> D:\Github\DX3D_Project\Debug\Editor.exe
+﻿  Editor.vcxproj -> D:\Github\DX3D_Project\Debug\Editor.exe

@@ -26,7 +26,7 @@ public:
 
 private:
 	//Object* TestObject = nullptr;
-	//Grid* TestObject = nullptr;
+	//Grid* GridObject = nullptr;
 
 	vector<VertexTexture> Vertices;
 	vector<int> Indices;

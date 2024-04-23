@@ -81,7 +81,7 @@ void D3D::Create()
 
 void D3D::Destroy()
 {
-	SAFE_DELETE(Instance);
+	delete Instance;
 }
 
 void D3D::Clear()

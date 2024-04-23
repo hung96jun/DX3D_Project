@@ -11,7 +11,8 @@ VertexBuffer::VertexBuffer(void* Data, UINT Stride, UINT Count)
 	desc.ByteWidth = Stride * Count;
 	desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 
-	D3D11_SUBRESOURCE_DATA data = {};
+	D3D11_SUBRESOURCE_DATA data;
+	ZeroMemory(&data, sizeof(D3D11_SUBRESOURCE_DATA));
 	data.pSysMem = Data;
 
 	D3D::GetDevice()->CreateBuffer(&desc, &data, &Buffer);

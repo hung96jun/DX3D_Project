@@ -42,3 +42,42 @@ void Transformation::Update()
 	GRotation = rot;
 	GScale = scale;
 }
+
+void Transformation::GUIRender()
+{
+	if (ImGui::TreeNode((Tag + "_Transform").c_str()))
+	{
+		static float sensitive = 0.1f;
+		ImGui::DragFloat("Drag Sensitive", &sensitive, 0.01f, 0.0f);
+
+		string log = "";
+		log = "Global_Pos : " + GPosition.ToString();
+		log += "\nGlobal_Scale : " + GScale.ToString();
+		ImGui::Text(log.c_str());
+
+		float pos[3];
+		pos[0] = Position.X;
+		pos[1] = Position.Y;
+		pos[2] = Position.Z;
+		ImGui::DragFloat3("Pos", pos, sensitive);
+		SetPosition(Vector3(pos[0], pos[1], pos[2]));
+
+		float scale[3];
+		scale[0] = Scale.X;
+		scale[1] = Scale.Y;
+		scale[2] = Scale .Z;
+		ImGui::DragFloat3("Scale", scale, sensitive);
+		SetScale(Vector3(scale[0], scale[1], scale[2]));
+
+		float rot[3];
+		rot[0] = Rotation.X;
+		rot[1] = Rotation.Y;
+		rot[2] = Rotation.Z;
+		ImGui::DragFloat3("Rotation", rot, sensitive);
+		SetRotation(Vector3(rot[0], rot[1], rot[2]));
+
+		Update();
+
+		ImGui::TreePop();
+	}
+}

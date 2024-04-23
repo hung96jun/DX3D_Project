@@ -42,7 +42,7 @@ Mouse* Mouse::Get()
 
 void Mouse::Destroyt()
 {
-	SAFE_DELETE(Instance);
+	delete Instance;
 }
 
 void Mouse::Update()

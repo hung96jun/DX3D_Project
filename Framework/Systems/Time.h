@@ -8,10 +8,11 @@ private:
 
 public:
 	static Time* Get();
-	static void Destroyt();
+	static void Destroy();
 
-	static const bool IsStopped() { return bTimeStopped; }
-	static float GetDeltaTime() { return bTimeStopped ? 0.0f : ElapsedTime; }
+	const bool IsStopped() { return bTimeStopped; }
+	const float GetDeltaTime() { return bTimeStopped ? 0.0f : ElapsedTime; }
+	const float GetFPS() { return 1 / GetDeltaTime(); }
 
 	void Update();
 	void Print();
@@ -114,7 +115,7 @@ public:
 			break;
 		}
 
-		ElapsedTime += Time::GetDeltaTime();
+		ElapsedTime += Time::Get()->GetDeltaTime();
 	}
 
 private:

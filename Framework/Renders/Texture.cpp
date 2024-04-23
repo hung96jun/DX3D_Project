@@ -87,7 +87,7 @@ Vector2 Texture::GetSize()
 void Texture::ReadPixels(vector<Float4>& Pixels)
 {
 	uint8_t* colors = Image.GetPixels();
-	UINT size = Image.GetPixelsSize();
+	UINT size = static_cast<UINT>(Image.GetPixelsSize());
 
 	Pixels.resize(size / 4);
 	float scale = 1.0f / 255.0f;

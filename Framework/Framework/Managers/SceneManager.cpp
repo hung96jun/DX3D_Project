@@ -28,22 +28,8 @@ SceneManager* SceneManager::Get()
 	return Instance;
 }
 
-//void SceneManager::Create()
-//{
-//	//ImGui::CreateContext();
-//	//ImGui::StyleColorsDark();
-//
-//	//ImGui_ImplWin32_Init(D3D::GetDesc().Handle);
-//	//ImGui_ImplDX11_Init(D3D::GetDevice(), D3D::GetDC());
-//}
-
 void SceneManager::Destroy()
 {
-	//ImGui_ImplDX11_Shutdown;
-	//ImGui_ImplWin32_Shutdown;
-	//
-	//ImGui::DestroyContext();
-
 	delete Instance;
 }
 

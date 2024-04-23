@@ -15,8 +15,8 @@ Context::Context()
 
 	Rasterizer[0] = new RasterizerState();
 	Rasterizer[1] = new RasterizerState();
-	Rasterizer[1]->SetState();
-
+	Rasterizer[1]->FillMode(D3D11_FILL_WIREFRAME);
+	
 	Sampler = new SamplerState();
 	Sampler->SetState();
 }
@@ -67,6 +67,15 @@ void Context::Render()
 void Context::GUIRender()
 {
 	Cam->GUIRender();
+
+	ImGui::Begin("Context");
+
+	if (ImGui::Button("Fill Mode"))
+	{
+		bWireMode = bWireMode == true ? false : true;
+	}
+
+	ImGui::End();
 }
 
 Matrix Context::GetView()
@@ -80,8 +89,8 @@ Matrix Context::GetView()
 Matrix Context::GetProjection()
 {
 	Matrix projection;
-	//Persp->GetMatrix(&projection);
-	Ortho->GetMatrix(&projection);
+	Persp->GetMatrix(&projection);
+	//Ortho->GetMatrix(&projection);
 
 	return projection;
 }

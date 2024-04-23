@@ -29,6 +29,11 @@ public:
 	Vector2 operator-(const Vector2& value) const { return Vector2(X - value.X, Y - value.Y); }
 
 	const Vector2 operator-() const { return Vector2(-X, -Y); }
+	
+	//Float2 operator=(const Vector2& Value)
+	//{
+	//	return Float2(Value.X, Value.Y);
+	//}
 
 	Vector2& operator+=(const float& value)
 	{
@@ -149,6 +154,11 @@ public:
 	const Vector3 operator/(const float& value) const { return Vector3(X / value, Y / value, Z / value); }
 
 	const Vector3 operator-() const { return Vector3(-X, -Y, -Z); }
+
+	//Float3 operator=(const Vector3& Value)
+	//{
+	//	return Float3(Value.X, Value.Y, Value.Z);
+	//}
 
 	Vector3& operator+=(const float& value)
 	{
