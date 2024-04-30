@@ -12,12 +12,12 @@ GameManager::GameManager()
 {
 	SceneManager::Get()->Add("Grid", new GridScene());
 
-	SceneManager::Get()->Add("Test", new TestScene());
+	//SceneManager::Get()->Add("Test", new TestScene());
 	SceneManager::Get()->Add("Texture", new TextureScene());
 
-	CallScene("Grid");
+	//CallScene("Grid");
 	//CallScene("Test");
-	//CallScene("Texture");
+	CallScene("Texture");
 }
 
 GameManager::~GameManager()

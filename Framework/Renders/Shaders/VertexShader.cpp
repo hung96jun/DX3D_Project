@@ -12,19 +12,6 @@ VertexShader::VertexShader(wstring File)
 		Blob->GetBufferSize(), nullptr, &VShader);
 
 	CreateInputLayout();
-
-	//D3D11_INPUT_ELEMENT_DESC desc[] =
-	//{
-	//	{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0,
-	//	D3D11_INPUT_PER_VERTEX_DATA, 0},
-	//	{"COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12,
-	//	D3D11_INPUT_PER_VERTEX_DATA, 0},
-	//};
-
-	//UINT size = ARRAYSIZE(desc);
-	//D3D::GetDevice()->CreateInputLayout(desc, size, 
-	//	Blob->GetBufferPointer(), Blob->GetBufferSize(), 
-	//	&InputLayout);
 }
 
 VertexShader::~VertexShader()

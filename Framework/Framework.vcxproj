@@ -154,12 +154,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Renders\Material.cpp" />
+    <ClCompile Include="Model\ModelMesh.cpp" />
     <ClCompile Include="Renders\States\RasterizerState.cpp" />
     <ClCompile Include="Renders\Texture.cpp" />
     <ClCompile Include="Renders\States\SamplerState.cpp" />
     <ClCompile Include="Utilities\BinaryFile.cpp" />
     <ClCompile Include="Framework\Buffers\ConstBuffer.cpp" />
     <ClCompile Include="Objects\Environment\Grid.cpp" />
+    <ClCompile Include="Utilities\tinyxml2.cpp" />
     <ClCompile Include="Utilities\Utility.cpp" />
     <ClCompile Include="Viewer\FreeCamera.cpp" />
     <ClCompile Include="Viewer\Orthographic.cpp" />
@@ -188,6 +191,9 @@
     <ClCompile Include="Viewer\Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Renders\Material.h" />
+    <ClInclude Include="Model\ModelMesh.h" />
+    <ClInclude Include="Model\Mesh.h" />
     <ClInclude Include="Renders\States\RasterizerState.h" />
     <ClInclude Include="Renders\Texture.h" />
     <ClInclude Include="Renders\States\SamplerState.h" />
@@ -195,6 +201,7 @@
     <ClInclude Include="Framework\Buffers\ConstBuffer.h" />
     <ClInclude Include="Framework\Buffers\GlobalBuffer.h" />
     <ClInclude Include="Objects\Environment\Grid.h" />
+    <ClInclude Include="Utilities\tinyxml2.h" />
     <ClInclude Include="Utilities\Utility.h" />
     <ClInclude Include="Viewer\FreeCamera.h" />
     <ClInclude Include="Viewer\Orthographic.h" />

@@ -71,7 +71,7 @@ TestScene::~TestScene()
 
 void TestScene::Initialize()
 {
-	DiffuseMap = Texture::Add(L"../Datas/Textures/Landscape/Box.png");
+	DiffuseMap = Texture::Add(L"Landscape/Box.png");
 	//DiffuseMap = Texture::Add(L"../Datas/Textures/Color/Blue.png");
 	//DiffuseMap = Texture::Add(L"../Datas/Textures/Block/Dirt.png");
 	//DiffuseMap = Texture::Add(L"../Datas/Textures/HeightMaps/AlphaMap1.png");

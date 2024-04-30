@@ -34,3 +34,4 @@
 
 #include "Utilities/BinaryFile.h"
 #include "Utilities/Utility.h"
+#include "Utilities/tinyxml2.h"

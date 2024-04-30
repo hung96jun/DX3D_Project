@@ -25,3 +25,8 @@ void IndexBuffer::Set()
 {
 	D3D::GetDC()->IASetIndexBuffer(Buffer, DXGI_FORMAT_R32_UINT, 0);
 }
+
+void IndexBuffer::Update(void* Data, UINT Count)
+{
+	D3D::GetDC()->UpdateSubresource(Buffer, 0, nullptr, Data, sizeof(UINT), Count);
+}

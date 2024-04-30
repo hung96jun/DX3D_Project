@@ -65,7 +65,6 @@ void GridScene::Render()
 	VShader->Set();
 	PShader->Set();
 
-	//D3D::GetDC()->Draw(Vertices.size(), VertexStart);
 	D3D::GetDC()->DrawIndexed(Indices.size(), VertexStart, 0);
 }
 

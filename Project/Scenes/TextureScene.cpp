@@ -3,8 +3,8 @@
 
 TextureScene::TextureScene()
 {
-	VShader = ShaderManager::Get()->AddVS(L"SimpleShader");
-	PShader = ShaderManager::Get()->AddPS(L"SimpleShader");
+	VShader = ShaderManager::Get()->AddVS(L"TextureShader");
+	PShader = ShaderManager::Get()->AddPS(L"TextureShader");
 
 	Vertices.emplace_back(-0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.5f);
 	Vertices.emplace_back(-0.5f, +0.5f, 0.0f, 0.0f, 0.0f, 0.5f);
@@ -38,7 +38,7 @@ TextureScene::TextureScene()
 	}
 
 	WBuffer = new MatrixBuffer();
-	Tex = Texture::Add(L"../Datas/Textures/Landscape/Box.png");
+	Tex = Texture::Add(L"Landscape/Box.png");
 
 	Scale = Vector3(1.0f, 1.0f, 1.0f);
 }

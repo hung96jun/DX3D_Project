@@ -70,3 +70,26 @@ public:
 private:
 	BufferData Data;
 };
+
+class MaterialBuffer : public ConstBuffer
+{
+public:
+	struct BufferData
+	{
+		Float4 Diffuse = { 1.0f, 1.0f, 1.0f, 1.0f };
+		Float4 Specular = { 1.0f, 1.0f, 1.0f, 1.0f };
+		Float4 Ambient = { 1.0f, 1.0f, 1.0f, 1.0f };
+		Float4 Emissive = { 0.0f, 0.0f, 0.0f, 1.0f };
+
+		float Shininess = 24.0f;
+		int HasNormalMap = 0;
+		float Padding[2];
+	};
+
+public:
+	MaterialBuffer() : ConstBuffer(&Data, sizeof(BufferData)) {}
+	BufferData& Get() { return Data; }
+
+private:
+	BufferData Data;
+};

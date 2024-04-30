@@ -23,6 +23,7 @@ Texture* Texture::Add(wstring File)
 	ScratchImage image;
 	HRESULT result;
 
+	File = L"../Datas/Textures/" + File;
 	wstring extension = GetFileExtension(File);
 
 	if (extension.compare(L"tga") == 0)
@@ -45,6 +46,8 @@ Texture* Texture::Add(wstring File)
 
 Texture* Texture::Add(wstring File, wstring Key)
 {
+	//Key = File + "_" + Key;
+
 	if (Textures.count(Key) > 0)
 		return Textures[Key];
 
