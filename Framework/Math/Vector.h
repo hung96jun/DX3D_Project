@@ -99,7 +99,7 @@ public:
 		Y /= length;
 	}
 
-	string ToString()
+	string ToString() const
 	{
 		return ("X : " + to_string(X) + ", Y : " + to_string(Y));
 	}
@@ -159,6 +159,11 @@ public:
 	//{
 	//	return Float3(Value.X, Value.Y, Value.Z);
 	//}
+
+	operator Float3() const 
+	{
+		return Float3(X, Y, Z);
+	}
 
 	Vector3& operator+=(const float& value)
 	{

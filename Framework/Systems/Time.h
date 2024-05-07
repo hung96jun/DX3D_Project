@@ -132,8 +132,8 @@ private:
 class Timer
 {
 private:
-	Timer() {}
-	~Timer() {}
+	Timer();
+	~Timer();
 
 public:
 	static Timer* Get();

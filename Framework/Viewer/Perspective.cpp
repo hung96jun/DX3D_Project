@@ -2,14 +2,19 @@
 #include "Perspective.h"
 #include "Framework/Buffers/GlobalBuffer.h"
 
+#include "Utilities/Debug.h"
+
 Perspective::Perspective(float Width, float Height, float Zn, float Zf, float Fov)
 	:Projection(Width, Height, Zn, Zf, Fov)
 {
+	CONSTRUCTOR_DEBUG();
+
 	Set(Width, Height, Zn, Zf, Fov);
 }
 
 Perspective::~Perspective()
 {
+	DESTRUCTOR_DEBUG();
 }
 
 void Perspective::Set()

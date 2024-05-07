@@ -3,6 +3,7 @@
 class VertexBuffer
 {
 public:
+	VertexBuffer() = delete;
 	VertexBuffer(void* Data, UINT Stride, UINT Count);
 	~VertexBuffer();
 

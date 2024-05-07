@@ -33,6 +33,10 @@
 #define GMAE_MODE 0
 #define	ANIM_MODE 0
 
-#define DEBUG 0
+#define DEBUG 1
 
 #define DIALOG ImGuiFileDialog::Instance()
+
+//#define CREATE_DEBUG_CONSTRUCTOR(className, ...)\
+//className(__VA_ARGS__) {\
+//}

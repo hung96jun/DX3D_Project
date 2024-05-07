@@ -154,6 +154,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Utilities\Debug.cpp" />
+    <ClCompile Include="Model\ModelExporter.cpp" />
     <ClCompile Include="Renders\Material.cpp" />
     <ClCompile Include="Model\ModelMesh.cpp" />
     <ClCompile Include="Renders\States\RasterizerState.cpp" />
@@ -191,6 +193,9 @@
     <ClCompile Include="Viewer\Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Utilities\Debug.h" />
+    <ClInclude Include="Model\ModelExporter.h" />
+    <ClInclude Include="Model\ModelData.h" />
     <ClInclude Include="Renders\Material.h" />
     <ClInclude Include="Model\ModelMesh.h" />
     <ClInclude Include="Model\Mesh.h" />

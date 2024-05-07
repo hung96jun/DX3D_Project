@@ -1,4 +1,10 @@
 #pragma once
+#include "Framework/Buffers/GlobalBuffer.h"
+
+
+class VertexShader;
+class PixelShader;
+class Texture;
 
 enum class MapType
 {
@@ -25,6 +31,7 @@ public:
 	void Load(string File);
 
 	const string& GetName() const { return Name; }
+	void SetName(const string Name) { this->Name = Name; }
 	MaterialBuffer::BufferData& GetData() { return MBuffer->Get(); }
 
 private:

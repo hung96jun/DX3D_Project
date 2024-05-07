@@ -5,6 +5,8 @@
 ConstBuffer::ConstBuffer(void* Data, UINT DataSize)
 	:Data(Data), DataSize(DataSize)
 {
+	CONSTRUCTOR_DEBUG();
+
 	D3D11_BUFFER_DESC desc;
 	ZeroMemory(&desc, sizeof(D3D11_BUFFER_DESC));
 	desc.Usage = D3D11_USAGE_DYNAMIC;
@@ -17,6 +19,8 @@ ConstBuffer::ConstBuffer(void* Data, UINT DataSize)
 
 ConstBuffer::~ConstBuffer()
 {
+	DESTRUCTOR_DEBUG();
+
 	SAFE_RELEASE(Buffer);
 }
 

@@ -4,6 +4,8 @@
 
 SamplerState::SamplerState()
 {
+	CONSTRUCTOR_DEBUG();
+
 	Desc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
 	Desc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
 	Desc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
@@ -17,6 +19,8 @@ SamplerState::SamplerState()
 
 SamplerState::~SamplerState()
 {
+	DESTRUCTOR_DEBUG();
+
 	SAFE_RELEASE(State);
 }
 

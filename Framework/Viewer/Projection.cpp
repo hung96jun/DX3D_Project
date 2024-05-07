@@ -1,15 +1,21 @@
 #include "Libraries.h"
 #include "Framework.h"
 
+#include "Utilities/Debug.h"
+
 Projection::Projection(float Width, float Height, float Zn, float Zf, float Fov)
 	:Width(Width), Height(Height), Zn(Zn), Zf(Zf), Fov(Fov)
 {
+	CONSTRUCTOR_DEBUG();
+
 	this->Mat = XMMatrixIdentity();
 	PBuffer = new MatrixBuffer();
 }
 
 Projection::~Projection()
 {
+	DESTRUCTOR_DEBUG();
+
 	SAFE_DELETE(PBuffer);
 }
 

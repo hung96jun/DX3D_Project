@@ -3,6 +3,8 @@
 Grid::Grid(const UINT Width, const UINT Height)
 	:Object(L"SimpleShader"), Width(Width), Height(Height)
 {
+	CONSTRUCTOR_DEBUG();
+
 	Vertices.clear();
 	Vertices.resize((Width + 1) * (Height+ 1));
 
@@ -46,6 +48,10 @@ Grid::Grid(const UINT Width, const UINT Height)
 
 Grid::~Grid()
 {
+	DESTRUCTOR_DEBUG();
+
+	SAFE_DELETE(VBuffer);
+	SAFE_DELETE(IBuffer);
 	SAFE_DELETE(WBuffer);
 }
 

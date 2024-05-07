@@ -2,6 +2,7 @@
 
 #include "Framework/Buffers/GlobalBuffer.h"
 #include "Math/Transformation.h"
+#include "Utilities/Debug.h"
 
 class Camera
 {

@@ -2,16 +2,20 @@
 #include "Texture.h"
 #include "Systems/D3D.h"
 #include "Utilities/Utility.h"
+#include "Utilities/Debug.h"
 
 unordered_map<wstring, Texture*> Texture::Textures;
 
 Texture::Texture(ID3D11ShaderResourceView* SRV, ScratchImage& Image, wstring File)
 	: SRV(SRV), Image(move(Image)), File(File)
 {
+	CONSTRUCTOR_DEBUG();
 }
 
 Texture::~Texture()
 {
+	DESTRUCTOR_DEBUG();
+
 	SAFE_RELEASE(SRV);
 }
 

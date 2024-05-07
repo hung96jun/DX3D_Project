@@ -4,15 +4,20 @@
 #include "Renders/Shaders/VertexShader.h"
 #include "Renders/Shaders/PixelShader.h"
 
+#include "Utilities/Debug.h"
+
 ShaderManager* ShaderManager::Instance = nullptr;
 unordered_map<wstring, Shader*> ShaderManager::Shaders;
 
 ShaderManager::ShaderManager()
 {
+	CONSTRUCTOR_DEBUG();
 }
 
 ShaderManager::~ShaderManager()
 {
+	DESTRUCTOR_DEBUG();
+
 	for (pair<wstring, Shader*> s : Shaders)
 		SAFE_DELETE(s.second);
 }

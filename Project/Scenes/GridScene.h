@@ -4,7 +4,7 @@ class GridScene : public Scene
 {
 public:
 	GridScene();
-	~GridScene();
+	virtual ~GridScene() override;
 
 	void Disable() override;
 	void Render() override;

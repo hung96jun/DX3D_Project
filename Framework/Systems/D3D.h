@@ -1,6 +1,8 @@
 #pragma once
 #include "Libraries.h"
 
+#include "Utilities/Defines.h"
+
 struct WindowDesc
 {
 	wstring AppName;

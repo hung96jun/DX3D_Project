@@ -2,6 +2,7 @@
 
 #include "Math/Vector.h"
 #include "Math/Transformation.h"
+#include "Math/Math.h"
 
 #include "Framework/Buffers/VertexBuffer.h"
 #include "Framework/Buffers/IndexBuffer.h"
@@ -35,3 +36,5 @@
 #include "Utilities/BinaryFile.h"
 #include "Utilities/Utility.h"
 #include "Utilities/tinyxml2.h"
+#include "Utilities/Debug.h"
+#include "Utilities/Defines.h"

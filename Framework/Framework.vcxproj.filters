@@ -114,6 +114,12 @@
     <ClCompile Include="Utilities\tinyxml2.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Model\ModelExporter.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\Debug.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utilities\Defines.h">
@@ -537,6 +543,15 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Utilities\tinyxml2.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\ModelData.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\ModelExporter.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Debug.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

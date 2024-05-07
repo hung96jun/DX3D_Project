@@ -1,11 +1,13 @@
 #include "Libraries.h"
 #include "Framework.h"
-//#include "Math/Vector.h"
+#include "Utilities/Debug.h"
 
 Mouse* Mouse::Instance = nullptr;
 
 Mouse::Mouse()
 {
+	CONSTRUCTOR_DEBUG();
+
 	Position = Vector3::ZeroVector();
 	WheelCurStatus = Vector3::ZeroVector();
 	WheelBeforeStatus = Vector3::ZeroVector();
@@ -30,6 +32,7 @@ Mouse::Mouse()
 
 Mouse::~Mouse()
 {
+	DESTRUCTOR_DEBUG();
 }
 
 Mouse* Mouse::Get()

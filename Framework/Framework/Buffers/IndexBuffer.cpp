@@ -4,6 +4,8 @@
 
 IndexBuffer::IndexBuffer(void* Data, UINT Count)
 {
+	CONSTRUCTOR_DEBUG();
+
 	D3D11_BUFFER_DESC desc = {};
 	desc.Usage = D3D11_USAGE_DEFAULT;
 	desc.ByteWidth = sizeof(UINT) * Count;
@@ -18,6 +20,8 @@ IndexBuffer::IndexBuffer(void* Data, UINT Count)
 
 IndexBuffer::~IndexBuffer()
 {
+	DESTRUCTOR_DEBUG();
+
 	SAFE_RELEASE(Buffer);
 }
 

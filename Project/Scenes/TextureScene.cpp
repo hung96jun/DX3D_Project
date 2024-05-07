@@ -3,6 +3,8 @@
 
 TextureScene::TextureScene()
 {
+	CONSTRUCTOR_DEBUG();
+
 	VShader = ShaderManager::Get()->AddVS(L"TextureShader");
 	PShader = ShaderManager::Get()->AddPS(L"TextureShader");
 
@@ -45,8 +47,11 @@ TextureScene::TextureScene()
 
 TextureScene::~TextureScene()
 {
-	SAFE_DELETE(VBuffer);
-	SAFE_DELETE(IBuffer);
+	DESTRUCTOR_DEBUG();
+
+	SAFE_RELEASE(VBuffer);
+	SAFE_RELEASE(IBuffer);
+
 	SAFE_DELETE(WBuffer);
 	Tex->Destroy();
 }
@@ -86,7 +91,7 @@ void TextureScene::Render()
 	VShader->Set();
 	PShader->Set();
 
-	D3D::GetDC()->DrawIndexed(Indices.size(), 0, 0);
+	D3D::GetDC()->DrawIndexed(static_cast<UINT>(Indices.size()), 0, 0);
 }
 
 void TextureScene::GUIRender()

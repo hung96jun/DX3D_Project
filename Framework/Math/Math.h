@@ -26,4 +26,6 @@ public:
 
 	static void Lerp(OUT Matrix& Out, const Matrix& M1, const Matrix& M2, float Amount);
 	static Matrix Lerp(const Matrix& Mat, const Matrix& M1, const Matrix& M2, float Amount);
+
+	static bool NearlyEqual(const float& S1, const float& S2);
 };

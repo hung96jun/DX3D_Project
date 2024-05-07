@@ -1,8 +1,5 @@
 #pragma once
 
-#include <iostream>
-#include <string>
-
 using namespace std;
 
 namespace Utility
@@ -16,6 +13,11 @@ namespace Utility
 	*/
 	string GetFileName(const string File);
 	string GetFileNameWithoutExtension(const string File);
+
+	vector<string>  SplitString(string Origin, const string& Tok, const bool& IncludeLast = true);
+
+	const bool ExistDirectory(const string File);
+	void CreateFolders(const string File);
 }
 
 using namespace Utility;

@@ -2,14 +2,19 @@
 #include "Orthographic.h"
 #include "Framework/Buffers/GlobalBuffer.h"
 
+#include "Utilities/Debug.h"
+
 Orthographic::Orthographic(float Width, float Height, float Zn, float Zf, float Fov)
 	:Projection(Width, Height, Zn, Zf, Fov)
 {
+	CONSTRUCTOR_DEBUG();
+
 	Set(Width, Height, Zn, Zf, Fov);
 }
 
 Orthographic::~Orthographic()
 {
+	DESTRUCTOR_DEBUG();
 }
 
 void Orthographic::Set()

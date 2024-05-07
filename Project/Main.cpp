@@ -56,6 +56,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         D3D::Get()->Create();
     }
 
+    MemoryDebug::Get();
+
     GameManager::Create();
 
     while (msg.message != WM_QUIT)
@@ -76,6 +78,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     }
 
     GameManager::Destroy();
+    MemoryDebug::Destory();
+
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     
     return (int)msg.wParam;
 }

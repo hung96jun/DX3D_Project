@@ -28,7 +28,7 @@ private:
 	//Object* TestObject = nullptr;
 	//Grid* GridObject = nullptr;
 
-	vector<VertexTexture> Vertices;
+	vector<VertexUV> Vertices;
 	vector<int> Indices;
 
 	Vector3 Pos, Rot, Scale;

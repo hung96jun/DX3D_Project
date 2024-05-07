@@ -5,7 +5,7 @@
 class VertexShader : public Shader
 {
 public:
-	VertexShader() = default;
+	VertexShader() = delete;
 	VertexShader(wstring File);
 	virtual ~VertexShader();
 

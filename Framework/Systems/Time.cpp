@@ -1,5 +1,6 @@
 #include "Libraries.h"
 #include "Time.h"
+#include "Utilities/Debug.h"
 
 Time* Time::Instance = nullptr;
 bool Time::bTimeStopped = false;
@@ -16,12 +17,15 @@ Time::Time() :
 	TickPerSecond(0), CurTime(0), LastTime(0), LastFPSUpdate(0), FPSUpdateIntterval(0),
 	FrameCount(0), RunningTime(0), FramePerSecond(0)
 {
+	CONSTRUCTOR_DEBUG();
+
 	QueryPerformanceFrequency((LARGE_INTEGER*)&TickPerSecond);
 	FPSUpdateIntterval = TickPerSecond >> 1;
 }
 
 Time::~Time()
 {
+	DESTRUCTOR_DEBUG();
 }
 
 Time* Time::Get()
@@ -88,6 +92,17 @@ void Time::Stop()
 ///////////////////////////////////////////////////////////////////////////////
 // Timer class 
 ///////////////////////////////////////////////////////////////////////////////
+Timer::Timer()
+{
+	CONSTRUCTOR_DEBUG();
+}
+
+Timer::~Timer()
+{
+	DESTRUCTOR_DEBUG();
+}
+
+
 Timer* Timer::Get()
 {
 	//assert(Instance != nullptr);

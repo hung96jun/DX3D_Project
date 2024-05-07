@@ -152,3 +152,8 @@ Matrix Math::Lerp(const Matrix& Mat, const Matrix& M1, const Matrix& M2, float A
 		value._41, value._42, value._43, value._44
 	);
 }
+
+bool Math::NearlyEqual(const float& S1, const float& S2)
+{
+	return abs(S1 - S2) < FLT_EPSILON;
+}

@@ -2,7 +2,6 @@
 #include "Renders/Shaders/VertexShader.h"
 #include "Renders/Shaders/PixelShader.h"
 #include "Framework/Managers/ShaderManager.h"
-#include "Framework/Buffers/GlobalBuffer.h"
 #include "Renders/Texture.h"
 #include "Utilities/tinyxml2.h"
 #include "Utilities/Utility.h"
@@ -10,11 +9,15 @@
 
 Material::Material()
 {
+	CONSTRUCTOR_DEBUG();
+
 	Initializer();
 }
 
 Material::Material(const wstring ShaderFile)
 {
+	CONSTRUCTOR_DEBUG();
+
 	VShader = ShaderManager::Get()->AddVS(ShaderFile);
 	PShader = ShaderManager::Get()->AddPS(ShaderFile);
 
@@ -36,6 +39,8 @@ void Material::Initializer()
 
 Material::~Material()
 {
+	DESTRUCTOR_DEBUG();
+
 	SAFE_DELETE(MBuffer);
 }
 
@@ -77,14 +82,6 @@ void Material::SetNormalMap(const wstring TextureFile)
 		NormalMap = Texture::Add(TextureFile);
 	else
 		NormalMap = Texture::Add(L"Color/White.png", L"NM");
-}
-
-void Material::SelectMap(const string Name, const MapType Type)
-{
-}
-
-void Material::UnSelectMap(const MapType Type)
-{
 }
 
 void Material::Save(string File)
@@ -166,7 +163,7 @@ void Material::Load(string File)
 	shaderFile = ToString(shader->Attribute("Vertex"));
 	shaderFile = shaderFile.substr(shaderFile.find_first_of('/') + 1, shaderFile.length());
 	VShader = ShaderManager::Get()->AddVS(shaderFile);
-	shaderFile = ToString(shader->Attribute("Pixel");
+	shaderFile = ToString(shader->Attribute("Pixel"));
 	shaderFile = shaderFile.substr(shaderFile.find_first_of('/') + 1, shaderFile.length());
 	PShader = ShaderManager::Get()->AddPS(shaderFile);
 
@@ -205,19 +202,194 @@ void Material::Load(string File)
 	MBuffer->Get().Emissive.w = emissive->FloatAttribute("A");
 
 	MBuffer->Get().Shininess = property->FloatAttribute("Shininess");
-	MBuffer->Get().HasNormalMap = property->FloatAttribute("HasNormalMap");
+	MBuffer->Get().HasNormalMap = static_cast<int>(property->FloatAttribute("HasNormalMap"));
 
 	delete document;
 }
 
+void Material::SelectMap(const string Name, const MapType Type)
+{
+	ImGui::SetWindowFontScale(2.0f);
+	ImGui::TextColored(ImVec4(1.0f, 0.5f, 0.8f, 1.0f), Name.c_str());
+	ImGui::SetWindowFontScale(1.0f);
+	ImGui::SameLine();
+
+	ImTextureID textureID = nullptr;
+
+	switch (Type)
+	{
+	case MapType::DIFFUSE:
+		textureID = DiffuseMap->GetSRV();
+		break;
+	case MapType::SPECULAR:
+		textureID = SpecularMap->GetSRV();
+		break;
+	case MapType::NORMAL:
+		textureID = NormalMap->GetSRV();
+		break;
+	default:
+		break;
+	}
+
+	if (ImGui::ImageButton(textureID, ImVec2(50.0f, 50.0f)))
+		DIALOG->OpenDialog(this->Name + "_" + Name, Name, ".png, .jpg, .tga", "../Datas/Textures/");
+
+	if (DIALOG->Display(this->Name + "_" + "Name"))
+	{
+		if (DIALOG->IsOk())
+		{
+			string file = DIALOG->GetFilePathName();
+			char path[128];
+			GetCurrentDirectoryA(128, path);
+
+			file = file.substr(strlen(path) + 1, file.length());
+
+			switch (Type)
+			{
+			case MapType::DIFFUSE:
+				SetDiffuseMap(ToString(file));
+				break;
+			case MapType::SPECULAR:
+				SetSpecularMap(ToString(file));
+				break;
+			case MapType::NORMAL:
+				SetNormalMap(ToString(file));
+				break;
+			default:
+				break;
+			}
+		}
+
+		DIALOG->Close();
+	}
+}
+
+void Material::UnSelectMap(const MapType Type)
+{
+	ImTextureID textureID = nullptr;
+
+	switch (Type)
+	{
+	case MapType::DIFFUSE:
+		textureID  = Texture::Add(L"UI/Cancel.png", L"DM_Cancel")->GetSRV();
+		break;
+	case MapType::SPECULAR:
+		textureID = Texture::Add(L"UI/Cancel.png", L"SM_Cancel")->GetSRV();
+		break;
+	case MapType::NORMAL:
+		textureID = Texture::Add(L"UI/Cancel.png", L"NM_Cancel")->GetSRV();
+		break;
+	default:
+		break;
+	}
+
+	if (ImGui::ImageButton(textureID, ImVec2(20.0f, 20.0f)))
+	{
+		switch (Type)
+		{
+		case MapType::DIFFUSE:
+			SetDiffuseMap(L"");
+			break;
+		case MapType::SPECULAR:
+			SetSpecularMap(L"");
+			break;
+		case MapType::NORMAL:
+			SetNormalMap(L"");
+		default:
+			break;
+		}
+	}
+}
+
 void Material::GUIRender()
 {
+	string title = Name + "_Material";
+
+	if (ImGui::TreeNode(title.c_str()))
+	{
+		char str[128];
+		strcpy_s(str, 128, EditNamt.c_str());
+		ImGui::PushItemWidth(100.0f);
+		ImGui::InputText("Name", str, 128);
+		ImGui::PopItemWidth();
+		EditNamt = str;
+
+		ImGui::SameLine();
+		if (ImGui::Button("Edit"))
+			Name = EditNamt;
+
+		ImGui::ColorEdit3("Diffuse", (float*)(&MBuffer->Get().Diffuse));
+		ImGui::ColorEdit3("Specular", (float*)(&MBuffer->Get().Specular));
+		ImGui::ColorEdit3("Ambient", (float*)(&MBuffer->Get().Ambient));
+		ImGui::ColorEdit3("Emissive", (float*)(&MBuffer->Get().Emissive));
+
+		ImGui::SliderFloat("Shininess", &MBuffer->Get().Shininess, 1.0f, 50.0f);
+
+		SelectMap("DM", MapType::DIFFUSE);
+		ImGui::SameLine();
+		UnSelectMap(MapType::DIFFUSE);
+		SelectMap("SM", MapType::SPECULAR);
+		ImGui::SameLine();
+		UnSelectMap(MapType::SPECULAR);
+		SelectMap("NM", MapType::NORMAL);
+		ImGui::SameLine();
+		UnSelectMap(MapType::NORMAL);
+
+		SaveDialog();
+		LoadDialog();
+
+		ImGui::TreePop();
+	}
 }
 
 void Material::SaveDialog()
 {
+	string key = "Save";
+
+	if (ImGui::Button(key.c_str()))
+	{
+		if (File.empty())
+			Save("../Datas/XML/Materials/" + Name + ".mat");
+		else
+			Save(File);
+	}
+
+	ImGui::SameLine();
+
+	if (ImGui::Button("SaveAs"))
+		DIALOG->OpenDialog(key.c_str(), key.c_str(), ".mat", "../Datas/XML/Materials/");
+
+	if (DIALOG->Display(key.c_str()))
+	{
+		if (DIALOG->IsOk())
+		{
+			string file = DIALOG->GetFilePathName();
+			file = file.substr(ProjectPath.size() + 1, file.size());
+
+			Save(file);
+		}
+
+		DIALOG->Close();
+	}
 }
 
 void Material::LoadDialog()
 {
+	string key = "Load";
+
+	if (ImGui::Button("Load"))
+		DIALOG->OpenDialog(key.c_str(), key.c_str(), ".mat", "../Datas/XML/Materials/");
+
+	if (DIALOG->Display(key.c_str()))
+	{
+		if (DIALOG->IsOk())
+		{
+			string file = DIALOG->GetFilePathName();
+			file = file.substr(ProjectPath.size() + 1, file.size());
+
+			Load(file);
+		}
+
+		DIALOG->Close();
+	}
 }

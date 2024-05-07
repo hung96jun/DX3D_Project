@@ -4,15 +4,21 @@
 
 #include "Framework/Scene.h"
 
+#include "../Project/Scenes/GridScene.h"
+#include "../Project/Scenes/TextureScene.h"
+
 SceneManager* SceneManager::Instance = nullptr;
 map<string, Scene*> SceneManager::Scenes;
 
 SceneManager::SceneManager()
 {
+	CONSTRUCTOR_DEBUG();
 }
 
 SceneManager::~SceneManager()
 {
+	DESTRUCTOR_DEBUG();
+
 	for (pair<string, Scene*> scenes : Scenes)
 	{
 		if (scenes.second != nullptr)

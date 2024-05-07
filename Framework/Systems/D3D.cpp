@@ -1,5 +1,7 @@
 #include "D3D.h"
 
+#include "Utilities/Debug.h"
+
 D3D* D3D::Instance = nullptr;
 ID3D11Device* D3D::Device = nullptr;
 ID3D11DeviceContext* D3D::DeviceContext = nullptr;
@@ -7,10 +9,13 @@ WindowDesc D3D::Desc;
 
 D3D::D3D()
 {
+	CONSTRUCTOR_DEBUG();
 }
 
 D3D::~D3D()
 {
+	DESTRUCTOR_DEBUG();
+
 	SAFE_RELEASE(Device);
 	SAFE_RELEASE(DeviceContext);
 

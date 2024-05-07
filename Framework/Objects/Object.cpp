@@ -2,6 +2,8 @@
 
 Object::Object(const wstring ShaderFile)
 {
+	CONSTRUCTOR_DEBUG();
+
 	VShader = ShaderManager::Get()->AddVS(ShaderFile);
 	PShader = ShaderManager::Get()->AddPS(ShaderFile);
 
@@ -25,6 +27,8 @@ Object::Object(const wstring ShaderFile)
 
 Object::~Object()
 {
+	DESTRUCTOR_DEBUG();
+
 	SAFE_DELETE(VBuffer);
 	SAFE_DELETE(IBuffer);
 	SAFE_DELETE(WBuffer);
@@ -55,7 +59,7 @@ void Object::Render()
 	VShader->Set();
 	PShader->Set();
 
-	D3D::GetDC()->Draw(Vertices.size(), 0);
+	D3D::GetDC()->Draw(static_cast<UINT>(Vertices.size()), 0);
 }
 
 void Object::GUIRender()

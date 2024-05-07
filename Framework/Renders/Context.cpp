@@ -6,6 +6,8 @@ Context* Context::Instance = nullptr;
 
 Context::Context()
 {
+	CONSTRUCTOR_DEBUG();
+
 	WindowDesc desc = D3D::GetDesc();
 
 	Persp = new Perspective(static_cast<float>(desc.Width), static_cast<float>(desc.Height), 0.1f, 1000.0f);
@@ -23,6 +25,8 @@ Context::Context()
 
 Context::~Context()
 {
+	DESTRUCTOR_DEBUG();
+
 	SAFE_DELETE(Persp);
 	SAFE_DELETE(Ortho);
 	SAFE_DELETE(View);

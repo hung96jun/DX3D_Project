@@ -3,6 +3,8 @@
 VertexShader::VertexShader(wstring File)
 	:Shader(File)
 {
+	CONSTRUCTOR_DEBUG();
+	
 	DWORD flags = D3DCOMPILE_ENABLE_STRICTNESS | D3DCOMPILE_DEBUG;
 
 	D3DCompileFromFile(File.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE,
@@ -16,8 +18,11 @@ VertexShader::VertexShader(wstring File)
 
 VertexShader::~VertexShader()
 {
+	DESTRUCTOR_DEBUG();
+
 	SAFE_RELEASE(VShader);
 	SAFE_RELEASE(InputLayout);
+	SAFE_RELEASE(Reflection);
 }
 
 void VertexShader::Set()

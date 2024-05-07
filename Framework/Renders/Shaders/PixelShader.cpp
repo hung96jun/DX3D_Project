@@ -1,7 +1,10 @@
 #include "PixelShader.h"
 
 PixelShader::PixelShader(wstring File)
+	:Shader(File)
 {
+	CONSTRUCTOR_DEBUG();
+
 	DWORD flags = D3DCOMPILE_ENABLE_STRICTNESS | D3DCOMPILE_DEBUG;
 
 	D3DCompileFromFile(File.c_str(), nullptr, nullptr,
@@ -13,6 +16,8 @@ PixelShader::PixelShader(wstring File)
 
 PixelShader::~PixelShader()
 {
+	DESTRUCTOR_DEBUG();
+
 	SAFE_RELEASE(PShader);
 }
 

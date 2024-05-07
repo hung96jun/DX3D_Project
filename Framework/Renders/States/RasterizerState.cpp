@@ -4,6 +4,8 @@
 
 RasterizerState::RasterizerState()
 {
+	CONSTRUCTOR_DEBUG();
+
 	Desc.CullMode = D3D11_CULL_BACK;
 	Desc.FillMode = D3D11_FILL_SOLID;
 
@@ -12,6 +14,8 @@ RasterizerState::RasterizerState()
 
 RasterizerState::~RasterizerState()
 {
+	DESTRUCTOR_DEBUG();
+
 	SAFE_RELEASE(State);
 }
 

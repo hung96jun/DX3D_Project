@@ -5,6 +5,8 @@
 
 TestScene::TestScene()
 {
+	CONSTRUCTOR_DEBUG();
+
 	//TestObject = new Object({ 0.0f, 0.0f }, { 0.3f, 0.3f });
 	//TestObject = new Object();
 
@@ -50,8 +52,8 @@ TestScene::TestScene()
 	//	};
 	//}
 
-	VBuffer = new VertexBuffer(Vertices.data(), sizeof(VertexTexture), Vertices.size());
-	IBuffer = new IndexBuffer(Indices.data(), Indices.size());
+	VBuffer = new VertexBuffer(Vertices.data(), sizeof(VertexUV), static_cast<UINT>(Vertices.size()));
+	IBuffer = new IndexBuffer(Indices.data(), static_cast<UINT>(Indices.size()));
 	WBuffer = new MatrixBuffer();
 
 	Scale = Vector3(1.0f, 1.0f, 1.0f);
@@ -60,6 +62,8 @@ TestScene::TestScene()
 
 TestScene::~TestScene()
 {
+	DESTRUCTOR_DEBUG();
+
 	//SAFE_DELETE(TestObject);
 
 	SAFE_DELETE(VBuffer);
@@ -109,7 +113,7 @@ void TestScene::Render()
 	PShader->Set();
 
 	//D3D::GetDC()->Draw(Vertices.size(), 0);
-	D3D::GetDC()->DrawIndexed(Indices.size(), 0, 0);
+	D3D::GetDC()->DrawIndexed(static_cast<UINT>(Indices.size()), 0, 0);
 }
 
 void TestScene::GUIRender()
@@ -143,19 +147,19 @@ void TestScene::GUIRender()
 	{
 		string temp = "UV " + to_string(i);
 		int x, y;
-		x = Vertices[i].Uv.x;
-		y = Vertices[i].Uv.y;
+		x = static_cast<int>(Vertices[i].Uv.x);
+		y = static_cast<int>(Vertices[i].Uv.y);
 		ImGui::InputInt((temp + "_x").c_str(), &x);
 		ImGui::InputInt((temp + "_y").c_str(), &y);
-		Vertices[i].Uv.x = x;
-		Vertices[i].Uv.y = y;
+		Vertices[i].Uv.x = static_cast<float>(x);
+		Vertices[i].Uv.y = static_cast<float>(y);
 
 		ImGui::TextWrapped("");
 	}
 
 	if (ImGui::Button("Accept"))
 	{
-		VBuffer->Update(Vertices.data(), Vertices.size());
+		VBuffer->Update(Vertices.data(), static_cast<UINT>(Vertices.size()));
 	}
 
 	//ImGui::ColorEdit3("Color", Color);
@@ -163,7 +167,6 @@ void TestScene::GUIRender()
 	//Vertices[1].Color = {Color[0], Color[1], Color[2], 1.0f};
 	//Vertices[2].Color = {Color[0], Color[1], Color[2], 1.0f};
 	//VBuffer->Update(Vertices.data(), Vertices.size());
-
 
 	ImGui::End();
 }

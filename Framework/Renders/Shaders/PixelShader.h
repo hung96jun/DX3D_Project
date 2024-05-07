@@ -4,7 +4,7 @@
 class PixelShader : public Shader
 {
 public:
-	PixelShader() = default;
+	PixelShader() = delete;
 	PixelShader(wstring File);
 	~PixelShader();
 

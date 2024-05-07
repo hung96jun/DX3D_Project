@@ -10,6 +10,8 @@ GameManager* GameManager::Instance = nullptr;
 
 GameManager::GameManager()
 {
+	CONSTRUCTOR_DEBUG();
+
 	SceneManager::Get()->Add("Grid", new GridScene());
 
 	//SceneManager::Get()->Add("Test", new TestScene());
@@ -22,6 +24,7 @@ GameManager::GameManager()
 
 GameManager::~GameManager()
 {
+	DESTRUCTOR_DEBUG();
 }
 
 GameManager* GameManager::Get()

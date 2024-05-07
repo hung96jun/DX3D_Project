@@ -1,11 +1,12 @@
 #pragma once
 #include "Libraries.h"
 #include "Systems/D3D.h"
+#include "Utilities/Debug.h"
 
 class Shader
 {
 public:
-	Shader() = default;
+	Shader() = delete;
 	Shader(const wstring File);
 	virtual ~Shader();
 

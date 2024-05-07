@@ -3,6 +3,8 @@
 
 Camera::Camera()
 {
+	CONSTRUCTOR_DEBUG();
+
 	MatRotation = XMMatrixIdentity();
 	MatView = XMMatrixIdentity();
 
@@ -14,6 +16,8 @@ Camera::Camera()
 
 Camera::~Camera()
 {
+	DESTRUCTOR_DEBUG();
+
 	SAFE_DELETE(VBuffer);
 }
 

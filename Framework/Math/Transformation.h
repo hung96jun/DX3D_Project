@@ -49,13 +49,37 @@ public:
 	void SetTag(const string Tag) { this->Tag = Tag; }
 	const string& GetTag() const { return Tag; }
 
+	string ToString() const 
+	{
+		string result;
+
+		result += "{ " + to_string(World.r[0].m128_f32[0]) + ", " + to_string(World.r[0].m128_f32[1]) + ", " + to_string(World.r[0].m128_f32[2]) + ", " + to_string(World.r[0].m128_f32[3]) + " }";
+		result += "\n{ " + to_string(World.r[1].m128_f32[0]) + ", " + to_string(World.r[1].m128_f32[1]) + ", " + to_string(World.r[1].m128_f32[2]) + ", " + to_string(World.r[1].m128_f32[3]) + " }";
+		result += "\n{ " + to_string(World.r[2].m128_f32[0]) + ", " + to_string(World.r[2].m128_f32[1]) + ", " + to_string(World.r[2].m128_f32[2]) + ", " + to_string(World.r[2].m128_f32[3]) + " }";
+		result += "\n{ " + to_string(World.r[3].m128_f32[0]) + ", " + to_string(World.r[3].m128_f32[1]) + ", " + to_string(World.r[3].m128_f32[2]) + ", " + to_string(World.r[3].m128_f32[3]) + " }";
+
+		return result;
+	}
+
+	static string ToString(const Matrix World)
+	{
+		string result;
+
+		result += "{ " + to_string(World.r[0].m128_f32[0]) + ", " + to_string(World.r[0].m128_f32[1]) + ", " + to_string(World.r[0].m128_f32[2]) + ", " + to_string(World.r[0].m128_f32[3]) + " }";
+		result += "\n{ " + to_string(World.r[1].m128_f32[0]) + ", " + to_string(World.r[1].m128_f32[1]) + ", " + to_string(World.r[1].m128_f32[2]) + ", " + to_string(World.r[1].m128_f32[3]) + " }";
+		result += "\n{ " + to_string(World.r[2].m128_f32[0]) + ", " + to_string(World.r[2].m128_f32[1]) + ", " + to_string(World.r[2].m128_f32[2]) + ", " + to_string(World.r[2].m128_f32[3]) + " }";
+		result += "\n{ " + to_string(World.r[3].m128_f32[0]) + ", " + to_string(World.r[3].m128_f32[1]) + ", " + to_string(World.r[3].m128_f32[2]) + ", " + to_string(World.r[3].m128_f32[3]) + " }";
+
+		return result;
+	}
+
 private:
 	string Tag = "";
 
 	Matrix World;
 	Transformation* Parent = nullptr;
 
-	Vector3 Pivot = Vector3::ZeroVector();;
+	Vector3 Pivot = Vector3::ZeroVector();
 
 	// Local
 	Vector3 Position = Vector3::ZeroVector();

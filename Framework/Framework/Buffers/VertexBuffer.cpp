@@ -5,6 +5,8 @@
 VertexBuffer::VertexBuffer(void* Data, UINT Stride, UINT Count)
 	:Stride(Stride)
 {
+	CONSTRUCTOR_DEBUG();
+
 	D3D11_BUFFER_DESC desc;
 	ZeroMemory(&desc, sizeof(D3D11_BUFFER_DESC));
 	desc.Usage = D3D11_USAGE_DEFAULT;
@@ -20,6 +22,8 @@ VertexBuffer::VertexBuffer(void* Data, UINT Stride, UINT Count)
 
 VertexBuffer::~VertexBuffer()
 {
+	DESTRUCTOR_DEBUG();
+
 	SAFE_RELEASE(Buffer);
 }
 

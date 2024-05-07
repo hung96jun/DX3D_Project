@@ -3,9 +3,8 @@
 class Scene
 {
 public:
-	/**
-	* Activate
-	*/
+	virtual ~Scene() {};
+
 	virtual void Initialize() = 0;
 	virtual void Disable() = 0;
 	virtual void Destory() = 0;

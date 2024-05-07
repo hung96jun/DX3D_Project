@@ -1,13 +1,17 @@
 #include "Libraries.h"
 #include "Framework.h"
+#include "Utilities/Debug.h"
 
 Viewport::Viewport(float Width, float Height, float X, float Y, float MinDepth, float MaxDepth)
 {
+	CONSTRUCTOR_DEBUG();
+
 	Set(Width, Height, X, Y, MinDepth, MaxDepth);
 }
 
 Viewport::~Viewport()
 {
+	DESTRUCTOR_DEBUG();
 }
 
 void Viewport::RSSetViewport()

@@ -5,7 +5,7 @@ class BinaryWrite
 {
 public:
 	BinaryWrite() = delete;
-	BinaryWrite(wstring FilePath);
+	BinaryWrite(string FilePath);
 	~BinaryWrite();
 
 	void WriteBool(const bool Data);
@@ -28,6 +28,8 @@ public:
 private:
 	HANDLE FileHandle;
 	DWORD Size;
+
+	std::ofstream DebugFile;
 };
 
 ///////////////////////////////////////////////////////////////////////////////

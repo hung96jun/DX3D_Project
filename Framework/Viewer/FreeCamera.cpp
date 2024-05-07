@@ -6,10 +6,12 @@
 
 FreeCamera::FreeCamera()
 {
+	CONSTRUCTOR_DEBUG();
 }
 
 FreeCamera::~FreeCamera()
 {
+	DESTRUCTOR_DEBUG();
 }
 
 void FreeCamera::Update()
@@ -84,8 +86,7 @@ void FreeCamera::GUIRender()
 	{
 		if (DIALOG->IsOk())
 		{
-			string str = DIALOG->GetFilePathName();
-			wstring path(str.begin(), str.end());
+			string path = DIALOG->GetFilePathName();
 			BinaryWrite* writer = new BinaryWrite(path);
 
 			writer->WriteFloat(Move);

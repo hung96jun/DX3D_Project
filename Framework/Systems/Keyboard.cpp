@@ -1,14 +1,17 @@
 #include "Libraries.h"
 #include "Keyboard.h"
+#include "Utilities/Debug.h"
 
 Keyboard* Keyboard::Instance = nullptr;
 
 Keyboard::Keyboard()
 {
+	CONSTRUCTOR_DEBUG();
 }
 
 Keyboard::~Keyboard()
 {
+	DESTRUCTOR_DEBUG();
 }
 
 Keyboard* Keyboard::Get()

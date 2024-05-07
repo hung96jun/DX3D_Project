@@ -3,6 +3,8 @@
 
 GridScene::GridScene()
 {
+	CONSTRUCTOR_DEBUG();
+
 	Vertices.resize((Width + 1) * (Height + 1));
 
 	for (UINT y = 0; y <= Height; y++)
@@ -35,7 +37,7 @@ GridScene::GridScene()
 	}
 
 	VBuffer = new VertexBuffer(Vertices.data(), sizeof(Vertex), static_cast<UINT>(Vertices.size()));
-	IBuffer = new IndexBuffer(Indices.data(), Indices.size());
+	IBuffer = new IndexBuffer(Indices.data(), static_cast<UINT>(Indices.size()));
 	WBuffer = new MatrixBuffer();
 	Transform.SetTag("Grid");
 	Transform.Update();
@@ -46,13 +48,15 @@ GridScene::GridScene()
 
 GridScene::~GridScene()
 {
+	DESTRUCTOR_DEBUG();
+
+	SAFE_DELETE(VBuffer);
+	SAFE_DELETE(IBuffer);
+	SAFE_DELETE(WBuffer);
 }
 
 void GridScene::Disable()
 {
-	SAFE_DELETE(VBuffer);
-	SAFE_DELETE(IBuffer);
-	SAFE_DELETE(WBuffer);
 }
 
 void GridScene::Render()
@@ -65,7 +69,7 @@ void GridScene::Render()
 	VShader->Set();
 	PShader->Set();
 
-	D3D::GetDC()->DrawIndexed(Indices.size(), VertexStart, 0);
+	D3D::GetDC()->DrawIndexed(static_cast<UINT>(Indices.size()), VertexStart, 0);
 }
 
 void GridScene::GUIRender()
@@ -76,5 +80,5 @@ void GridScene::GUIRender()
 
 	Transform.GUIRender();
 
-	ImGui::DragInt("VertexStart", &VertexStart, 1, 0, Vertices.size());
+	ImGui::DragInt("VertexStart", &VertexStart, 1, 0, static_cast<int>(Vertices.size()));
 }

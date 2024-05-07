@@ -3,6 +3,7 @@
 class IndexBuffer
 {
 public:
+	IndexBuffer() = delete;
 	IndexBuffer(void* Data, UINT Count);
 	~IndexBuffer();
 
