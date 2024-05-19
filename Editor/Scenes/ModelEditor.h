@@ -18,5 +18,8 @@ public:
 	void UIRender() override {}
 	void GUIRender() override;
 	void ResizeScreen() override;
+
+private:
+	ModelExporter* Exporter;
 };
 

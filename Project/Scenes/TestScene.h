@@ -35,17 +35,21 @@ private:
 
 	VertexShader* VShader;
 	PixelShader* PShader;
-
+	
 	VertexBuffer* VBuffer;
 	IndexBuffer* IBuffer;
+	FloatBuffer* FBuffer;
 	MatrixBuffer* WBuffer;
 
-	Texture* DiffuseMap = nullptr;
+	Texture* DiffuseMap[2];
+	//Texture* DiffuseMap;
 
 	Matrix World;
 
 	float Color[3] = { 0.5, 0.0, 0.0 };
 
 	vector<Float4> Colors;
+
+	float Ratio = 1.0f;
 };
 

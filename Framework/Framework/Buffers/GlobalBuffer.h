@@ -93,3 +93,18 @@ public:
 private:
 	BufferData Data;
 };
+
+class FloatBuffer : public ConstBuffer
+{
+public:
+	FloatBuffer() : ConstBuffer(&Value, sizeof(FloatBuffer))
+	{
+		Value = 0.0f;
+	}
+
+	void Set(float Value) { this->Value = Value; }
+
+private:
+	float Value;
+	float Padding[3];
+};

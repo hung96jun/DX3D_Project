@@ -15,7 +15,7 @@ MemoryDebug::~MemoryDebug()
 	for (pair<string, int> count : Counting)
 	{
 		if (count.second > 0)
-			DebugFile << count.first + " - " + to_string(count.second) << endl;
+			DebugFile << count.first + " : " + to_string(count.second) << endl;
 	}
 
 	if (DebugFile.is_open() == true)

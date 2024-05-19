@@ -15,11 +15,6 @@ cbuffer ProjectionBuffer : register(b2)
 }
 
 SamplerState Samp : register(s0);
-//SamplerState LinearSampler
-//{
-//    Filter = MIN_MAG_MIP_LINEAR;
-//};
-
 Texture2D DiffuseMap : register(t0);
 
 struct VertexInput
@@ -48,14 +43,5 @@ VertexOutput VS(VertexInput input)
 
 float4 PS(VertexOutput input) : SV_Target0
 {
-    //if (input.UV.x < 0.5f)
-    //    return float4(1.0f, 0.5f, 0.5f, 1.0f);
-    
-    //return float4(input.UV.x, input.UV.y, 0.0f, 1.0f);
-    //
-    //return float4(input.Color.xyz, 1.0f);
-    
-    //return float4(0.5f, 0.5f, 1.0f, 1.0f);
-    //return float4(input.UV, 1.0f);
     return DiffuseMap.Sample(Samp, input.UV);
 }

@@ -29,19 +29,19 @@ void FreeCamera::Update()
 		Vector3 pos = Vector3::ZeroVector();
 
 		if (Keyboard::Get()->IsPress('W'))
-			pos = forward * Move * Time::Get()->GetDeltaTime();
+			pos += forward * Move * Time::Get()->GetDeltaTime();
 		else if (Keyboard::Get()->IsPress('S'))
-			pos = -forward * Move * Time::Get()->GetDeltaTime();
+			pos += -forward * Move * Time::Get()->GetDeltaTime();
 
 		if (Keyboard::Get()->IsPress('D'))
-			pos = right * Move * Time::Get()->GetDeltaTime();
+			pos += right * Move * Time::Get()->GetDeltaTime();
 		else if (Keyboard::Get()->IsPress('A'))
-			pos = -right * Move * Time::Get()->GetDeltaTime();
+			pos += -right * Move * Time::Get()->GetDeltaTime();
 
 		if (Keyboard::Get()->IsPress('E'))
-			pos = up * Move * Time::Get()->GetDeltaTime();
+			pos += up * Move * Time::Get()->GetDeltaTime();
 		else if(Keyboard::Get()->IsPress('Q'))
-			pos = -up * Move * Time::Get()->GetDeltaTime();
+			pos += -up * Move * Time::Get()->GetDeltaTime();
 
 		SetPosition(GetPosition() + pos);
 	}

@@ -14,12 +14,12 @@ GameManager::GameManager()
 
 	SceneManager::Get()->Add("Grid", new GridScene());
 
-	//SceneManager::Get()->Add("Test", new TestScene());
-	SceneManager::Get()->Add("Texture", new TextureScene());
+	SceneManager::Get()->Add("Test", new TestScene());
+	//SceneManager::Get()->Add("Texture", new TextureScene());
 
 	//CallScene("Grid");
-	//CallScene("Test");
-	CallScene("Texture");
+	CallScene("Test");
+	//CallScene("Texture");
 }
 
 GameManager::~GameManager()
@@ -63,6 +63,7 @@ void GameManager::Create()
 void GameManager::Destroy()
 {
 	{
+		Texture::Destroy();
 		Time::Destroy();
 		Timer::Destroy();
 		Mouse::Destroyt();

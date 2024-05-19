@@ -120,6 +120,9 @@
     <ClCompile Include="Utilities\Debug.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Collision\Collider.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utilities\Defines.h">
@@ -554,6 +557,9 @@
     <ClInclude Include="Utilities\Debug.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Objects\Collision\Collider.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Libraries\Assimp\color4.inl">
@@ -588,5 +594,6 @@
     <FxCompile Include="_Shaders\SimpleShader.hlsl" />
     <FxCompile Include="_Shaders\TextureShader.hlsl" />
     <FxCompile Include="_Shaders\GridShader.hlsl" />
+    <FxCompile Include="_Shaders\TestTextureShader.hlsl" />
   </ItemGroup>
 </Project>

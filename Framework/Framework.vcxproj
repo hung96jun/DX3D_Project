@@ -154,6 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Objects\Collision\Collider.cpp" />
     <ClCompile Include="Utilities\Debug.cpp" />
     <ClCompile Include="Model\ModelExporter.cpp" />
     <ClCompile Include="Renders\Material.cpp" />
@@ -193,6 +194,7 @@
     <ClCompile Include="Viewer\Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Objects\Collision\Collider.h" />
     <ClInclude Include="Utilities\Debug.h" />
     <ClInclude Include="Model\ModelExporter.h" />
     <ClInclude Include="Model\ModelData.h" />
@@ -357,6 +359,10 @@
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="_Shaders\SimpleShader.hlsl">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS</EntryPointName>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="_Shaders\TestTextureShader.hlsl">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS</EntryPointName>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
     </FxCompile>

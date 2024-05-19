@@ -21,13 +21,13 @@ Texture::~Texture()
 
 Texture* Texture::Add(wstring File)
 {
+	File = L"../Datas/Textures/" + File;
 	if (Textures.count(File) > 0)
 		return Textures[File];
 
 	ScratchImage image;
 	HRESULT result;
 
-	File = L"../Datas/Textures/" + File;
 	wstring extension = GetFileExtension(File);
 
 	if (extension.compare(L"tga") == 0)
@@ -73,6 +73,7 @@ void Texture::Destroy()
 {
 	for (pair<wstring, Texture*> t : Textures)
 		SAFE_DELETE(t.second);
+
 	Textures.clear();
 }
 
