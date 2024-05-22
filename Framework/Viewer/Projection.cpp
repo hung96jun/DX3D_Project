@@ -9,14 +9,14 @@ Projection::Projection(float Width, float Height, float Zn, float Zf, float Fov)
 	CONSTRUCTOR_DEBUG();
 
 	this->Mat = XMMatrixIdentity();
-	PBuffer = new MatrixBuffer();
+	//PBuffer = new MatrixBuffer();
 }
 
 Projection::~Projection()
 {
 	DESTRUCTOR_DEBUG();
 
-	SAFE_DELETE(PBuffer);
+	//SAFE_DELETE(PBuffer);
 }
 
 void Projection::GetMatrix(Matrix* Mat)

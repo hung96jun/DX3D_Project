@@ -11,14 +11,14 @@ Camera::Camera()
 	ApplyRotation();
 	ApplyMove();
 
-	VBuffer = new ViewBuffer();
+	//VBuffer = new ViewBuffer();
 }
 
 Camera::~Camera()
 {
 	DESTRUCTOR_DEBUG();
 
-	SAFE_DELETE(VBuffer);
+	//SAFE_DELETE(VBuffer);
 }
 
 void Camera::Update()
@@ -70,8 +70,8 @@ void Camera::Set()
 {
 	Transform.Update();
 	MatView = XMMatrixInverse(nullptr, Transform.GetWorld());
-	VBuffer->Set(MatView, Transform.GetWorld());
-	VBuffer->SetVS(1);
+	//VBuffer->Set(MatView, Transform.GetWorld());
+	//VBuffer->SetVS(1);
 }
 
 void Camera::ApplyRotation()

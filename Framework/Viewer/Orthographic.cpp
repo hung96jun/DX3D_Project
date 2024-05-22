@@ -28,6 +28,6 @@ void Orthographic::Set(const float Width, const float Height, const float Zn, co
 
 	XMMatrixOrthographicOffCenterLH(0.0, Width, 0.0, Height, -1.0f, 1.0f);
 
-	PBuffer->Set(Mat);
-	PBuffer->SetVS(2);
+	//PBuffer->Set(Mat);
+	//PBuffer->SetVS(2);
 }

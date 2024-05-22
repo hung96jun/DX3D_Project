@@ -12,6 +12,7 @@ public:
 	virtual ~Projection();
 
 	void GetMatrix(Matrix* Mat);
+	Matrix& GetMatrix() { return Mat; }
 	
 protected:
 	virtual void Set(const float Width, const float Height, const float Zn, const float Zf, const float Fov);
@@ -22,6 +23,6 @@ protected:
 	float Fov;
 
 	Matrix Mat;
-	MatrixBuffer* PBuffer;
+	//MatrixBuffer* PBuffer;
 };
 

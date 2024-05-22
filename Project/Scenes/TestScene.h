@@ -3,6 +3,8 @@
 class Object;
 class Grid;
 
+class Material;
+
 class TestScene : public Scene
 {
 public:
@@ -41,7 +43,7 @@ private:
 	FloatBuffer* FBuffer;
 	MatrixBuffer* WBuffer;
 
-	Texture* DiffuseMap[2];
+	//Texture* DiffuseMap[2];
 	//Texture* DiffuseMap;
 
 	Matrix World;
@@ -49,6 +51,8 @@ private:
 	float Color[3] = { 0.5, 0.0, 0.0 };
 
 	vector<Float4> Colors;
+
+	Material* Mat;
 
 	float Ratio = 1.0f;
 };

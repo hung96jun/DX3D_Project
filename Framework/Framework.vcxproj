@@ -155,6 +155,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Objects\Collision\Collider.cpp" />
+    <ClCompile Include="Objects\Environment\Terrain.cpp" />
     <ClCompile Include="Utilities\Debug.cpp" />
     <ClCompile Include="Model\ModelExporter.cpp" />
     <ClCompile Include="Renders\Material.cpp" />
@@ -195,6 +196,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Objects\Collision\Collider.h" />
+    <ClInclude Include="Objects\Environment\Terrain.h" />
     <ClInclude Include="Utilities\Debug.h" />
     <ClInclude Include="Model\ModelExporter.h" />
     <ClInclude Include="Model\ModelData.h" />

@@ -3,6 +3,8 @@
 #include "Objects/Object.h"
 #include "Objects/Environment/Grid.h"
 
+#include "Renders/Material.h"
+
 TestScene::TestScene()
 {
 	CONSTRUCTOR_DEBUG();
@@ -63,6 +65,8 @@ TestScene::TestScene()
 	FBuffer = new FloatBuffer();
 	WBuffer = new MatrixBuffer();
 
+	Mat = new Material(L"TestTextureShader");
+
 	Scale = Vector3(1.0f, 1.0f, 1.0f);
 }
 
@@ -77,18 +81,22 @@ TestScene::~TestScene()
 	SAFE_DELETE(WBuffer);
 	SAFE_DELETE(FBuffer);
 
+	SAFE_DELETE(Mat);
+
 	//DiffuseMap->Destroy();
-	DiffuseMap[0]->Destroy();
-	DiffuseMap[1]->Destroy();
+	//DiffuseMap[0]->Destroy();
+	//DiffuseMap[1]->Destroy();
 }
 
 void TestScene::Initialize()
 {
 	//DiffuseMap = Texture::Add(L"Color/White.png");
-	DiffuseMap[0] = Texture::Add(L"Color/White.png");
-	DiffuseMap[1] = Texture::Add(L"Color/White.png");
+	//DiffuseMap[0] = Texture::Add(L"Color/White.png");
+	//DiffuseMap[1] = Texture::Add(L"Color/White.png");
 	//DiffuseMap[0] = Texture::Add(L"Landscape/Box.png");
 	//DiffuseMap[1] = Texture::Add(L"Landscape/Bricks.png");
+
+	Mat->SetDiffuseMap(L"Landscape/Box.png");
 }
 
 void TestScene::Destory()
@@ -107,20 +115,19 @@ void TestScene::Update()
 
 void TestScene::Render()
 {
-	//TestObject->Render();
-
 	WBuffer->Set(World);
 	WBuffer->SetVS(0);
 	VBuffer->Set();
 	IBuffer->Set();
 	FBuffer->SetPS(3);
 	
-	//DiffuseMap->PSSet(0);
-	DiffuseMap[0]->PSSet(0);
-	DiffuseMap[1]->PSSet(1);
+	//DiffuseMap[0]->PSSet(0);
+	//DiffuseMap[1]->PSSet(1);
 
-	VShader->Set();
-	PShader->Set();
+	//VShader->Set();
+	//PShader->Set();
+
+	Mat->Set();
 
 	//D3D::GetDC()->Draw(Vertices.size(), 0);
 	D3D::GetDC()->DrawIndexed(static_cast<UINT>(Indices.size()), 0, 0);
@@ -146,7 +153,27 @@ void TestScene::GUIRender()
 	ImGui::DragFloat("Texture Ratio", &Ratio, 0.01f, 0.0f, 1.0f);
 	FBuffer->Set(Ratio);
 
-	if (ImGui::Button("Texture1"))
+	if (ImGui::TreeNode("Material"))
+	{
+		float diffuse[4] = { Mat->GetData().Diffuse.x, Mat->GetData().Diffuse.y, Mat->GetData().Diffuse.z, Mat->GetData().Diffuse.w };
+		float emissive[4] = { Mat->GetData().Emissive.x, Mat->GetData().Emissive.y, Mat->GetData().Emissive.z, Mat->GetData().Emissive.w };
+		float ambient[4] = { Mat->GetData().Ambient.x, Mat->GetData().Ambient.y, Mat->GetData().Ambient.z, Mat->GetData().Ambient.w };
+		float specular[4] = { Mat->GetData().Specular.x, Mat->GetData().Specular.y, Mat->GetData().Specular.z, Mat->GetData().Specular.w };
+
+		ImGui::DragFloat4("Diffuse", diffuse, 0.01f, 0.0f, 1.0f);
+		ImGui::DragFloat4("Specular", specular, 0.01f, 0.0f, 1.0f);
+		ImGui::DragFloat4("Ambient", ambient, 0.01f, 0.0f, 1.0f);
+		ImGui::DragFloat4("Emissive", emissive, 0.01f, 0.0f, 1.0f);
+		
+		Mat->GetData().Diffuse = Float4(diffuse[0], diffuse[1], diffuse[2], diffuse[3]);
+		Mat->GetData().Specular = Float4(specular[0], specular[1], specular[2], specular[3]);
+		Mat->GetData().Emissive = Float4(emissive[0], emissive[1], emissive[2], emissive[3]);
+		Mat->GetData().Ambient = Float4(ambient[0], ambient[1], ambient[2], ambient[3]);
+
+		ImGui::TreePop();
+	}
+
+	if (ImGui::Button("Texture"))
 	{
 		DIALOG->OpenDialog("LoadTexture1", "FindTexture", ".png,.dds,.jpg", "../Datas/Textures/");
 	}
@@ -173,40 +200,7 @@ void TestScene::GUIRender()
 
 
 			wstring path(str.begin(), str.end());
-			DiffuseMap[0] = Texture::Add(path);
-
-			DIALOG->Close();
-		}
-	}
-
-	if (ImGui::Button("Texture2"))
-	{
-		DIALOG->OpenDialog("LoadTexture2", "FindTexture", ".png,.dds,.jpg", "../Datas/Textures/");
-	}
-
-	if (DIALOG->Display("LoadTexture2"))
-	{
-		if (DIALOG->IsOk())
-		{
-			string str = DIALOG->GetFilePathName();
-			size_t offset = str.rfind("Textures");
-			if (offset != string::npos)
-				offset += string("Textures").size() + 1;
-
-			str = str.substr(offset);
-
-			while (true) {
-				size_t slashIndex = str.rfind("\\");
-				if (slashIndex == std::string::npos) {
-					break;
-				}
-
-				str.replace(slashIndex, 1, "/");
-			}
-
-
-			wstring path(str.begin(), str.end());
-			DiffuseMap[1] = Texture::Add(path);
+			Mat->SetDiffuseMap(path);
 
 			DIALOG->Close();
 		}

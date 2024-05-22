@@ -36,6 +36,13 @@ public:
 	static ID3D11DeviceContext* GetDC() { return DeviceContext; }
 
 private:
+	void DeviceSetting();
+	void BackBufferSetting();
+	void DepthStencilViewSetting();
+	void DepthStencilStateSetting();
+	void ViewportSetting();
+
+private:
 	static D3D* Instance;
 
 	static ID3D11Device* Device;
@@ -45,5 +52,7 @@ private:
 
 	IDXGISwapChain* SwapChain;
 	ID3D11RenderTargetView* RenderTargetView;
+	ID3D11DepthStencilView* DepthStencilView;
+	ID3D11DepthStencilState* DepthStencilState;
 };
 

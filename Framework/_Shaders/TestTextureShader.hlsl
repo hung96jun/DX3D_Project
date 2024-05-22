@@ -3,25 +3,36 @@ cbuffer WorldBuffer : register(b0)
     matrix World;
 }
 
-cbuffer ViewBuffer : register(b1)
+//cbuffer ViewBuffer : register(b1)
+//{
+//    matrix View;
+//    matrix InvView;
+//}
+
+//cbuffer ProjectionBuffer : register(b2)
+//{
+//    matrix Projection;
+//}
+
+cbuffer ViewProjectionBuffer : register(b1)
 {
     matrix View;
     matrix InvView;
-}
-
-cbuffer ProjectionBuffer : register(b2)
-{
     matrix Projection;
 }
 
-cbuffer FloatBuffer : register(b3)
+cbuffer MaterialBuffer : register(b3)
 {
-    float Ratio;
+    float4 Diffuse;
+    float4 Specular;
+    float4 Ambient;
+    float4 Emissive;
+    
+    float Shininess;
 }
 
 SamplerState Samp : register(s0);
-Texture2D FirstDiffuseMap : register(t0);
-Texture2D SecondDiffuseMap : register(t1);
+Texture2D DiffuseMap : register(t0);
 
 struct VertexInput
 {
@@ -49,10 +60,9 @@ VertexOutput VS(VertexInput input)
 
 float4 PS(VertexOutput input) : SV_Target0
 {
-    float4 result = FirstDiffuseMap.Sample(Samp, input.UV);
-    
-    if (input.UV.x > Ratio.x)
-        result = SecondDiffuseMap.Sample(Samp, input.UV);
+    float4 result = DiffuseMap.Sample(Samp, input.UV);
+    //result = (result * Diffuse) + Ambient + Emissive;
+    //result = Emissive;
     
     return result;
 }

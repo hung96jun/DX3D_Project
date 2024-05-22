@@ -30,6 +30,6 @@ void Perspective::Set(const float Width, const float Height, const float Zn, con
 	this->Mat = XMMatrixPerspectiveFovLH(Fov, Aspect, Zn, Zf);
 	//this->Mat = XMMatrixPerspectiveLH(XM_PIDIV4, (float)WIN_WIDTH / (float)WIN_HEIGHT, Zn, Zf);
 
-	PBuffer->Set(Mat);
-	PBuffer->SetVS(2);
+	//PBuffer->Set(Mat);
+	//PBuffer->SetVS(2);
 }

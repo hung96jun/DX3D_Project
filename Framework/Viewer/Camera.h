@@ -33,6 +33,9 @@ public:
 	Vector3 GetUp() { return Up; }
 	Vector3 GetRight() { return Right; }
 
+	const Matrix& GetViewMatrix() { return MatView; }
+	Transformation& GetTransform() { return Transform; }
+
 protected:
 	virtual void ApplyRotation();
 	virtual void ApplyMove();
@@ -43,8 +46,8 @@ protected:
 	Transformation Transform;
 
 private:
-	/* ViewBuffer */
-	ViewBuffer* VBuffer = nullptr;
+	///* ViewBuffer */
+	//ViewBuffer* VBuffer = nullptr;
 
 	Vector3 Position = Vector3::ZeroVector();
 	Vector3 Rotation = Vector3::ZeroVector();
@@ -54,7 +57,6 @@ private:
 	Vector3 Up = Vector3(1.0f, 0.0f, 0.0f);
 
 	Matrix MatRotation;
-	//Matrix MatView;
 	Matrix MatView;
 };
 

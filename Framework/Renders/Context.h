@@ -38,6 +38,8 @@ private:
 	SamplerState* Sampler = nullptr;
 	RasterizerState* Rasterizer[2] = { nullptr };
 
+	ViewProjectionBuffer* VPBuffer = nullptr;
+
 	bool bWireMode = false;
 };
 

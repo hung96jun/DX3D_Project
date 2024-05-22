@@ -71,6 +71,35 @@ private:
 	BufferData Data;
 };
 
+class ViewProjectionBuffer : public ConstBuffer
+{
+private:
+	struct BufferData
+	{
+		Matrix View;
+		Matrix InvView;
+		Matrix Projection;
+	};
+
+public:
+	ViewProjectionBuffer() : ConstBuffer(&Data, sizeof(BufferData))
+	{
+		Data.View = XMMatrixIdentity();
+		Data.InvView = XMMatrixIdentity();
+		Data.Projection = XMMatrixIdentity();
+	}
+
+	void Set(Matrix View, Matrix InvView, Matrix Projection)
+	{
+		Data.View = XMMatrixTranspose(View);
+		Data.InvView = XMMatrixTranspose(InvView);
+		Data.Projection = XMMatrixTranspose(Projection);
+	}
+
+private:
+	BufferData Data;
+};
+
 class MaterialBuffer : public ConstBuffer
 {
 public:

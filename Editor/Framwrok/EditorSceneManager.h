@@ -1,5 +1,7 @@
 #pragma once
 
+class Scene;
+
 class EditorSceneManager
 {
 private:
@@ -15,10 +17,15 @@ public:
 	void Render();
 
 private:
-	void CallScene(string Key);
+	//void CallScene(string Key);
+	void ActiveScene(string Key);
+	void DisableScene(string Key);
 
 private:
 	static EditorSceneManager* Instance;
-	
+
+	//Scene* CurScene = nullptr;
+	map<string, Scene*> Scenes;
+	int ActiveSceneCount = 0;
 };
 

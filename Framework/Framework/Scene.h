@@ -18,4 +18,11 @@ public:
 	virtual void GUIRender() = 0;
 
 	virtual void ResizeScreen() = 0;
+
+	void OnActive() { bActive = true; }
+	void OnDisable() { bActive = false; }
+	const bool IsActive() const { return bActive; }
+
+private:
+	bool bActive = false;
 };

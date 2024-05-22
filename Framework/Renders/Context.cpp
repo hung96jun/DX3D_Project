@@ -21,6 +21,8 @@ Context::Context()
 	
 	Sampler = new SamplerState();
 	Sampler->SetState();
+
+	VPBuffer = new ViewProjectionBuffer();
 }
 
 Context::~Context()
@@ -35,6 +37,8 @@ Context::~Context()
 	SAFE_DELETE(Rasterizer[0]);
 	SAFE_DELETE(Rasterizer[1]);
 	SAFE_DELETE(Sampler);
+
+	SAFE_DELETE(VPBuffer);
 }
 
 Context* Context::Get()
@@ -61,6 +65,9 @@ void Context::Render()
 	Cam->Set();
 	Persp->Set();
 	//Ortho->Set();
+
+	VPBuffer->Set(Cam->GetViewMatrix(), Cam->GetTransform().GetWorld(), Persp->GetMatrix());
+	VPBuffer->SetVS(1);
 
 	if (bWireMode == false)
 		Rasterizer[0]->SetState();

@@ -3,14 +3,10 @@ cbuffer WorldBuffer : register(b0)
     matrix World;
 }
 
-cbuffer ViewBuffer : register(b1)
+cbuffer ViewProjectionBuffer : register(b1)
 {
     matrix View;
     matrix InvView;
-}
-
-cbuffer ProjectionBuffer : register(b2)
-{
     matrix Projection;
 }
 

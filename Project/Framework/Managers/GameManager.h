@@ -17,11 +17,15 @@ public:
 	void Render();
 
 private:
-	void CallScene(string Key);
+	//void CallScene(string Key);
+	void ActiveScene(string Key);
+	void DisableScene(string Key);
 
 private:
 	static GameManager* Instance;
 
-	Scene* CurScene = nullptr;
+	//Scene* CurScene = nullptr;
+	map<string, Scene*> Scenes;
+	int ActiveSceneCount = 0;
 };
 
