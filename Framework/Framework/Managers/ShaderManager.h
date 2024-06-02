@@ -17,6 +17,9 @@ public:
 	VertexShader* AddVS(wstring File);
 	PixelShader* AddPS(wstring File);
 
+	VertexShader* GetVS(wstring File);
+	PixelShader* GetPS(wstring File);
+
 private:
 	wstring MakeFilePath(const wstring File);
 

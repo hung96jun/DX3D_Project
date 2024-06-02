@@ -5,28 +5,33 @@ struct Vector2
 {
 public:
 	Vector2() : X(0.0f), Y(0.0f) {}
-	//Vector2(double n) : X(static_cast<float>(n)), Y(static_cast<float>(n)) {}
-	//Vector2(double x, double y) : X(static_cast<float>(x)), Y(static_cast<float>(y)) {}
-	Vector2(float n) : X(n), Y(n) {}
-	Vector2(float x, float y) : X(x), Y(y) {}
-	Vector2(XMVECTOR value)
+	//Vector2(double Value) : X(static_cast<float>(Value)), Y(static_cast<float>(Value)) {}
+	//Vector2(double X, double Y) : X(static_cast<float>(X)), Y(static_cast<float>(Y)) {}
+	Vector2(float Value) : X(Value), Y(Value) {}
+	Vector2(float X, float Y) : X(X), Y(Y) {}
+	Vector2(XMVECTOR Value)
 	{
-		X = XMVectorGetX(value);
-		Y = XMVectorGetY(value);
+		X = XMVectorGetX(Value);
+		Y = XMVectorGetY(Value);
 	}
 
 	//////////////////////////////////////////////////////////////////////////////
 	// operator overloading
 	//////////////////////////////////////////////////////////////////////////////
-	const bool operator==(const Vector2& value) const { return (X == value.X) && (Y == value.Y); }
-	const bool operator!=(const Vector2& value) const { return (X != value.X) || (Y != value.Y); }
+	const bool operator==(const Vector2& Value) const { return (X == Value.X) && (Y == Value.Y); }
+	const bool operator!=(const Vector2& Value) const { return (X != Value.X) || (Y != Value.Y); }
 	
-	Vector2 operator+(const float& value) const { return Vector2(X + value, Y + value); }
-	Vector2 operator-(const float& value) const { return Vector2(X - value, Y - value); }
-	Vector2 operator*(const float& value) const { return Vector2(X * value, Y * value); }
-	Vector2 operator/(const float& value) const { return Vector2(X / value, Y / value); }
-	Vector2 operator+(const Vector2& value) const { return Vector2(X + value.X, Y + value.Y); }
-	Vector2 operator-(const Vector2& value) const { return Vector2(X - value.X, Y - value.Y); }
+	Vector2 operator+(const float& Value) const { return Vector2(X + Value, Y + Value); }
+	Vector2 operator-(const float& Value) const { return Vector2(X - Value, Y - Value); }
+	Vector2 operator*(const float& Value) const { return Vector2(X * Value, Y * Value); }
+	Vector2 operator/(const float& Value) const { return Vector2(X / Value, Y / Value); }
+	Vector2 operator+(const Vector2& Value) const { return Vector2(X + Value.X, Y + Value.Y); }
+	Vector2 operator-(const Vector2& Value) const { return Vector2(X - Value.X, Y - Value.Y); }
+
+	operator Float2() const
+	{
+		return Float2(X, Y);
+	}
 
 	const Vector2 operator-() const { return Vector2(-X, -Y); }
 	
@@ -35,45 +40,45 @@ public:
 	//	return Float2(Value.X, Value.Y);
 	//}
 
-	Vector2& operator+=(const float& value)
+	Vector2& operator+=(const float& Value)
 	{
-		X += value;
-		Y += value;
+		X += Value;
+		Y += Value;
 
 		return *this;
 	}
-	Vector2& operator-=(const float& value)
+	Vector2& operator-=(const float& Value)
 	{
-		X -= value;
-		Y -= value;
+		X -= Value;
+		Y -= Value;
 
 		return *this;
 	}
-	Vector2& operator*=(const float& value)
+	Vector2& operator*=(const float& Value)
 	{
-		X *= value;
-		Y *= value;
+		X *= Value;
+		Y *= Value;
 
 		return *this;
 	}
-	Vector2& operator/=(const float& value)
+	Vector2& operator/=(const float& Value)
 	{
-		X /= value;
-		Y /= value;
+		X /= Value;
+		Y /= Value;
 
 		return *this;
 	}
-	Vector2& operator+=(const Vector2& value)
+	Vector2& operator+=(const Vector2& Value)
 	{
-		X += value.X;
-		Y += value.Y;
+		X += Value.X;
+		Y += Value.Y;
 
 		return *this;
 	}
-	Vector2& operator-=(const Vector2& value)
+	Vector2& operator-=(const Vector2& Value)
 	{
-		X -= value.X;
-		Y -= value.Y;
+		X -= Value.X;
+		Y -= Value.Y;
 
 		return *this;
 	}
@@ -116,42 +121,57 @@ struct Vector3
 {
 public:
 	Vector3() : X(0.0f), Y(0.0f), Z(0.0f) {}
-	Vector3(float n) : X(n), Y(n), Z(n) {}
-	Vector3(float x, float y, float z) : X(x), Y(y), Z(z) {}
-	Vector3(XMVECTOR value)
+	Vector3(float N) : X(N), Y(N), Z(N) {}
+	Vector3(float X, float Y, float Z) : X(X), Y(Y), Z(Z) {}
+	Vector3(XMVECTOR Value)
 	{
-		X = XMVectorGetX(value);
-		Y = XMVectorGetY(value);
-		Z = XMVectorGetZ(value);
+		X = XMVectorGetX(Value);
+		Y = XMVectorGetY(Value);
+		Z = XMVectorGetZ(Value);
+	}
+	Vector3(Float3 Value)
+	{
+		X = Value.x;
+		Y = Value.y;
+		Z = Value.z;
 	}
 
 	//////////////////////////////////////////////////////////////////////////////
 	// operator overloading
 	//////////////////////////////////////////////////////////////////////////////
-	const bool operator==(const Vector3& value)
+	const bool operator==(const Vector3& Value)
 	{
-		return (X == value.X && Y == value.Y && Z == value.Z);
+		return (X == Value.X && Y == Value.Y && Z == Value.Z);
 	}
-	const bool operator!=(const Vector3& value)
+	const bool operator!=(const Vector3& Value)
 	{
-		return (X != value.X || Y != value.Y || Z != value.Z);
+		return (X != Value.X || Y != Value.Y || Z != Value.Z);
 	}
 
-	Vector3& operator=(const Float3& value)
+	Vector3& operator=(const float Value[3])
 	{
-		X = value.x;
-		Y = value.y;
-		Z = value.z;
+		X = Value[0];
+		Y = Value[1];
+		Z = Value[2];
 
 		return *this;
 	}
 
-	const Vector3 operator+(const float& value) const { return Vector3(X + value, Y + value, Z + value); }
-	const Vector3 operator-(const float& value) const { return Vector3(X - value, Y - value, Z - value); }
-	const Vector3 operator+(const Vector3& value) const { return Vector3(X + value.X, Y + value.Y, Z + value.Z); }
-	const Vector3 operator-(const Vector3& value) const { return Vector3(X - value.X, Y - value.Y, Z - value.Z); }
-	const Vector3 operator*(const float& value) const { return Vector3(X * value, Y * value, Z * value); }
-	const Vector3 operator/(const float& value) const { return Vector3(X / value, Y / value, Z / value); }
+	Vector3& operator=(const Float3& Value)
+	{
+		X = Value.x;
+		Y = Value.y;
+		Z = Value.z;
+
+		return *this;
+	}
+
+	const Vector3 operator+(const float& Value) const { return Vector3(X + Value, Y + Value, Z + Value); }
+	const Vector3 operator-(const float& Value) const { return Vector3(X - Value, Y - Value, Z - Value); }
+	const Vector3 operator+(const Vector3& Value) const { return Vector3(X + Value.X, Y + Value.Y, Z + Value.Z); }
+	const Vector3 operator-(const Vector3& Value) const { return Vector3(X - Value.X, Y - Value.Y, Z - Value.Z); }
+	const Vector3 operator*(const float& Value) const { return Vector3(X * Value, Y * Value, Z * Value); }
+	const Vector3 operator/(const float& Value) const { return Vector3(X / Value, Y / Value, Z / Value); }
 
 	const Vector3 operator-() const { return Vector3(-X, -Y, -Z); }
 
@@ -165,60 +185,60 @@ public:
 		return Float3(X, Y, Z);
 	}
 
-	Vector3& operator+=(const float& value)
+	Vector3& operator+=(const float& Value)
 	{
-		X += value;
-		Y += value;
-		Z += value;
+		X += Value;
+		Y += Value;
+		Z += Value;
 
 		return *this;
 	}
-	Vector3& operator-=(const float& value)
+	Vector3& operator-=(const float& Value)
 	{
-		X -= value;
-		Y -= value;
-		Z -= value;
+		X -= Value;
+		Y -= Value;
+		Z -= Value;
 
 		return *this;
 	}
-	Vector3& operator+=(const Vector3& value)
+	Vector3& operator+=(const Vector3& Value)
 	{
-		X += value.X;
-		Y += value.Y;
-		Z += value.Z;
+		X += Value.X;
+		Y += Value.Y;
+		Z += Value.Z;
 
 		return *this;
 	}
-	Vector3& operator-=(const Vector3& value)
+	Vector3& operator-=(const Vector3& Value)
 	{
-		X -= value.X;
-		Y -= value.Y;
-		Z -= value.Z;
+		X -= Value.X;
+		Y -= Value.Y;
+		Z -= Value.Z;
 
 		return *this;
 	}
-	Vector3& operator*=(const float& value)
+	Vector3& operator*=(const float& Value)
 	{
-		X *= value;
-		Y *= value;
-		Z *= value;
+		X *= Value;
+		Y *= Value;
+		Z *= Value;
 
 		return *this;
 	}
-	Vector3& operator/=(const float& value)
+	Vector3& operator/=(const float& Value)
 	{
-		X /= value;
-		Y /= value;
-		Z /= value;
+		X /= Value;
+		Y /= Value;
+		Z /= Value;
 
 		return *this;
 	}
 
-	Vector3& operator=(const XMVECTOR& value)
+	Vector3& operator=(const XMVECTOR& Value)
 	{
-		X = XMVectorGetX(value);
-		Y = XMVectorGetY(value);
-		Z = XMVectorGetZ(value);
+		X = XMVectorGetX(Value);
+		Y = XMVectorGetY(Value);
+		Z = XMVectorGetZ(Value);
 
 		return *this;
 	}
@@ -267,14 +287,14 @@ struct Vector4
 {
 public:
 	Vector4() {}
-	Vector4(float n) : X(n), Y(n), Z(n), W(n) {}
-	Vector4(float x, float y, float z, float w) : X(x), Y(y), Z(z), W(w) {}
-	Vector4(XMVECTOR value)
+	Vector4(float Value) : X(Value), Y(Value), Z(Value), W(Value) {}
+	Vector4(float X, float Y, float Z, float W) : X(X), Y(Y), Z(Z), W(W) {}
+	Vector4(XMVECTOR Value)
 	{
-		X = XMVectorGetX(value);
-		Y = XMVectorGetY(value);
-		Z = XMVectorGetZ(value);
-		W = XMVectorGetW(value);
+		X = XMVectorGetX(Value);
+		Y = XMVectorGetY(Value);
+		Z = XMVectorGetZ(Value);
+		W = XMVectorGetW(Value);
 	}
 
 

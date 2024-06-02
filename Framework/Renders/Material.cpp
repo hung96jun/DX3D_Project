@@ -18,7 +18,7 @@ Material::Material(const wstring ShaderFile)
 {
 	CONSTRUCTOR_DEBUG();
 
-	VShader = ShaderManager::Get()->AddVS(ShaderFile);
+	//VShader = ShaderManager::Get()->AddVS(ShaderFile);
 	PShader = ShaderManager::Get()->AddPS(ShaderFile);
 
 	Initializer();
@@ -50,9 +50,9 @@ void Material::Set()
 	SpecularMap->PSSet(1);
 	NormalMap->PSSet(2);
 
-	MBuffer->SetPS(1);
+	MBuffer->SetPS(2);
 
-	VShader->Set();
+	//VShader->Set();
 	PShader->Set();
 }
 
@@ -93,9 +93,9 @@ void Material::Save(string File)
 
 	TXML::XMLElement* shader = document->NewElement("Shader");
 	string shaderFile;
-	if (VShader != nullptr)
-		shaderFile = ToString(VShader->GetFile());
-	shader->SetAttribute("Vertex", shaderFile.c_str());
+	//if (VShader != nullptr)
+	//	shaderFile = ToString(VShader->GetFile());
+	//shader->SetAttribute("Vertex", shaderFile.c_str());
 
 	if (PShader != nullptr)
 		shaderFile = ToString(PShader->GetFile());
@@ -160,9 +160,9 @@ void Material::Load(string File)
 
 	TXML::XMLElement* shader = material->FirstChildElement();
 	wstring shaderFile;
-	shaderFile = ToString(shader->Attribute("Vertex"));
-	shaderFile = shaderFile.substr(shaderFile.find_first_of('/') + 1, shaderFile.length());
-	VShader = ShaderManager::Get()->AddVS(shaderFile);
+	//shaderFile = ToString(shader->Attribute("Vertex"));
+	//shaderFile = shaderFile.substr(shaderFile.find_first_of('/') + 1, shaderFile.length());
+	//VShader = ShaderManager::Get()->AddVS(shaderFile);
 	shaderFile = ToString(shader->Attribute("Pixel"));
 	shaderFile = shaderFile.substr(shaderFile.find_first_of('/') + 1, shaderFile.length());
 	PShader = ShaderManager::Get()->AddPS(shaderFile);

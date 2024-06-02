@@ -12,7 +12,7 @@ Context::Context()
 
 	Persp = new Perspective(static_cast<float>(desc.Width), static_cast<float>(desc.Height), 0.1f, 1000.0f);
 	Ortho = new Orthographic(static_cast<float>(desc.Width), static_cast<float>(desc.Height), -1.0f, 1.0f);
-	View = new Viewport(static_cast<float>(desc.Width), static_cast<float>(desc.Height));
+	View = new Viewport(static_cast<float>(desc.Width), static_cast<float>(desc.Height), 0.0f, 0.0f, 0.0f, 1.0f);
 	Cam = new FreeCamera();
 
 	Rasterizer[0] = new RasterizerState();

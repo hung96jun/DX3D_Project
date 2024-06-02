@@ -22,20 +22,7 @@ public:
 	void ResizeScreen() override {};
 
 private:
-	VertexShader* VShader = nullptr;
-	PixelShader* PShader = nullptr;
-
-	vector<VertexColor> Vertices;
-	ID3D11Buffer* VBuffer;
-
-	vector<UINT> Indices;
-	ID3D11Buffer* IBuffer;
-
-	Texture* Tex = nullptr;
-
-	Vector3 Pos, Scale;
-
-	Matrix World;
-	MatrixBuffer* WBuffer;
+	class TestObject* Object[2];
+	class Terrain* Field;
 };
 

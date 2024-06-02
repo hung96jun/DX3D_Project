@@ -37,9 +37,7 @@ void ShaderManager::Destroy()
 
 VertexShader* ShaderManager::AddVS(wstring File)
 {
-	if (File.size() == 0)
-		File = L"";					// 베이스가 되는 shader 경로
-
+	assert(File.size() != 0);	
 	wstring key = File + L"VS";
 
 	if (Shaders.count(key) > 0)
@@ -56,9 +54,7 @@ VertexShader* ShaderManager::AddVS(wstring File)
 
 PixelShader* ShaderManager::AddPS(wstring File)
 {
-	if (File.size() == 0)
-		File = L"";					// 베이스가 되는 shader 경로
-
+	assert(File.size() != 0);
 	wstring key = File + L"PS";
 
 	if (Shaders.count(key) > 0)
@@ -71,6 +67,26 @@ PixelShader* ShaderManager::AddPS(wstring File)
 	Shaders.insert(shaderPair);
 
 	return dynamic_cast<PixelShader*>(Shaders[key]);
+}
+
+VertexShader* ShaderManager::GetVS(wstring File)
+{
+	assert(File.size() != 0);
+	wstring key = File + L"VS";
+	if (Shaders.count(key) > 0)
+		return dynamic_cast<VertexShader*>(Shaders[key]);
+
+	return nullptr;
+}
+
+PixelShader* ShaderManager::GetPS(wstring File)
+{
+	assert(File.size() != 0);
+	wstring key = File + L"VS";
+	if (Shaders.count(key) > 0)
+		return dynamic_cast<PixelShader*>(Shaders[key]);
+
+	return nullptr;
 }
 
 wstring ShaderManager::MakeFilePath(const wstring File)

@@ -25,7 +25,7 @@ private:
 protected:
 	VertexBuffer* VBuffer = nullptr;
 	IndexBuffer* IBuffer = nullptr;
-	WorldBuffer* WBuffer = nullptr;
+	MatrixBuffer* WBuffer = nullptr;
 
 	vector<VertexColor> Vertices;
 	vector<UINT> Indices;

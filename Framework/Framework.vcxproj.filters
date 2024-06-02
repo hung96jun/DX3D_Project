@@ -87,9 +87,6 @@
     <ClCompile Include="Framework\Buffers\ConstBuffer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Environment\Grid.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Utilities\BinaryFile.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -105,16 +102,10 @@
     <ClCompile Include="Renders\States\SamplerState.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Model\ModelMesh.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Renders\Material.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Utilities\tinyxml2.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Model\ModelExporter.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Utilities\Debug.cpp">
@@ -123,7 +114,16 @@
     <ClCompile Include="Objects\Collision\Collider.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Environment\Terrain.cpp">
+    <ClCompile Include="Environment\Terrain.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Meshes\Mesh.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Base\Box.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Meshes\BoxMesh.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -521,9 +521,6 @@
     <ClInclude Include="Framework\Buffers\ConstBuffer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Environment\Grid.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Utilities\BinaryFile.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -539,22 +536,10 @@
     <ClInclude Include="Renders\States\SamplerState.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Model\Mesh.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Model\ModelMesh.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Renders\Material.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Utilities\tinyxml2.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Model\ModelData.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Model\ModelExporter.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Utilities\Debug.h">
@@ -563,7 +548,19 @@
     <ClInclude Include="Objects\Collision\Collider.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Environment\Terrain.h">
+    <ClInclude Include="Utilities\stb_image.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Environment\Terrain.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Meshes\Mesh.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Base\Box.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Meshes\BoxMesh.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -595,11 +592,13 @@
     <None Include="Libraries\DirectXTex\DirectXTex.inl">
       <Filter>헤더 파일</Filter>
     </None>
+    <None Include="_Shaders\Headers\PixelHeader.hlsli" />
+    <None Include="_Shaders\Headers\VertexHeader.hlsli" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="_Shaders\SimpleShader.hlsl" />
     <FxCompile Include="_Shaders\TextureShader.hlsl" />
-    <FxCompile Include="_Shaders\GridShader.hlsl" />
+    <FxCompile Include="_Shaders\SimpleColorShader.hlsl" />
     <FxCompile Include="_Shaders\TestTextureShader.hlsl" />
   </ItemGroup>
 </Project>

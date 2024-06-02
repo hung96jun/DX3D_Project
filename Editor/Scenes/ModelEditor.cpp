@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ModelEditor.h"
-#include "Model/ModelExporter.h"
+//#include "Model/ModelExporter.h"
 
 ModelEditor::ModelEditor()
 {

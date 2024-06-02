@@ -27,7 +27,10 @@
     <ClCompile Include="Scenes\TextureScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\GridScene.cpp">
+    <ClCompile Include="Objects\TestObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\TerrainTestScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,7 +53,10 @@
     <ClInclude Include="Scenes\TextureScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\GridScene.h">
+    <ClInclude Include="Objects\TestObject.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\TerrainTestScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

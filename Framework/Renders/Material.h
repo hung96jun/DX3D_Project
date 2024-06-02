@@ -49,7 +49,7 @@ private:
 	string File;
 	string ProjectPath;
 
-	VertexShader* VShader = nullptr;
+	//VertexShader* VShader = nullptr;
 	PixelShader* PShader = nullptr;
 
 	Texture* DiffuseMap = nullptr;

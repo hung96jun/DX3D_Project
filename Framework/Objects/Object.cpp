@@ -22,7 +22,7 @@ Object::Object(const wstring ShaderFile)
 
 	VBuffer = new VertexBuffer(Vertices.data(), sizeof(VertexColor), static_cast<UINT>(Vertices.size()));
 	IBuffer = new IndexBuffer(Indices.data(), sizeof(Indices.size()));
-	WBuffer = new WorldBuffer();
+	WBuffer = new MatrixBuffer();
 }
 
 Object::~Object()

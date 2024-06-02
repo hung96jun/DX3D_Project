@@ -7,6 +7,7 @@ RasterizerState::RasterizerState()
 	CONSTRUCTOR_DEBUG();
 
 	Desc.CullMode = D3D11_CULL_BACK;
+	//Desc.CullMode = D3D11_CULL_NONE;
 	Desc.FillMode = D3D11_FILL_SOLID;
 
 	Changed();

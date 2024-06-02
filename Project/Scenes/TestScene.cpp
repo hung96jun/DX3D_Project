@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "TestScene.h"
 #include "Objects/Object.h"
-#include "Objects/Environment/Grid.h"
 
 #include "Renders/Material.h"
 
@@ -178,7 +177,7 @@ void TestScene::GUIRender()
 		DIALOG->OpenDialog("LoadTexture1", "FindTexture", ".png,.dds,.jpg", "../Datas/Textures/");
 	}
 
-	if (DIALOG->Display("LoadTexture1"))
+	if (DIALOG->Display("LoadTexture"))
 	{
 		if (DIALOG->IsOk())
 		{
@@ -197,7 +196,6 @@ void TestScene::GUIRender()
 
 				str.replace(slashIndex, 1, "/");
 			}
-
 
 			wstring path(str.begin(), str.end());
 			Mat->SetDiffuseMap(path);

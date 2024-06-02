@@ -80,3 +80,11 @@ void Utility::CreateFolders(const string File)
             CreateDirectoryA(temp.c_str(), 0);
     }
 }
+
+bool Utility::StartWidth(string Str, string Comp)
+{
+    wstring::size_type index = Str.find(Comp);
+    if (index != wstring::npos && static_cast<int>(index) == 0)
+        return true;
+    return false;
+}

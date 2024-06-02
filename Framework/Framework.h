@@ -27,6 +27,7 @@
 #include "Renders/Shaders/VertexShader.h"
 #include "Renders/Shaders/PixelShader.h"
 #include "Renders/Texture.h"
+#include "Renders/Material.h"
 
 #include "Framework/Scene.h"
 

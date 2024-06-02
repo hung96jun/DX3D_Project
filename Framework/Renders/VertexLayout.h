@@ -63,19 +63,34 @@ struct VertexUVNormal
 /**
 * Position, Uv, Normal, Tangent
 */
-struct VertexUVNormalTangent
+//struct VertexUVNormalTangent
+//{
+//	Float3 Position;
+//	Float2 Uv;
+//	Float3 Normal;
+//	Float3 Tangent;
+//
+//	VertexUVNormalTangent()
+//		: Position(0.0f, 0.0f, 0.0f), Uv(0.0f, 0.0f), Normal(0.0f, 0.0f, 0.0f), Tangent(0.0f, 0.0f, 0.0f) {}
+//	VertexUVNormalTangent(float X, float Y, float Z, float U, float V, float NX, float NY, float NZ,
+//		float TX, float TY, float TZ)
+//		: Position(X, Y, Z), Uv(U, V), Normal(NX, NY, NZ), Tangent(TX, TY, TZ) {}
+//	VertexUVNormalTangent(Float3 Pos, Float2 Uv, Float3 Normal, Float3 Tangent)
+//		: Position(Pos), Uv(Uv), Normal(Normal), Tangent(Tangent) {}
+//};
+struct VertexMesh
 {
 	Float3 Position;
 	Float2 Uv;
 	Float3 Normal;
 	Float3 Tangent;
 
-	VertexUVNormalTangent()
+	VertexMesh()
 		: Position(0.0f, 0.0f, 0.0f), Uv(0.0f, 0.0f), Normal(0.0f, 0.0f, 0.0f), Tangent(0.0f, 0.0f, 0.0f) {}
-	VertexUVNormalTangent(float X, float Y, float Z, float U, float V, float NX, float NY, float NZ,
+	VertexMesh(float X, float Y, float Z, float U, float V, float NX, float NY, float NZ,
 		float TX, float TY, float TZ)
 		: Position(X, Y, Z), Uv(U, V), Normal(NX, NY, NZ), Tangent(TX, TY, TZ) {}
-	VertexUVNormalTangent(Float3 Pos, Float2 Uv, Float3 Normal, Float3 Tangent)
+	VertexMesh(Float3 Pos, Float2 Uv, Float3 Normal, Float3 Tangent)
 		: Position(Pos), Uv(Uv), Normal(Normal), Tangent(Tangent) {}
 };
 

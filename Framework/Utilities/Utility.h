@@ -18,6 +18,8 @@ namespace Utility
 
 	const bool ExistDirectory(const string File);
 	void CreateFolders(const string File);
+
+	bool StartWidth(string Str, string Comp);
 }
 
 using namespace Utility;

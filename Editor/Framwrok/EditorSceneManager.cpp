@@ -102,7 +102,7 @@ void EditorSceneManager::Update()
 
 void EditorSceneManager::Render()
 {
-	D3D::Get()->Clear();
+	D3D::Get()->Clear(D3D::GetDesc().Background);
 
 	if (ActiveSceneCount == 0)
 		return;

@@ -2,9 +2,9 @@
 #include "Framework.h"
 #include "GameManager.h"
 
-#include "Scenes/GridScene.h"
 #include "Scenes/TestScene.h"
 #include "Scenes/TextureScene.h"
+#include "Scenes/TerrainTestScene.h"
 
 GameManager* GameManager::Instance = nullptr;
 
@@ -12,13 +12,13 @@ GameManager::GameManager()
 {
 	CONSTRUCTOR_DEBUG();
 
-	SceneManager::Get()->Add("Grid", new GridScene());
-	SceneManager::Get()->Add("Test", new TestScene());
-	//SceneManager::Get()->Add("Texture", new TextureScene());
+	//SceneManager::Get()->Add("Test", new TestScene());
+	SceneManager::Get()->Add("Texture", new TextureScene());
+	//SceneManager::Get()->Add("Terrain", new TerrainTestScene());
 
-	ActiveScene("Grid");
-	ActiveScene("Test");
-	//CallScene("Texture");
+	//ActiveScene("Test");
+	ActiveScene("Texture");
+	//ActiveScene("Terrain");
 }
 
 GameManager::~GameManager()
@@ -106,7 +106,8 @@ void GameManager::Update()
 
 void GameManager::Render()
 {
-	D3D::Get()->Clear();
+	//D3D::Get()->SetRenderTarget();
+	D3D::Get()->Clear(D3D::GetDesc().Background);
 
 	if (ActiveSceneCount == 0)
 		return;

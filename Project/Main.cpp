@@ -51,7 +51,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         desc.Width = 1280;
         desc.Height = 720;
         desc.Handle = hWnd;
-        desc.Background = Float4(0.3f, 0.3f, 0.3f, 1);
+        desc.Background = Vector3(0.3f, 0.3f, 0.3f);
         D3D::Get()->SetDesc(desc);
         D3D::Get()->Create();
     }
