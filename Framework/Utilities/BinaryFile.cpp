@@ -25,7 +25,7 @@ BinaryWrite::BinaryWrite(string FilePath)
 
 #if DEBUG == 1
 	{
-		int index = FilePath.find_last_of('.');
+		int index = static_cast<int>(FilePath.find_last_of('.'));
 		string debugFilePath = FilePath.substr(0, index);
 		debugFilePath += ".txt";
 		this->DebugFile.open(debugFilePath, std::ios_base::out);

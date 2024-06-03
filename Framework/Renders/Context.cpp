@@ -51,7 +51,7 @@ Context* Context::Get()
 
 void Context::Destroy()
 {
-	delete Instance;
+	SAFE_DELETE(Instance);
 }
 
 void Context::Update()

@@ -24,7 +24,7 @@ Keyboard* Keyboard::Get()
 
 void Keyboard::Destroy()
 {
-	delete Instance;
+	SAFE_DELETE(Instance);
 }
 
 void Keyboard::Update()

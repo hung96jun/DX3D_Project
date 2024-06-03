@@ -20,6 +20,9 @@ namespace Utility
 	void CreateFolders(const string File);
 
 	bool StartWidth(string Str, string Comp);
+
+	void StrChange(string* Str, string Target, string ChangeStr);
+	void StrChange(wstring* Str, wstring Target, wstring ChangeStr);
 }
 
 using namespace Utility;

@@ -4,7 +4,6 @@
 
 #include "Framework/Scene.h"
 
-#include "../Project/Scenes/GridScene.h"
 #include "../Project/Scenes/TextureScene.h"
 
 SceneManager* SceneManager::Instance = nullptr;
@@ -36,7 +35,7 @@ SceneManager* SceneManager::Get()
 
 void SceneManager::Destroy()
 {
-	delete Instance;
+	SAFE_DELETE(Instance);
 }
 
 void SceneManager::Add(const string Key, Scene* AddScene)

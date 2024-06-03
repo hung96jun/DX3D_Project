@@ -7,13 +7,6 @@
 #include "Utilities/Utility.h"
 #include "Material.h"
 
-Material::Material()
-{
-	CONSTRUCTOR_DEBUG();
-
-	Initializer();
-}
-
 Material::Material(const wstring ShaderFile)
 {
 	CONSTRUCTOR_DEBUG();
@@ -42,6 +35,11 @@ Material::~Material()
 	DESTRUCTOR_DEBUG();
 
 	SAFE_DELETE(MBuffer);
+	
+	PShader = nullptr;
+	DiffuseMap = nullptr;
+	SpecularMap = nullptr;
+	NormalMap = nullptr;
 }
 
 void Material::Set()
@@ -88,7 +86,7 @@ void Material::Save(string File)
 {
 	TXML::XMLDocument* document = new TXML::XMLDocument();
 	TXML::XMLElement* material = document->NewElement("Material");
-	material->SetAttribute("Name", Name.c_str());
+	material->SetAttribute("Name", Tag.c_str());
 	document->InsertFirstChild(material);
 
 	TXML::XMLElement* shader = document->NewElement("Shader");
@@ -156,7 +154,7 @@ void Material::Load(string File)
 	TXML::XMLDocument* document = new TXML::XMLDocument();
 	document->LoadFile(File.c_str());
 	TXML::XMLElement* material = document->FirstChildElement();
-	Name = material->Attribute("Name");
+	Tag = material->Attribute("Name");
 
 	TXML::XMLElement* shader = material->FirstChildElement();
 	wstring shaderFile;
@@ -231,18 +229,27 @@ void Material::SelectMap(const string Name, const MapType Type)
 		break;
 	}
 
-	if (ImGui::ImageButton(textureID, ImVec2(50.0f, 50.0f)))
-		DIALOG->OpenDialog(this->Name + "_" + Name, Name, ".png, .jpg, .tga", "../Datas/Textures/");
+	ImGui::Image(textureID, ImVec2(30.0f, 30.0f));
+	ImGui::SameLine();
 
-	if (DIALOG->Display(this->Name + "_" + "Name"))
+	if (ImGui::Button((Name + string("_Texture")).c_str()))
+	{
+		DIALOG->OpenDialog(this->Tag + "_" + Name, Name, ".png, .jpg, .tga", "../Datas/Textures/");
+	}
+
+	if (DIALOG->Display(this->Tag + "_" + Name))
 	{
 		if (DIALOG->IsOk())
 		{
-			string file = DIALOG->GetFilePathName();
+			string file = DIALOG->GetFilePathName();					// image 전체 경로
 			char path[128];
-			GetCurrentDirectoryA(128, path);
+			GetCurrentDirectoryA(128, path);							// 프로젝트 파일 전체 경로
+			int size = static_cast<int>(string("Datas\\Textures\\").size());
 
-			file = file.substr(strlen(path) + 1, file.length());
+			// file = file - 현재 프로젝트 경로 - Proejct + Datas/Textures/
+			// "Textures/" 이후 경로 추출 
+			file = file.substr(strlen(path) - string("Project").size() + size, file.length());
+			StrChange(&file, "\\", "/");
 
 			switch (Type)
 			{
@@ -268,22 +275,24 @@ void Material::UnSelectMap(const MapType Type)
 {
 	ImTextureID textureID = nullptr;
 
+	string tag = "_Cancel";
+
 	switch (Type)
 	{
 	case MapType::DIFFUSE:
-		textureID  = Texture::Add(L"UI/Cancel.png", L"DM_Cancel")->GetSRV();
+		tag = "DM" + tag;
 		break;
 	case MapType::SPECULAR:
-		textureID = Texture::Add(L"UI/Cancel.png", L"SM_Cancel")->GetSRV();
+		tag = "SM" + tag;
 		break;
 	case MapType::NORMAL:
-		textureID = Texture::Add(L"UI/Cancel.png", L"NM_Cancel")->GetSRV();
+		tag = "NM" + tag;
 		break;
 	default:
 		break;
 	}
 
-	if (ImGui::ImageButton(textureID, ImVec2(20.0f, 20.0f)))
+	if (ImGui::Button(tag.c_str()))
 	{
 		switch (Type)
 		{
@@ -303,7 +312,7 @@ void Material::UnSelectMap(const MapType Type)
 
 void Material::GUIRender()
 {
-	string title = Name + "_Material";
+	string title = Tag + "_Material";
 
 	if (ImGui::TreeNode(title.c_str()))
 	{
@@ -316,7 +325,7 @@ void Material::GUIRender()
 
 		ImGui::SameLine();
 		if (ImGui::Button("Edit"))
-			Name = EditNamt;
+			Tag = EditNamt;
 
 		ImGui::ColorEdit3("Diffuse", (float*)(&MBuffer->Get().Diffuse));
 		ImGui::ColorEdit3("Specular", (float*)(&MBuffer->Get().Specular));
@@ -349,7 +358,7 @@ void Material::SaveDialog()
 	if (ImGui::Button(key.c_str()))
 	{
 		if (File.empty())
-			Save("../Datas/XML/Materials/" + Name + ".mat");
+			Save("../Datas/XML/Materials/" + Tag + ".mat");
 		else
 			Save(File);
 	}

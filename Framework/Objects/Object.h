@@ -1,35 +1,16 @@
 #pragma once
-#include "Libraries.h"
-#include "Framework.h"
-#include "Framework/Managers/ShaderManager.h"
 
+// Pure Class
 class Object
 {
 public:
-	Object(const wstring ShaderFile = L"SimpleShader");
-	virtual ~Object();
+	Object() = default;
+	virtual ~Object() = default;
 
-	virtual void Update();
-	virtual void PreRender() {}
-	virtual void Render();
-	virtual void PostRender() {}
-	virtual void GUIRender();
-
-	void SetTag(const string Tag) { Transform.SetTag(Tag); }
-	const string& GetTag() const { return Transform.GetTag(); }
-
-private:
-	VertexShader* VShader = nullptr;
-	PixelShader* PShader = nullptr;
-
-protected:
-	VertexBuffer* VBuffer = nullptr;
-	IndexBuffer* IBuffer = nullptr;
-	MatrixBuffer* WBuffer = nullptr;
-
-	vector<VertexColor> Vertices;
-	vector<UINT> Indices;
-
-	Object* Owner = nullptr;
-	Transformation Transform;
+	virtual void Initialize() = 0;
+	virtual void Update() = 0;
+	virtual void PreRender() = 0;
+	virtual void Render() = 0;
+	virtual void PostRender() = 0;
+	virtual void GUIRender() = 0;
 };

@@ -32,7 +32,7 @@ ShaderManager* ShaderManager::Get()
 
 void ShaderManager::Destroy()
 {
-	delete Instance;
+	SAFE_DELETE(Instance);
 }
 
 VertexShader* ShaderManager::AddVS(wstring File)

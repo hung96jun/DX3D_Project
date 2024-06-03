@@ -1,5 +1,7 @@
 #pragma once
 
+class BoxShape;
+
 class TestObject
 {
 public:
@@ -11,15 +13,11 @@ public:
 	void GUIRender();
 
 private:
-	vector<VertexUV> Vertices;
-	vector<int> Indices;
-
 	Transformation Transform;
 
-	VertexBuffer* VBuffer;
-	IndexBuffer* IBuffer;
 	MatrixBuffer* WBuffer;
 
+	BoxShape* Mesh;
 	Material* Mat;
 
 	Vector3 Pos, Scale, Rot;

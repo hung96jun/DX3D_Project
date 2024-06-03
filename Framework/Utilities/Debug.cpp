@@ -39,7 +39,7 @@ MemoryDebug* MemoryDebug::Get()
 
 void MemoryDebug::Destory()
 {
-	delete Instance;
+	SAFE_DELETE(Instance);
 }
 
 void MemoryDebug::Add(string ClassName)

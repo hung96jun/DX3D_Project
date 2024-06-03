@@ -14,8 +14,7 @@ enum class MapType
 class Material
 {
 public:
-	Material();
-	Material(const wstring ShaderFile);
+	Material(const wstring ShaderFile = L"TestTextureShader");
 	~Material();
 
 	void Set();
@@ -30,8 +29,8 @@ public:
 	void Save(string File);
 	void Load(string File);
 
-	const string& GetName() const { return Name; }
-	void SetName(const string Name) { this->Name = Name; }
+	const string& GetTag() const { return Tag; }
+	void SetTag(const string Name) { this->Tag = Name; }
 	MaterialBuffer::BufferData& GetData() { return MBuffer->Get(); }
 
 private:
@@ -44,7 +43,7 @@ private:
 	void LoadDialog();
 
 private:
-	string Name;
+	string Tag;
 	string EditNamt;
 	string File;
 	string ProjectPath;

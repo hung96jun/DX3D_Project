@@ -1,61 +1,15 @@
 #include "stdafx.h"
 #include "TestObject.h"
+#include "Meshes/BoxShape.h"
 
 TestObject::TestObject(const int Index)
 	:Index(Index)
 {
 	CONSTRUCTOR_DEBUG();
 
-	{
-		// Front
-		Vertices.emplace_back(-0.5f, -0.5f, -0.5f, 0.0f, 1.0f);
-		Vertices.emplace_back(-0.5f, +0.5f, -0.5f, 0.0f, 0.0f);
-		Vertices.emplace_back(+0.5f, -0.5f, -0.5f, 1.0f, 1.0f);
-		Vertices.emplace_back(+0.5f, +0.5f, -0.5f, 1.0f, 0.0f);
-
-		// Back
-		Vertices.emplace_back(+0.5f, -0.5f, +0.5f, 0.0f, 1.0f);
-		Vertices.emplace_back(+0.5f, +0.5f, +0.5f, 0.0f, 0.0f);
-		Vertices.emplace_back(-0.5f, -0.5f, +0.5f, 1.0f, 1.0f);
-		Vertices.emplace_back(-0.5f, +0.5f, +0.5f, 1.0f, 0.0f);
-
-		// Left
-		Vertices.emplace_back(-0.5f, -0.5f, -0.5f, 0.0f, 1.0f);
-		Vertices.emplace_back(-0.5f, +0.5f, -0.5f, 0.0f, 0.0f);
-		Vertices.emplace_back(-0.5f, -0.5f, +0.5f, 1.0f, 1.0f);
-		Vertices.emplace_back(-0.5f, +0.5f, +0.5f, 1.0f, 0.0f);
-
-		// Right
-		Vertices.emplace_back(+0.5f, -0.5f, +0.5f, 0.0f, 1.0f);
-		Vertices.emplace_back(+0.5f, +0.5f, +0.5f, 0.0f, 0.0f);
-		Vertices.emplace_back(+0.5f, -0.5f, -0.5f, 1.0f, 1.0f);
-		Vertices.emplace_back(+0.5f, +0.5f, -0.5f, 1.0f, 0.0f);
-
-		// Top
-		Vertices.emplace_back(+0.5f, +0.5f, +0.5f, 0.0f, 1.0f);
-		Vertices.emplace_back(+0.5f, +0.5f, -0.5f, 0.0f, 0.0f);
-		Vertices.emplace_back(-0.5f, +0.5f, +0.5f, 1.0f, 1.0f);
-		Vertices.emplace_back(-0.5f, +0.5f, -0.5f, 1.0f, 0.0f);
-
-		// Top
-		Vertices.emplace_back(-0.5f, -0.5f, +0.5f, 0.0f, 1.0f);
-		Vertices.emplace_back(-0.5f, -0.5f, -0.5f, 0.0f, 0.0f);
-		Vertices.emplace_back(+0.5f, -0.5f, +0.5f, 1.0f, 1.0f);
-		Vertices.emplace_back(+0.5f, -0.5f, -0.5f, 1.0f, 0.0f);
-
-		Indices =
-		{
-			0, 1, 2, 2, 1, 3,
-			4, 5, 6, 6, 5, 7,
-			11, 9, 10, 10, 9, 8,
-			15, 13, 14, 14, 13, 12,
-			16, 17, 18, 18, 17, 19,
-			20, 21, 22, 22, 21, 23
-		};
-	}
-
-	VBuffer = new VertexBuffer(Vertices.data(), sizeof(VertexUV), static_cast<UINT>(Vertices.size()));
-	IBuffer = new IndexBuffer(Indices.data(), static_cast<UINT>(Indices.size()));
+	Mesh = new BoxShape(L"TestTextureShader");
+	Mesh->SetOwner(&Transform);
+	
 	WBuffer = new MatrixBuffer();
 
 	Mat = new Material(L"TestTextureShader");
@@ -67,8 +21,7 @@ TestObject::~TestObject()
 {
 	DESTRUCTOR_DEBUG();
 
-	SAFE_DELETE(VBuffer);
-	SAFE_DELETE(IBuffer);
+	SAFE_DELETE(Mesh);
 	SAFE_DELETE(WBuffer);
 
 	SAFE_DELETE(Mat);
@@ -81,6 +34,8 @@ void TestObject::Update()
 	Transform.SetScale(Scale);
 
 	Transform.Update();
+
+	Mesh->Update();
 }
 
 void TestObject::Render()
@@ -88,12 +43,10 @@ void TestObject::Render()
 	WBuffer->Set(Transform.GetWorld());
 	WBuffer->SetVS(0);
 
-	VBuffer->Set();
-	IBuffer->Set();
-
+	Mesh->Set();
 	Mat->Set();
 
-	D3D::GetDC()->DrawIndexed(static_cast<UINT>(Indices.size()), 0, 0);
+	Mesh->Render();
 }
 
 void TestObject::GUIRender()

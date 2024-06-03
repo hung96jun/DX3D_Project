@@ -88,3 +88,38 @@ bool Utility::StartWidth(string Str, string Comp)
         return true;
     return false;
 }
+
+void Utility::StrChange(string* Str, string Target, string ChangeStr)
+{
+    //int a = static_cast<int>(std::count(Str->begin(), Str->end(), Target));
+    //for (int i = 0; i < a; i++)
+    //{
+    //    size_t index = Str->find(Target);
+    //    if (index == -1)
+    //        break;
+
+    //    Str->erase(Str->begin() + index, Str->begin() + index + Target.size());
+    //    Str->insert(index, ChangeStr);
+    //}
+
+    int index = -1;
+    while ((index = static_cast<int>(Str->find(Target))) != -1)
+    {
+        Str->erase(Str->begin() + index, Str->begin() + index + Target.size());
+        Str->insert(index, ChangeStr);
+    }
+}
+
+void Utility::StrChange(wstring* Str, wstring Target, wstring ChangeStr)
+{
+    //int a = static_cast<int>(std::count(Str->begin(), Str->end(), Target));
+    //for (int i = 0; i < a; i++)
+    //{
+    //    size_t index = Str->find(Target);
+    //    if (index == -1)
+    //        break;
+
+    //    Str->erase(Str->begin() + index, Str->begin() + index + Target.size());
+    //    Str->insert(index, ChangeStr);
+    //}
+}

@@ -136,7 +136,7 @@ void D3D::Create()
 
 void D3D::Destroy()
 {
-	delete Instance;
+	SAFE_DELETE(Instance);
 }
 
 void D3D::SetRenderTarget(ID3D11RenderTargetView* RTV, ID3D11DepthStencilView* DSV)

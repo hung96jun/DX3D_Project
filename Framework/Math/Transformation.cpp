@@ -47,7 +47,7 @@ void Transformation::GUIRender()
 {
 	if (ImGui::TreeNode((Tag + "_Transform").c_str()))
 	{
-		static float sensitive = 0.1f;
+		static float sensitive = 0.01f;
 		ImGui::DragFloat("Drag Sensitive", &sensitive, 0.01f, 0.0f);
 
 		string log = "";

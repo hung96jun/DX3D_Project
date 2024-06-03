@@ -1,7 +1,7 @@
 #include "Collider.h"
 
 Collider::Collider(const wstring ShaderFile)
-	:Object(ShaderFile)
+	:Actor(ShaderFile)
 {
 }
 

@@ -1,17 +1,18 @@
 #pragma once
-#include "Objects/Object.h"
+#include "Objects/Actor.h"
 
-class Collider : public Object
+class Collider : public Actor
 {
 public:
 	Collider(const wstring ShaderFile = L"SimpleShader");
 	virtual ~Collider();
 
-	virtual void Update();
-	virtual void PreRender() {}
-	virtual void Render();
-	virtual void PostRender() {}
-	virtual void GUIRender();
+	virtual void Initialize() override {}
+	virtual void Update() override;
+	virtual void PreRender() override {}
+	virtual void Render() override;
+	virtual void PostRender() override {}
+	virtual void GUIRender() override;
 
 private:
 

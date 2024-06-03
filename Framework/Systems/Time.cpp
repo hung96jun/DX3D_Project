@@ -38,7 +38,7 @@ Time* Time::Get()
 
 void Time::Destroy()
 {
-	delete Instance;
+	SAFE_DELETE(Instance);
 }
 
 void Time::Update()
@@ -114,7 +114,7 @@ Timer* Timer::Get()
 
 void Timer::Destroy()
 {
-	delete Instance;
+	SAFE_DELETE(Instance);
 }
 
 void Timer::Update()

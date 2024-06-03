@@ -29,6 +29,8 @@
 #include "Renders/Texture.h"
 #include "Renders/Material.h"
 
+#include "Meshes/Shape.h"
+
 #include "Framework/Scene.h"
 
 #include "Framework/Managers/ShaderManager.h"

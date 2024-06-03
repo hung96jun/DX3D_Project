@@ -30,7 +30,7 @@
     <ClCompile Include="Systems\Time.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Object.cpp">
+    <ClCompile Include="Objects\Actor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Math\Math.cpp">
@@ -117,13 +117,22 @@
     <ClCompile Include="Environment\Terrain.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Meshes\Mesh.cpp">
+    <ClCompile Include="Meshes\Shape.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Base\Box.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Meshes\BoxMesh.cpp">
+    <ClCompile Include="Meshes\BoxShape.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Meshes\CylinderShape.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Base\ShapeObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Object.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -452,7 +461,7 @@
     <ClInclude Include="Libraries.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Object.h">
+    <ClInclude Include="Objects\Actor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Math\Math.h">
@@ -554,13 +563,22 @@
     <ClInclude Include="Environment\Terrain.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Meshes\Mesh.h">
+    <ClInclude Include="Meshes\Shape.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Base\Box.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Meshes\BoxMesh.h">
+    <ClInclude Include="Meshes\BoxShape.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Meshes\CylinderShape.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Base\ShapeObject.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Object.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

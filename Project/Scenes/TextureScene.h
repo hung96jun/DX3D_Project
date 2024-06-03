@@ -22,7 +22,8 @@ public:
 	void ResizeScreen() override {};
 
 private:
-	class TestObject* Object[2];
+	//class TestObject* Object[2];
+	class Box* Object;
 	class Terrain* Field;
 };
 
