@@ -48,7 +48,7 @@ Vector3 Math::RandomVector3(const float Max, const float Min)
 float Math::VectorToRadian(Vector2 DirVector)
 {
 	DirVector.Normalize();
-	float angle = static_cast<float>(atan2(static_cast<double>(DirVector.Y), 
+	float angle = static_cast<float>(atan2(static_cast<double>(DirVector.Y),
 		static_cast<double>(DirVector.X)));
 	angle += XM_PI;
 
@@ -58,7 +58,7 @@ float Math::VectorToRadian(Vector2 DirVector)
 float Math::VectorToRadian(Vector3 DirVector)
 {
 	DirVector.Normalize();
-	float angle = static_cast<float>(atan2(static_cast<double>(DirVector.Y), 
+	float angle = static_cast<float>(atan2(static_cast<double>(DirVector.Y),
 		static_cast<double>(DirVector.X)));
 	angle += XM_PI;
 
@@ -89,7 +89,7 @@ void Math::Lerp(OUT Matrix& Out, const Matrix& M1, const Matrix& M2, float Amoun
 	XMStoreFloat4x4(&value, Out);
 	XMStoreFloat4x4(&m1, M1);
 	XMStoreFloat4x4(&m2, M2);
-	
+
 	value._11 = m1._11 + (m2._11 - m1._11) * Amount;
 	value._12 = m1._12 + (m2._12 - m1._12) * Amount;
 	value._13 = m1._13 + (m2._13 - m1._13) * Amount;
@@ -99,7 +99,7 @@ void Math::Lerp(OUT Matrix& Out, const Matrix& M1, const Matrix& M2, float Amoun
 	value._22 = m1._22 + (m2._22 - m1._22) * Amount;
 	value._23 = m1._23 + (m2._23 - m1._23) * Amount;
 	value._24 = m1._24 + (m2._24 - m1._24) * Amount;
-	
+
 	value._31 = m1._31 + (m2._31 - m1._31) * Amount;
 	value._32 = m1._32 + (m2._32 - m1._32) * Amount;
 	value._33 = m1._33 + (m2._33 - m1._33) * Amount;
@@ -111,8 +111,8 @@ void Math::Lerp(OUT Matrix& Out, const Matrix& M1, const Matrix& M2, float Amoun
 	value._44 = m1._44 + (m2._44 - m1._44) * Amount;
 
 	Out = XMMatrixSet(
-		value._11, value._12, value._13, value._14, 
-		value._21, value._22, value._23, value._24, 
+		value._11, value._12, value._13, value._14,
+		value._21, value._22, value._23, value._24,
 		value._31, value._32, value._33, value._34,
 		value._41, value._42, value._43, value._44
 	);
@@ -156,4 +156,14 @@ Matrix Math::Lerp(const Matrix& Mat, const Matrix& M1, const Matrix& M2, float A
 bool Math::NearlyEqual(const float& S1, const float& S2)
 {
 	return abs(S1 - S2) < FLT_EPSILON;
+}
+
+Vector3 Math::Cross(Vector3& Vec1, Vector3& Vec2)
+{
+	return XMVector3Cross(Vec1.GetValue(), Vec2.GetValue());
+}
+
+float Math::Dot(Vector3& Vec1, Vector3& Vec2)
+{
+	return XMVectorGetX(XMVector3Dot(Vec1.GetValue(), Vec2.GetValue()));
 }

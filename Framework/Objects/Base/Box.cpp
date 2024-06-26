@@ -1,5 +1,5 @@
 #include "Box.h"
-#include "Meshes/BoxShape.h"
+#include "Meshes/Shapes/BoxShape.h"
 
 Box::Box()
 {

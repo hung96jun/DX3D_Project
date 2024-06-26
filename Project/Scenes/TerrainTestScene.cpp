@@ -46,8 +46,8 @@ TerrainTestScene::TerrainTestScene()
 	Vertices.resize(Width * Height);
 
 	float width, height;
-	width = Width;
-	height = Height;
+	width = static_cast<float>(Width);
+	height = static_cast<float>(Height);
 
 	for (UINT y = 0; y < Height; y++)
 	{
@@ -86,8 +86,8 @@ TerrainTestScene::TerrainTestScene()
 		}
 	}
 
-	VBuffer = new VertexBuffer(Vertices.data(), sizeof(VertexUV), Vertices.size());
-	IBuffer = new IndexBuffer(Indices.data(), Indices.size());
+	VBuffer = new VertexBuffer(Vertices.data(), sizeof(VertexUV), static_cast<UINT>(Vertices.size()));
+	IBuffer = new IndexBuffer(Indices.data(), static_cast<UINT>(Indices.size()));
 	WBuffer = new MatrixBuffer();
 
 	BaseMap = Texture::Add(L"Block/Dirt.png");

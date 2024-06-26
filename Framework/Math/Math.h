@@ -21,11 +21,14 @@ public:
 
 	static float VectorToDegree(Vector2 DirVector);
 	static float VectorToDegree(Vector3 DirVector);
-	
+
 	static float Clamp(float Value, const float Min, const float Max);
 
 	static void Lerp(OUT Matrix& Out, const Matrix& M1, const Matrix& M2, float Amount);
 	static Matrix Lerp(const Matrix& Mat, const Matrix& M1, const Matrix& M2, float Amount);
 
 	static bool NearlyEqual(const float& S1, const float& S2);
+
+	static Vector3 Cross(Vector3& Vec1, Vector3& Vec2);
+	static float Dot(Vector3& Vec1, Vector3& Vec2);
 };

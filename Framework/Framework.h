@@ -29,7 +29,11 @@
 #include "Renders/Texture.h"
 #include "Renders/Material.h"
 
-#include "Meshes/Shape.h"
+//#include "Meshes/Shape.h"
+//#include "Meshes/BoxShape.h"
+//#include "Meshes/CylinderShape.h"
+//#include "Meshes/SphereShape.h"
+//#include "Meshes/QuadShape.h"
 
 #include "Framework/Scene.h"
 

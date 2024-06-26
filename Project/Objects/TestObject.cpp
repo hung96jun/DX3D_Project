@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "TestObject.h"
-#include "Meshes/BoxShape.h"
+#include "Meshes/Shapes/BoxShape.h"
 
 TestObject::TestObject(const int Index)
 	:Index(Index)

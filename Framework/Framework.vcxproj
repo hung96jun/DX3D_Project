@@ -154,14 +154,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Meshes\BoxShape.cpp" />
-    <ClCompile Include="Meshes\CylinderShape.cpp" />
-    <ClCompile Include="Meshes\Shape.cpp" />
+    <ClCompile Include="Meshes\Shapes\CylinderShape.cpp" />
+    <ClCompile Include="Meshes\Shapes\BoxShape.cpp" />
     <ClCompile Include="Objects\Base\Box.cpp" />
     <ClCompile Include="Objects\Base\ShapeObject.cpp" />
     <ClCompile Include="Objects\Collision\Collider.cpp" />
     <ClCompile Include="Environment\Terrain.cpp" />
     <ClCompile Include="Objects\Object.cpp" />
+    <ClCompile Include="Meshes\Shapes\Shape.cpp" />
+    <ClCompile Include="Meshes\Shapes\SphereShape.cpp" />
+    <ClCompile Include="Meshes\Shapes\QuadShape.cpp" />
     <ClCompile Include="Utilities\Debug.cpp" />
     <ClCompile Include="Renders\Material.cpp" />
     <ClCompile Include="Renders\States\RasterizerState.cpp" />
@@ -198,14 +200,16 @@
     <ClCompile Include="Viewer\Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Meshes\BoxShape.h" />
-    <ClInclude Include="Meshes\CylinderShape.h" />
-    <ClInclude Include="Meshes\Shape.h" />
+    <ClInclude Include="Meshes\Shapes\CylinderShape.h" />
+    <ClInclude Include="Meshes\Shapes\BoxShape.h" />
     <ClInclude Include="Objects\Base\Box.h" />
     <ClInclude Include="Objects\Base\ShapeObject.h" />
     <ClInclude Include="Objects\Collision\Collider.h" />
     <ClInclude Include="Environment\Terrain.h" />
     <ClInclude Include="Objects\Object.h" />
+    <ClInclude Include="Meshes\Shapes\Shape.h" />
+    <ClInclude Include="Meshes\Shapes\SphereShape.h" />
+    <ClInclude Include="Meshes\Shapes\QuadShape.h" />
     <ClInclude Include="Utilities\Debug.h" />
     <ClInclude Include="Renders\Material.h" />
     <ClInclude Include="Renders\States\RasterizerState.h" />

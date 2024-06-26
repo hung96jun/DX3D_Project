@@ -30,7 +30,7 @@ public:
 
 	Matrix& GetWorld() { return World; }
 
-	void SetParent(Transformation* Parent) { this->Parent = Parent; }
+	void SetOwner(Transformation* Parent) { this->Parent = Parent; }
 	void SetPivot(const Vector3 Pivot) { this->Pivot = Pivot; }
 	Vector3 GetPivot() const { return Pivot; }
 
