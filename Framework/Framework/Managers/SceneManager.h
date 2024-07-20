@@ -1,6 +1,7 @@
 #pragma once
 
 using namespace std;
+class Scene;
 
 class SceneManager
 {

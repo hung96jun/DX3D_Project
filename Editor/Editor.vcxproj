@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Libraries\DirectXTex\;$(SolutionDir)Libraries\ImGui\;$(SolutionDir)Libraries\;$(ProjectDir);$(SolutionDir)Framework\;$(IncludePath);</IncludePath>
-    <LibraryPath>$(SolutionDir)Libraries\Framework\;$(SolutionDir)Libraries\Lib\;$(LibraryPath);</LibraryPath>
+    <IncludePath>$(SolutionDir)Libraries\DirectXTex\;$(SolutionDir)Libraries\ImGui\;$(SolutionDir)Libraries\;$(ProjectDir);$(SolutionDir)Framework\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libraries\Framework\;$(SolutionDir)Libraries\Lib\;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Debug_$(ProjectName)\</IntDir>
   </PropertyGroup>
@@ -110,12 +110,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>./;$(SolutionDir)Libraries;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>./;$(SolutionDir)Libraries;$(SolutionDir)Libraries\Dll\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -136,18 +138,29 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="EditorMain.h" />
-    <ClInclude Include="Framwrok\EditorSceneManager.h" />
+    <ClInclude Include="Framework\Managers\EditorManager.h" />
+    <ClInclude Include="Framework\Model\ModelExporter.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Scenes\ModelEditor.h" />
     <ClInclude Include="Scenes\MapEditor.h" />
     <ClInclude Include="Scenes\AnimGraphEditor.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EditorMain.cpp" />
-    <ClCompile Include="Framwrok\EditorSceneManager.cpp" />
+    <ClCompile Include="Framework\Managers\EditorManager.cpp" />
+    <ClCompile Include="Framework\Model\ModelExporter.cpp" />
     <ClCompile Include="Scenes\ModelEditor.cpp" />
     <ClCompile Include="Scenes\MapEditor.cpp" />
     <ClCompile Include="Scenes\AnimGraphEditor.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DirectX_Editor.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DirectX_Editor.ico" />
+    <Image Include="small.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

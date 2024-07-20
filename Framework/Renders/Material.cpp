@@ -54,32 +54,45 @@ void Material::Set()
 	PShader->Set();
 }
 
-//void Material::SetShader(const wstring ShaderFile)
-//{
-//}
+void Material::SetShader(const wstring ShaderFile)
+{
+	PShader = ShaderManager::Get()->AddPS(ShaderFile);
+}
 
 void Material::SetDiffuseMap(const wstring TextureFile)
 {
+	DiffuseFile = L"";
+
 	if (TextureFile.length() > 0)
-		DiffuseMap = Texture::Add(TextureFile);
+		DiffuseFile = TextureFile;
 	else
-		DiffuseMap = Texture::Add(L"Color/White.png", L"DM");
+		DiffuseFile = L"Color/White.png";
+
+	DiffuseMap = Texture::Add(DiffuseFile, L"DM");
 }
 
 void Material::SetSpecularMap(const wstring TextureFile)
 {
+	SpecularFile = L"";
+
 	if (TextureFile.length() > 0)
-		SpecularMap = Texture::Add(TextureFile);
+		SpecularFile = TextureFile;
 	else
-		SpecularMap = Texture::Add(L"Color/White.png", L"SM");
+		SpecularFile = L"Color/White.png";
+
+	DiffuseMap = Texture::Add(SpecularFile, L"SM");
 }
 
 void Material::SetNormalMap(const wstring TextureFile)
 {
+	NormalFile = L"";
+
 	if (TextureFile.length() > 0)
-		NormalMap = Texture::Add(TextureFile);
+		NormalFile = TextureFile;
 	else
-		NormalMap = Texture::Add(L"Color/White.png", L"NM");
+		NormalFile = L"Color/White.png";
+
+	DiffuseMap = Texture::Add(NormalFile, L"NM");
 }
 
 void Material::Save(string File)

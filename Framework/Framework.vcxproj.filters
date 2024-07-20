@@ -126,7 +126,7 @@
     <ClCompile Include="Objects\Object.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Meshes\Shapes\Shape.cpp">
+    <ClCompile Include="Meshes\Shape.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Meshes\Shapes\BoxShape.cpp">
@@ -139,6 +139,18 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Meshes\Shapes\QuadShape.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Managers\ProjectManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Meshes\Mesh.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Model\ModelMesh.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Model\Model.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -578,7 +590,7 @@
     <ClInclude Include="Objects\Object.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Meshes\Shapes\Shape.h">
+    <ClInclude Include="Meshes\Shape.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Meshes\Shapes\BoxShape.h">
@@ -591,6 +603,21 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Meshes\Shapes\QuadShape.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\ModelData.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Managers\ProjectManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Meshes\Mesh.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\ModelMesh.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\Model.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

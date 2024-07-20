@@ -307,6 +307,11 @@ public:
 	static const Vector4 Up() { return Vector4(0.0, 1.0, 0.0, 0.0); }
 	static const Vector4 Forward() { return Vector4(0.0, 0.0, 1.0, 0.0); }
 
+	operator Float4() const
+	{
+		return Float4(X, Y, Z, W);
+	}
+
 	string ToString() const
 	{
 		return ("X : " + to_string(X) + ", Y : " + to_string(Y) + ", Z : " + to_string(Z) + ", W : " + to_string(W));
@@ -321,3 +326,5 @@ public:
 	float Z = 0.0;
 	float W = 0.0;
 };
+
+typedef Vector4 Color;

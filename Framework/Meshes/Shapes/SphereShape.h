@@ -1,6 +1,5 @@
 #pragma once
-
-#include "Shape.h"
+#include "../Shape.h"
 
 class SphereShape : public Shape
 {

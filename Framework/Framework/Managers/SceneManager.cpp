@@ -1,10 +1,7 @@
 #include "Libraries.h"
 #include "Framework.h"
 #include "SceneManager.h"
-
 #include "Framework/Scene.h"
-
-#include "../Project/Scenes/TextureScene.h"
 
 SceneManager* SceneManager::Instance = nullptr;
 map<string, Scene*> SceneManager::Scenes;

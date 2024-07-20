@@ -7,12 +7,18 @@ namespace Utility
 	const string ToString(wstring Str);
 	const wstring ToString(string Str);
 
+	// 파일 확장자 추출
 	wstring GetFileExtension(const wstring File);
-	/**
-	* 경로 상의 파일 이름 추출
-	*/
+	string GetFileExtension(const string File);
+	// 파일명 추출
+	wstring GetFileName(const wstring File);
 	string GetFileName(const string File);
+	// 파일명과 확장자 추출
+	wstring GetFileNameWithoutExtension(const wstring File);
 	string GetFileNameWithoutExtension(const string File);
+	// 파일명과 확장자를 제외한 경로 추출
+	wstring GetDirectory(const wstring File);
+	string GetDirectory(const string File);
 
 	vector<string>  SplitString(string Origin, const string& Tok, const bool& IncludeLast = true);
 

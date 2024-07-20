@@ -22,11 +22,34 @@ wstring Utility::GetFileExtension(const wstring File)
     return File.substr(index + 1);
 }
 
+string Utility::GetFileExtension(const string File)
+{
+    size_t index = File.find_last_of(L'.');
+
+    return File.substr(index + 1);
+}
+
+wstring Utility::GetFileName(const wstring File)
+{
+    size_t index = File.find_last_of('/');
+
+    return File.substr(index + 1);
+}
+
 string Utility::GetFileName(const string File)
 {
     size_t index = File.find_last_of('/');
 
     return File.substr(index + 1);
+}
+
+wstring Utility::GetFileNameWithoutExtension(const wstring File)
+{
+    wstring fileName = GetFileName(File);
+    size_t index = fileName.find_last_of('.');
+    fileName.erase(index);
+
+    return fileName;
 }
 
 string Utility::GetFileNameWithoutExtension(const string File)
@@ -36,6 +59,32 @@ string Utility::GetFileNameWithoutExtension(const string File)
     fileName.erase(index);
 
     return fileName;
+}
+
+wstring Utility::GetDirectory(const wstring File)
+{
+    wstring file = File;
+    if (file.find(L"\\") != string::npos)
+        file.replace(file.begin(), file.end(), L"\\", L"/");
+    //file += L"/";
+
+    size_t index = file.find_last_of(L"/");
+    file = file.substr(0, index + 1);
+
+    return file;
+}
+
+string Utility::GetDirectory(const string File)
+{
+    string file = File;
+    if (file.find("\\") != string::npos)
+        file.replace(file.begin(), file.end(), "\\", "/");
+    //file += L"/";
+
+    size_t index = file.find_last_of("/");
+    file = file.substr(0, index + 1);
+
+    return file;
 }
 
 vector<string> Utility::SplitString(string Origin, const string& Tok, const bool& IncludeLast)

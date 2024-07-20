@@ -1,5 +1,5 @@
 #include "ShapeObject.h"
-#include "Meshes/Shapes/Shape.h"
+#include "Meshes/Shape.h"
 
 ShapeObject::ShapeObject()
 {

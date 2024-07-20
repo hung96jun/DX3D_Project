@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "EditorMain.h"
-
+#include "Framework/Managers/EditorManager.h"
 
 #define MAX_LOADSTRING 100
 
@@ -27,7 +27,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-    LoadStringW(hInstance, IDC_DIRECTX2D, szWindowClass, MAX_LOADSTRING);
+    LoadStringW(hInstance, IDC_DIRECTX3D, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
     // 애플리케이션 초기화를 수행합니다:
@@ -36,7 +36,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return FALSE;
     }
 
-    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_DIRECTX2D));
+    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_DIRECTX3D));
 
     MSG msg = {};
 
@@ -55,6 +55,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         D3D::Get()->Create();
     }
 
+    MemoryDebug::Get();
+    EditorManager::Create();
+
     while (msg.message != WM_QUIT)
     {
         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
@@ -67,8 +70,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
         else
         {
+            EditorManager::Get()->Update();
+            EditorManager::Get()->Render();
         }
     }
+
+    EditorManager::Destroy();
+    MemoryDebug::Destory();
 
     return (int)msg.wParam;
 }
@@ -84,10 +92,10 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.cbClsExtra = 0;
     wcex.cbWndExtra = 0;
     wcex.hInstance = hInstance;
-    wcex.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_DIRECTX2D));
+    wcex.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDC_DIRECTX3D));
     wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-    wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_DIRECTX2D);
+    wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_DIRECTX3D);
     wcex.lpszClassName = szWindowClass;
     wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 

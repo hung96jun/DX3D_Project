@@ -1,4 +1,3 @@
-#include "Libraries.h"
 #include "Framework.h"
 #include "GameManager.h"
 
@@ -9,6 +8,7 @@
 GameManager* GameManager::Instance = nullptr;
 
 GameManager::GameManager()
+	:ProjectManager()
 {
 	CONSTRUCTOR_DEBUG();
 
@@ -39,47 +39,12 @@ void GameManager::Create()
 	if (Instance == nullptr)
 		Instance = new GameManager();
 
-	{
-		SceneManager::Get();
-		ShaderManager::Get();
-		Context::Get();
-
-		Keyboard::Get();
-		Mouse::Get();
-		Timer::Get();
-		Time::Get();
-	}
-
-	{
-		ImGui::CreateContext();
-		ImGui::StyleColorsDark();
-
-		ImGui_ImplWin32_Init(D3D::GetDesc().Handle);
-		ImGui_ImplDX11_Init(D3D::GetDevice(), D3D::GetDC());
-	}
+	SUPER::CreateManager();
 }
 
 void GameManager::Destroy()
 {
-	{
-		Texture::Destroy();
-		Time::Destroy();
-		Timer::Destroy();
-		Mouse::Destroyt();
-		Keyboard::Destroy();
-
-		D3D::Destroy();
-		Context::Destroy();
-		ShaderManager::Destroy();
-		SceneManager::Destroy();
-	}
-
-	{
-		ImGui_ImplDX11_Shutdown();
-		ImGui_ImplWin32_Shutdown();
-
-		ImGui::DestroyContext();
-	}
+	SUPER::DestroyManager();
 
 	delete Instance;
 }
@@ -143,34 +108,34 @@ void GameManager::Render()
 	D3D::Get()->Present();
 }
 
-void GameManager::ActiveScene(string Key)
-{
-	Scene* scene = nullptr;
-	if (Scenes.count(Key) > 0)
-		scene = Scenes[Key];
-	else
-	{
-		scene = SceneManager::Get()->Call(Key);
-		pair<string, Scene*> scenePair;
-		scenePair.first = Key;
-		scenePair.second = scene;
-
-		Scenes.insert(scenePair);
-	}
-
-	if (scene == nullptr) return;
-
-	scene->Initialize();
-	scene->OnActive();
-	++ActiveSceneCount;
-}
-
-void GameManager::DisableScene(string Key)
-{
-	if (Scenes.count(Key) == 0)
-		return;
-
-	Scenes[Key]->Disable();
-	Scenes[Key]->OnDisable();
-	--ActiveSceneCount;
-}
+//void GameManager::ActiveScene(string Key)
+//{
+//	Scene* scene = nullptr;
+//	if (Scenes.count(Key) > 0)
+//		scene = Scenes[Key];
+//	else
+//	{
+//		scene = SceneManager::Get()->Call(Key);
+//		pair<string, Scene*> scenePair;
+//		scenePair.first = Key;
+//		scenePair.second = scene;
+//
+//		Scenes.insert(scenePair);
+//	}
+//
+//	if (scene == nullptr) return;
+//
+//	scene->Initialize();
+//	scene->OnActive();
+//	++ActiveSceneCount;
+//}
+//
+//void GameManager::DisableScene(string Key)
+//{
+//	if (Scenes.count(Key) == 0)
+//		return;
+//
+//	Scenes[Key]->Disable();
+//	Scenes[Key]->OnDisable();
+//	--ActiveSceneCount;
+//}

@@ -1,8 +1,7 @@
 #pragma once
+#include "Framework/Managers/ProjectManager.h"
 
-class Scene;
-
-class GameManager
+class GameManager : public ProjectManager
 {
 private:
 	GameManager();
@@ -13,19 +12,19 @@ public:
 	static void Create();
 	static void Destroy();
 
-	void Update();
-	void Render();
+	virtual void Update() final;
+	virtual void Render() final;
 
-private:
-	//void CallScene(string Key);
-	void ActiveScene(string Key);
-	void DisableScene(string Key);
+//private:
+//	//void CallScene(string Key);
+//	void ActiveScene(string Key);
+//	void DisableScene(string Key);
 
 private:
 	static GameManager* Instance;
 
 	//Scene* CurScene = nullptr;
-	map<string, Scene*> Scenes;
-	int ActiveSceneCount = 0;
+	//map<string, Scene*> Scenes;
+	//int ActiveSceneCount = 0;
 };
 

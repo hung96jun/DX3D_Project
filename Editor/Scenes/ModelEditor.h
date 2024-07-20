@@ -20,6 +20,11 @@ public:
 	void ResizeScreen() override;
 
 private:
+	void ModelLoader();
+
+private:
 	ModelExporter* Exporter;
+	string FileName;
+	string FilePath;
 };
 
