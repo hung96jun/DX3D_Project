@@ -6,11 +6,12 @@ struct BoneDesc
 	float Padding[3];
 };
 
+///////////////////////////////////////////////////////////////////////////////
 class ModelBone
 {
 public:
-	ModelBone() {}
-	~ModelBone() {}
+	ModelBone();
+	~ModelBone();
 
 	const int& GetIndex() { return Index; }
 
@@ -20,7 +21,7 @@ public:
 	wstring GetName() { return Name; }
 
 	Matrix& GetTransform() { return Transform; }
-	void SetTransform(Matrix& M) { Transform = M; }
+	void SetTransform(Matrix& Mat) { Transform = Mat; }
 
 public:
 	int Index;
@@ -32,12 +33,20 @@ public:
 	Matrix Transform;
 	vector<ModelBone*> Childs;
 };
-
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 class ModelMeshPart
 {
 public:
-	ModelMeshPart() = default;
+	ModelMeshPart();
 	~ModelMeshPart();
+
+	void SetMaterial(wstring MatrialFile) { MaterialName = MatrialFile; }
+
+	void SetStartVertex(const UINT StartVertex) { this->StartVertex = StartVertex; }
+	void SetVertexCount(const UINT VertexCount) { this->VertexCount = VertexCount; }
+	void SetStartIndex(const UINT StartIndex) { this->StartIndex = StartIndex; }
+	void SetIndexCount(const UINT IndexCount) { this->IndexCount = IndexCount; }
 
 	void Update();
 	void Render();
@@ -56,12 +65,25 @@ private:
 	UINT StartIndex;
 	UINT IndexCount;
 };
-
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 class ModelMesh
 {
 public:
 	ModelMesh();
 	~ModelMesh();
+
+	void SetTag(const string Tag) { this->Tag = Tag; }
+
+	void SetVertexCount(const UINT VertexCount) { this->VertexCount = VertexCount; }
+	void SetIndexCount(const UINT IndexCount) { this->IndexCount = IndexCount; }
+
+	void SetVertices(const vector<VertexModel>& Vertices) { this->Vertices = Vertices; }
+	void SetIndices(const vector<UINT>& Indices) { this->Indices = Indices; }
+
+	void SetBone(ModelBone* Bone) { this->Bone = Bone; }
+
+	const int GetBoneIndex() { return BoneIndex; }
 
 	void Update();
 	void Render();
@@ -71,11 +93,14 @@ public:
 
 	void SetShader(wstring ShaderFile);
 
+	void SetBoneIndex(const int Index) { BoneIndex = Index; }
 	const int GetBondIndex() { return BoneIndex; }
 	ModelBone* GetBone() { return Bone; }
 	
 	Transformation& GetTransform() { return Transform; }
 	void SetTransform(Transformation& Transform) { this->Transform = Transform; }
+
+	void AddMeshPart(ModelMeshPart* Part) { MeshParts.push_back(Part); }
 
 private:
 	//VertexShader* VShader = nullptr;
@@ -100,3 +125,4 @@ private:
 
 	vector<ModelMeshPart*> MeshParts;
 };
+///////////////////////////////////////////////////////////////////////////////

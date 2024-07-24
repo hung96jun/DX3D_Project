@@ -321,10 +321,18 @@ public:
 	//////////////////////////////////////////////////////////////////////////////
 
 public:
-	float X = 0.0;
-	float Y = 0.0;
-	float Z = 0.0;
-	float W = 0.0;
+	union
+	{
+		struct
+		{
+			float X, Y, Z, W;
+		};
+
+		struct
+		{
+			float R, G, B, A;
+		};
+	};
 };
 
 typedef Vector4 Color;

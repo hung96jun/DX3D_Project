@@ -44,9 +44,12 @@ Material::~Material()
 
 void Material::Set()
 {
-	DiffuseMap->PSSet(0);
-	SpecularMap->PSSet(1);
-	NormalMap->PSSet(2);
+	if (DiffuseMap != nullptr)
+		DiffuseMap->PSSet(0);
+	if (SpecularMap != nullptr)
+		SpecularMap->PSSet(1);
+	if (NormalMap != nullptr)
+		NormalMap->PSSet(2);
 
 	MBuffer->SetPS(2);
 

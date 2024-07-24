@@ -29,7 +29,21 @@ struct MeshData
 	vector<VertexModel> Vertices;
 	vector<UINT> Indices;
 
-	vector<MeshPart*> MeshParts;+
+	vector<MeshPart*> MeshParts;
+};
+
+struct MaterialData
+{
+	string Name;
+
+	Color Ambient;
+	Color Diffuse;
+	Color Specular;
+	Color Emissive;
+
+	string DiffuseFile;
+	string SpecularFile;
+	string NormalFile;
 };
 
 struct BlendWeight
