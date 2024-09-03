@@ -26,8 +26,6 @@ ConstBuffer::~ConstBuffer()
 
 void ConstBuffer::SetVS(UINT Slot)
 {
-	XMMATRIX* test = static_cast<XMMATRIX*>(Data);
-
 	D3D::GetDC()->Map(Buffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &SubResource);
 	memcpy(SubResource.pData, Data, DataSize);
 	D3D::GetDC()->Unmap(Buffer, 0);

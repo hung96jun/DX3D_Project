@@ -26,6 +26,14 @@ public:
 	void SetSpecularMap(const wstring TextureFile);
 	void SetNormalMap(const wstring TextureFile);
 
+	Texture* GetDiffuseMap() { return DiffuseMap; }
+	Texture* GetSpecularMap() { return SpecularMap; }
+	Texture* GetNormalMap() { return NormalMap; }
+
+	void SetDiffuseMap(Texture* DiffuseMap) { this->DiffuseMap = DiffuseMap; }
+	void SetSpecularMap(Texture* SpecularMap) { this->SpecularMap = SpecularMap; }
+	void SetNormalMap(Texture* NormalMap) { this->NormalMap = NormalMap; }
+
 	const wstring& GetDiffuseFile() const { return DiffuseFile; }
 	const wstring& GetSpecularFile() const { return SpecularFile; }
 	const wstring& GetNormalFile() const { return NormalFile; }

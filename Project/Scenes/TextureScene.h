@@ -1,5 +1,7 @@
 #pragma once
 
+#define INSTANCE_TEST 1
+
 class TextureScene : public Scene
 {
 public:
@@ -25,5 +27,7 @@ private:
 	//class TestObject* Object[2];
 	class Box* Object;
 	class Terrain* Field;
+
+	vector<Box*> Objects;
 };
 

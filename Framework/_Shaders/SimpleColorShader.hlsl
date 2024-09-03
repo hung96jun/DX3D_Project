@@ -30,7 +30,7 @@ VertexOutput VS(VertexInput Input)
     return output;
 }
 
-float PS(VertexOutput Input) : SV_Target
+float4 PS(VertexOutput Input) : SV_Target
 {
     return float4(0.2f, 0.2f, 0.2f, 1.0f);
 }

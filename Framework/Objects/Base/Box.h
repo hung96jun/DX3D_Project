@@ -8,6 +8,7 @@ class Box : public ShapeObject
 {
 public:
 	Box();
+	Box(const wstring ShaderFile);
 	~Box();
 
 	virtual void Initialize() override {}

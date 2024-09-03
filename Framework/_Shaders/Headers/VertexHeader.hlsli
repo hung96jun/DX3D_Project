@@ -10,7 +10,7 @@ struct VertexColorInput
 struct VertexUVInput
 {
     float4 Position : POSITION0;
-    float2 UV : TEXCOORD0;
+    float2 UV : UV;
 };
 ///////////////////////////////////////////////////////////////////////////////
 

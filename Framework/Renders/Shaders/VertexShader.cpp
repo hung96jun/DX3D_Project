@@ -35,89 +35,89 @@ void VertexShader::Set()
 
 //void VertexShader::CreateInputLayout()
 //{
-//	D3DReflect(Blob->GetBufferPointer(), Blob->GetBufferSize(),
-//		IID_ID3D11ShaderReflection, (void**)&Reflection);
+//    D3DReflect(Blob->GetBufferPointer(), Blob->GetBufferSize(),
+//        IID_ID3D11ShaderReflection, (void**)&Reflection);
 //
-//	D3D11_SHADER_DESC desc;
-//	Reflection->GetDesc(&desc);
+//    D3D11_SHADER_DESC shaderDesc;
+//    Reflection->GetDesc(&shaderDesc);
 //
-//	vector<D3D11_INPUT_ELEMENT_DESC> inputLayouts;
-//	inputLayouts.reserve(desc.InputParameters);
+//    vector<D3D11_INPUT_ELEMENT_DESC> inputLayouts;
+//    inputLayouts.reserve(shaderDesc.InputParameters);
 //
-//	for (UINT i = 0; i < desc.InputParameters; i++)
-//	{
-//		D3D11_SIGNATURE_PARAMETER_DESC paramDesc;
-//		Reflection->GetInputParameterDesc(i, &paramDesc);
+//    for (UINT i = 0; i < shaderDesc.InputParameters; i++)
+//    {
+//        D3D11_SIGNATURE_PARAMETER_DESC paramDesc;
+//        Reflection->GetInputParameterDesc(i, &paramDesc);
 //
-//		D3D11_INPUT_ELEMENT_DESC elementDesc;
-//		elementDesc.SemanticName = paramDesc.SemanticName;
-//		elementDesc.SemanticIndex = paramDesc.SemanticIndex;
-//		elementDesc.InputSlot = 0;
-//		elementDesc.AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;
-//		elementDesc.InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-//		elementDesc.InstanceDataStepRate = 0;
+//        D3D11_INPUT_ELEMENT_DESC elementDesc;
+//        elementDesc.SemanticName = paramDesc.SemanticName;
+//        elementDesc.SemanticIndex = paramDesc.SemanticIndex;
+//        elementDesc.InputSlot = 0;
+//        elementDesc.AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;
+//        elementDesc.InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+//        elementDesc.InstanceDataStepRate = 0;
 //
-//		if (paramDesc.Mask < 2)
-//		{
-//			if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_UINT32)
-//				elementDesc.Format = DXGI_FORMAT_R32_UINT;
-//			else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_SINT32)
-//				elementDesc.Format = DXGI_FORMAT_R32_SINT;
-//			else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_FLOAT32)
-//				elementDesc.Format = DXGI_FORMAT_R32_FLOAT;
-//		}
-//		else if (paramDesc.Mask < 4)
-//		{
-//			if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_UINT32)
-//				elementDesc.Format = DXGI_FORMAT_R32G32_UINT;
-//			else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_SINT32)
-//				elementDesc.Format = DXGI_FORMAT_R32G32_SINT;
-//			else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_FLOAT32)
-//				elementDesc.Format = DXGI_FORMAT_R32G32_FLOAT;
-//		}
-//		else if (paramDesc.Mask < 8)
-//		{
-//			if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_UINT32)
-//				elementDesc.Format = DXGI_FORMAT_R32G32B32_UINT;
-//			else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_SINT32)
-//				elementDesc.Format = DXGI_FORMAT_R32G32B32_SINT;
-//			else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_FLOAT32)
-//				elementDesc.Format = DXGI_FORMAT_R32G32B32_FLOAT;
-//		}
-//		else if (paramDesc.Mask < 16)
-//		{
-//			if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_UINT32)
-//				elementDesc.Format = DXGI_FORMAT_R32G32B32A32_UINT;
-//			else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_SINT32)
-//				elementDesc.Format = DXGI_FORMAT_R32G32B32A32_SINT;
-//			else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_FLOAT32)
-//				elementDesc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
-//		}
+//        if (paramDesc.Mask < 2)
+//        {
+//            if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_UINT32)
+//                elementDesc.Format = DXGI_FORMAT_R32_UINT;
+//            else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_SINT32)
+//                elementDesc.Format = DXGI_FORMAT_R32_SINT;
+//            else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_FLOAT32)
+//                elementDesc.Format = DXGI_FORMAT_R32_FLOAT;
+//        }
+//        else if (paramDesc.Mask < 4)
+//        {
+//            if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_UINT32)
+//                elementDesc.Format = DXGI_FORMAT_R32G32_UINT;
+//            else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_SINT32)
+//                elementDesc.Format = DXGI_FORMAT_R32G32_SINT;
+//            else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_FLOAT32)
+//                elementDesc.Format = DXGI_FORMAT_R32G32_FLOAT;
+//        }
+//        else if (paramDesc.Mask < 8)
+//        {
+//            if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_UINT32)
+//                elementDesc.Format = DXGI_FORMAT_R32G32B32_UINT;
+//            else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_SINT32)
+//                elementDesc.Format = DXGI_FORMAT_R32G32B32_SINT;
+//            else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_FLOAT32)
+//                elementDesc.Format = DXGI_FORMAT_R32G32B32_FLOAT;
+//        }
+//        else if (paramDesc.Mask < 16)
+//        {
+//            if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_UINT32)
+//                elementDesc.Format = DXGI_FORMAT_R32G32B32A32_UINT;
+//            else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_SINT32)
+//                elementDesc.Format = DXGI_FORMAT_R32G32B32A32_SINT;
+//            else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_FLOAT32)
+//                elementDesc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+//        }
 //
-//		string semanticName = paramDesc.SemanticName;
-//		transform(semanticName.begin(), semanticName.end(), semanticName.begin(), toupper);
+//        string temp = paramDesc.SemanticName;
 //
-//		if (semanticName == "POSITION")
-//			elementDesc.Format = DXGI_FORMAT_R32G32B32_FLOAT;
+//        if (temp == "POSITION")
+//            elementDesc.Format = DXGI_FORMAT_R32G32B32_FLOAT;
 //
-//		if (semanticName == "TEXCOORD")
-//			elementDesc.Format = DXGI_FORMAT_R32G32_FLOAT;
+//        int n = temp.find_first_of('_');
+//        temp = temp.substr(0, n);
 //
-//		int n = static_cast<int>(semanticName.find_first_of('_'));
-//		semanticName = semanticName.substr(0, n);
+//        if (temp == "INSTANCE")
+//        {
+//            elementDesc.InputSlot = 1;
+//            elementDesc.InputSlotClass = D3D11_INPUT_PER_INSTANCE_DATA;
+//            elementDesc.InstanceDataStepRate = 1;
+//        }
 //
-//		if (semanticName == "INSTANCE")
-//		{
-//			elementDesc.InputSlot = 1;
-//			elementDesc.InputSlotClass = D3D11_INPUT_PER_INSTANCE_DATA;
-//			elementDesc.InstanceDataStepRate = 1;
-//		}
+//        inputLayouts.push_back(elementDesc);
+//    }
 //
-//		inputLayouts.push_back(elementDesc);
-//	}
-//
-//	D3D::GetDevice()->CreateInputLayout(inputLayouts.data(), static_cast<UINT>(inputLayouts.size()),
-//		Blob->GetBufferPointer(), Blob->GetBufferSize(), &InputLayout);
+//    HRESULT result = D3D::GetDevice()->CreateInputLayout(
+//    	inputLayouts.data(), static_cast<UINT>(inputLayouts.size()),
+//    	Blob->GetBufferPointer(), Blob->GetBufferSize(),
+//    	&InputLayout
+//    );
+//    CHECK(result);
 //}
 
 void VertexShader::CreateInputLayout()
@@ -186,18 +186,21 @@ void VertexShader::CreateInputLayout()
 		if (semanticName == "POSITION")
 			elementDesc.Format = DXGI_FORMAT_R32G32B32_FLOAT;
 
-		if (semanticName == "TEXCOORD")
+		//if (semanticName == "TEXCOORD")
+		//	elementDesc.Format = DXGI_FORMAT_R32G32_FLOAT;
+
+		if (semanticName == "UV")
 			elementDesc.Format = DXGI_FORMAT_R32G32_FLOAT;
-		
-		if (StartWidth(semanticName, "INST") == true)
+
+		if (StartWith(semanticName, "INST") == true)
 		{
 			elementDesc.InputSlot = 1;
-			elementDesc.AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;
+			//elementDesc.AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;
 			elementDesc.InputSlotClass = D3D11_INPUT_PER_INSTANCE_DATA;
 			elementDesc.InstanceDataStepRate = 1;
 		}
 
-		if (StartWidth(semanticName, "SV_") == false)
+		if (StartWith(semanticName, "SV_") == false)
 			inputLayouts.push_back(elementDesc);
 	}
 

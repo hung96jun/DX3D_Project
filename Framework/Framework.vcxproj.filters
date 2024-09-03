@@ -153,6 +153,15 @@
     <ClCompile Include="Model\Model.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Model\ModelClip.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Characters\CharacterBase.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\InstanceManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utilities\Defines.h">
@@ -620,6 +629,15 @@
     <ClInclude Include="Model\Model.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Model\ModelClip.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Characters\CharacterBase.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\InstanceManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Libraries\Assimp\color4.inl">
@@ -657,5 +675,8 @@
     <FxCompile Include="_Shaders\TextureShader.hlsl" />
     <FxCompile Include="_Shaders\SimpleColorShader.hlsl" />
     <FxCompile Include="_Shaders\TestTextureShader.hlsl" />
+    <FxCompile Include="_Shaders\TestInstanceShader.hlsl" />
+    <FxCompile Include="_Shaders\TestInstanceShader1.hlsl" />
+    <FxCompile Include="_Shaders\TestInstanceShader2.hlsl" />
   </ItemGroup>
 </Project>

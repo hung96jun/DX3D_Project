@@ -33,6 +33,8 @@ public:
 	void SetHidden(const bool Value) { bHidden = Value; }
 	const bool& IsHidden() { return bHidden; }
 
+	const int GetIndicesSize() { return static_cast<int>(Indices.size()); }
+
 protected:
 	void Resize();
 

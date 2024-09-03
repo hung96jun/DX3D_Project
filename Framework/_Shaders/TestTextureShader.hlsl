@@ -18,5 +18,5 @@ float4 PS(VertexUVOutput input) : SV_Target0
 {
     float4 result = DiffuseMap.Sample(Samp, input.UV);
     
-    return result;    
+    return result;
 }

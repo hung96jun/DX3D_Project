@@ -4,6 +4,8 @@
 #include "Scenes/TestScene.h"
 #include "Scenes/TextureScene.h"
 #include "Scenes/TerrainTestScene.h"
+#include "Scenes/InstanceScene2.h"
+#include "Scenes/ModelScene.h"
 
 GameManager* GameManager::Instance = nullptr;
 
@@ -13,12 +15,21 @@ GameManager::GameManager()
 	CONSTRUCTOR_DEBUG();
 
 	//SceneManager::Get()->Add("Test", new TestScene());
-	SceneManager::Get()->Add("Texture", new TextureScene());
 	//SceneManager::Get()->Add("Terrain", new TerrainTestScene());
+	
+	//SceneManager::Get()->Add("Texture", new TextureScene());
+
+	//SceneManager::Get()->Add("Instance", new InstanceScene2());
+	SceneManager::Get()->Add("Model", new ModelScene());
 
 	//ActiveScene("Test");
-	ActiveScene("Texture");
 	//ActiveScene("Terrain");
+	
+	//ActiveScene("Texture");
+
+	//ActiveScene("Instance");
+
+	ActiveScene("Model");
 }
 
 GameManager::~GameManager()

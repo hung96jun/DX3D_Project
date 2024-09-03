@@ -289,6 +289,7 @@ public:
 	Vector4() {}
 	Vector4(float Value) : X(Value), Y(Value), Z(Value), W(Value) {}
 	Vector4(float X, float Y, float Z, float W) : X(X), Y(Y), Z(Z), W(W) {}
+	Vector4(Vector3 Value, float W = 0.0f) : X(Value.X), Y(Value.Y), Z(Value.Z), W(W) {}
 	Vector4(XMVECTOR Value)
 	{
 		X = XMVectorGetX(Value);

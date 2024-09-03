@@ -1,5 +1,7 @@
 #pragma once
 
+//#include "Utilities/Utility.h"
+
 ///////////////////////////////////////////////////////////////////////////////
 class BinaryWrite
 {
@@ -22,8 +24,16 @@ public:
 	void WriteMatrix(const Matrix& Data);
 
 	void WriteString(const string& Data);
-	void WriteWString(const wstring& Data);
+	//void WriteWString(const wstring& Data);
 	void WriteByte(void* Data, UINT DataSize);
+	//template<typename T>
+	/*void DebugByte(vector<T>& Data)
+	{
+		for (int i = 0; i < Data.size(); i++)
+		{
+			DebugFile << ConvertToString<T>(Data[i]) << endl;
+		}
+	}*/
 
 private:
 	HANDLE FileHandle;
@@ -55,7 +65,7 @@ public:
 	Matrix ReadMatrix();
 
 	string ReadString();
-	wstring ReadWString();
+	//wstring ReadWString();
 	void ReadByte(void** Data, UINT DataSize);
 
 private:

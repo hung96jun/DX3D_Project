@@ -2,7 +2,9 @@
 #include "Framework.h"
 #include "ModelMesh.h"
 
-
+///////////////////////////////////////////////////////////////////////////////
+// Model Bone
+///////////////////////////////////////////////////////////////////////////////
 ModelBone::ModelBone()
 {
 	CONSTRUCTOR_DEBUG();
@@ -13,6 +15,7 @@ ModelBone::~ModelBone()
 	DESTRUCTOR_DEBUG();
 }
 ///////////////////////////////////////////////////////////////////////////////
+// ModelMeshPart
 ///////////////////////////////////////////////////////////////////////////////
 ModelMeshPart::ModelMeshPart()
 {
@@ -42,16 +45,43 @@ void ModelMeshPart::Render(UINT DrawCount)
 	D3D::GetDC()->DrawIndexedInstanced(IndexCount, DrawCount, StartIndex, 0, 0U);
 }
 
-void ModelMeshPart::Binding()
+//void ModelMeshPart::Binding()
+//{
+//	/**
+//	* Model 포인터를 매개변수로 받아와서 값을 Model에 넘기는 방식을 사용하는데 이럴 경우 Model 클래스를
+//	* friend화 시켜야 해서 일단은 보류.
+//	* 현재 생각하고 있는 방법
+//	* 1. Material을 바인딩하는 작업이므로 값이 할당된 Material 정보를 반환시켜 Model 내부에서 바인드 하는 작업
+//	* 2. 만일 Model에서 해당 클래스를 참조하지 않는 경우 기존 방법대로 friend를 시키지는 않고 참조해서 작업
+//	*		2번의 경우 가능성은 낮음
+//	*/
+//}
+
+void ModelMeshPart::SetMaterials(vector<Material*> Materials)
 {
-	/**
-	* Model 포인터를 매개변수로 받아와서 값을 Model에 넘기는 방식을 사용하는데 이럴 경우 Model 클래스를
-	* friend화 시켜야 해서 일단은 보류.
-	* 현재 생각하고 있는 방법
-	* 1. Material을 바인딩하는 작업이므로 값이 할당된 Material 정보를 반환시켜 Model 내부에서 바인드 하는 작업
-	* 2. 만일 Model에서 해당 클래스를 참조하지 않는 경우 기존 방법대로 friend를 시키지는 않고 참조해서 작업
-	*		2번의 경우 가능성은 낮음
-	*/
+	Material* srcMaterial = nullptr;
+	for (Material* mat : Materials)
+	{
+		if (mat->GetTag() == ToString(MaterialName))
+			srcMaterial = mat;
+	}
+
+	if (srcMaterial == nullptr) return;
+
+	Mat = new Material();
+	Mat->SetAmbient(srcMaterial->GetAmbient());
+	Mat->SetDiffuse(srcMaterial->GetDiffuse());
+	Mat->SetSpecular(srcMaterial->GetSpecular());
+	Mat->SetEmissive(srcMaterial->GetEmissive());
+
+	if (srcMaterial->GetDiffuseMap() != nullptr)
+		Mat->SetDiffuseMap(srcMaterial->GetDiffuseMap());
+
+	if (srcMaterial->GetSpecularMap() != nullptr)
+		Mat->SetSpecularMap(srcMaterial->GetDiffuseMap());
+
+	if (srcMaterial->GetNormalMap() != nullptr)
+		Mat->SetNormalMap(srcMaterial->GetNormalMap());
 }
 
 void ModelMeshPart::SetShader(wstring ShaderFile)
@@ -59,6 +89,7 @@ void ModelMeshPart::SetShader(wstring ShaderFile)
 	Mat->SetShader(ShaderFile);
 }
 ///////////////////////////////////////////////////////////////////////////////
+// ModelMesh
 ///////////////////////////////////////////////////////////////////////////////
 ModelMesh::ModelMesh()
 {
@@ -83,6 +114,7 @@ ModelMesh::~ModelMesh()
 
 void ModelMesh::Update()
 {
+	// 이건 뭐지
 	BoneInfo.BoneIndex = BoneIndex;
 
 	// PerFrame->Update();
@@ -121,16 +153,25 @@ void ModelMesh::Render(UINT DrawCount)
 		part->Render(DrawCount);
 }
 
-void ModelMesh::Binding()
-{
-	VBuffer = new VertexBuffer(Vertices.data(), Vertices.size(), sizeof(VertexModel));
-	IBuffer = new IndexBuffer(Indices.data(), Indices.size());
+//void ModelMesh::Binding()
+//{
+//	VBuffer = new VertexBuffer(Vertices.data(), static_cast<UINT>(Vertices.size()), sizeof(VertexModel));
+//	IBuffer = new IndexBuffer(Indices.data(), static_cast<UINT>(Indices.size()));
+//
+//	/**
+//	* 해당 부분 어떻게 처리할지 고민 해봐야함
+//	*/
+//	//for (ModelMeshPart* part : MeshParts)
+//	//	part->Binding(model);
+//}
 
-	/**
-	* 해당 부분 어떻게 처리할지 고민 해봐야함
-	*/
-	//for (ModelMeshPart* part : MeshParts)
-	//	part->Binding(model);
+void ModelMesh::SetMaterials(vector<Material*>& Materials)
+{
+	VBuffer = new VertexBuffer(Vertices.data(), static_cast<UINT>(Vertices.size()), sizeof(VertexModel));
+	IBuffer = new IndexBuffer(Indices.data(), static_cast<UINT>(Indices.size()));
+
+	for (ModelMeshPart* part : MeshParts)
+		part->SetMaterials(Materials);
 }
 
 void ModelMesh::SetShader(wstring ShaderFile)

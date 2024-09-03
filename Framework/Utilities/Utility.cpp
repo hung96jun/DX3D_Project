@@ -130,7 +130,7 @@ void Utility::CreateFolders(const string File)
     }
 }
 
-bool Utility::StartWidth(string Str, string Comp)
+bool Utility::StartWith(string Str, string Comp)
 {
     wstring::size_type index = Str.find(Comp);
     if (index != wstring::npos && static_cast<int>(index) == 0)
@@ -171,4 +171,16 @@ void Utility::StrChange(wstring* Str, wstring Target, wstring ChangeStr)
     //    Str->erase(Str->begin() + index, Str->begin() + index + Target.size());
     //    Str->insert(index, ChangeStr);
     //}
+}
+
+void Utility::DivisionMatrix(OUT Float4& Dest, Matrix Source, const int Index)
+{
+    XMVECTOR vec = Source.r[Index];
+    Dest = Float4(XMVectorGetX(vec), XMVectorGetY(vec), XMVectorGetZ(vec), XMVectorGetW(vec));
+}
+
+Float4 Utility::DivisionMatrix(Matrix Source, const int Index)
+{
+    XMVECTOR vec = Source.r[Index];
+    return Float4(XMVectorGetX(vec), XMVectorGetY(vec), XMVectorGetZ(vec), XMVectorGetW(vec));
 }

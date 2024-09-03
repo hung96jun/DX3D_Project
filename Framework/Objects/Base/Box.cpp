@@ -6,7 +6,17 @@ Box::Box()
 	CONSTRUCTOR_DEBUG();
 
 	Mesh = new BoxShape();
+	
+	Mesh->SetOwner(&Transform);
 
+	SetTag("Box");
+	Mesh->SetTag("Box");
+	Mat->SetTag("Box");
+}
+
+Box::Box(const wstring ShaderFile)
+{
+	Mesh = new BoxShape(ShaderFile);
 	Mesh->SetOwner(&Transform);
 
 	SetTag("Box");

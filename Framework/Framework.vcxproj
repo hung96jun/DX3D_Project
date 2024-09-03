@@ -160,9 +160,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Managers\InstanceManager.cpp" />
+    <ClCompile Include="Objects\Characters\CharacterBase.cpp" />
     <ClCompile Include="Meshes\Mesh.cpp" />
     <ClCompile Include="Meshes\Shapes\CylinderShape.cpp" />
     <ClCompile Include="Meshes\Shapes\BoxShape.cpp" />
+    <ClCompile Include="Model\ModelClip.cpp" />
     <ClCompile Include="Model\Model.cpp" />
     <ClCompile Include="Model\ModelMesh.cpp" />
     <ClCompile Include="Objects\Base\Box.cpp" />
@@ -210,9 +213,12 @@
     <ClCompile Include="Viewer\Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Managers\InstanceManager.h" />
+    <ClInclude Include="Objects\Characters\CharacterBase.h" />
     <ClInclude Include="Meshes\Mesh.h" />
     <ClInclude Include="Meshes\Shapes\CylinderShape.h" />
     <ClInclude Include="Meshes\Shapes\BoxShape.h" />
+    <ClInclude Include="Model\ModelClip.h" />
     <ClInclude Include="Model\Model.h" />
     <ClInclude Include="Model\ModelMesh.h" />
     <ClInclude Include="Model\ModelData.h" />
@@ -389,6 +395,15 @@
     <FxCompile Include="_Shaders\SimpleShader.hlsl">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS</EntryPointName>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="_Shaders\TestInstanceShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="_Shaders\TestInstanceShader1.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="_Shaders\TestInstanceShader2.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
     </FxCompile>
     <FxCompile Include="_Shaders\TestTextureShader.hlsl">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS</EntryPointName>

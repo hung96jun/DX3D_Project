@@ -156,16 +156,16 @@ void BinaryWrite::WriteString(const string& Data)
 	DebugFile << Data << endl;
 }
 
-void BinaryWrite::WriteWString(const wstring& Data)
-{
-	WriteUInt(static_cast<UINT>(Data.size()));
-	const WCHAR* str = Data.c_str();
-	WriteFile(FileHandle, str, sizeof(WCHAR) * static_cast<DWORD>(Data.size()), &Size, nullptr);
-
-#if DEBUG == 1
-	DebugFile << ToString(Data) << endl;
-#endif // DEBUG == 1
-}
+//void BinaryWrite::WriteWString(const wstring& Data)
+//{
+//	WriteUInt(static_cast<UINT>(Data.size()));
+//	const WCHAR* str = Data.c_str();
+//	WriteFile(FileHandle, str, sizeof(WCHAR) * static_cast<DWORD>(Data.size()), &Size, nullptr);
+//
+//#if DEBUG == 1
+//	DebugFile << ToString(Data) << endl;
+//#endif // DEBUG == 1
+//}
 
 void BinaryWrite::WriteByte(void* Data, UINT DataSize)
 {
@@ -285,18 +285,19 @@ Matrix BinaryRead::ReadMatrix()
 string BinaryRead::ReadString()
 {
 	UINT length = ReadUInt();
-	char* result = new char[length + 1];
-	ReadFile(FileHandle, result, sizeof(char) * length, &Size, nullptr);
+	//char* result = new char[length + 1];
+	string result(length, '\0');
+	ReadFile(FileHandle, &result[0], sizeof(char) * length, &Size, nullptr);
 	return result;
 }
 
-wstring BinaryRead::ReadWString()
-{
-	UINT length = ReadUInt();
-	WCHAR* result = new WCHAR[length + 1];
-	ReadFile(FileHandle, result, sizeof(WCHAR) * length, &Size, nullptr);
-	return result;
-}
+//wstring BinaryRead::ReadWString()
+//{
+//	UINT length = ReadUInt();
+//	WCHAR* result = new WCHAR[length + 1];
+//	ReadFile(FileHandle, result, sizeof(WCHAR) * length, &Size, nullptr);
+//	return result;
+//}
 
 void BinaryRead::ReadByte(void** Data, UINT DataSize)
 {

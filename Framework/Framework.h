@@ -36,6 +36,7 @@
 //#include "Meshes/QuadShape.h"
 
 #include "Model/ModelData.h"
+#include "Model/Model.h"
 
 #include "Framework/Scene.h"
 

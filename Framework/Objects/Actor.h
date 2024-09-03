@@ -21,7 +21,7 @@ public:
 	virtual void SetTag(const string Tag) { Transform.SetTag(Tag); }
 	const string& GetTag() const { return Transform.GetTag(); }
 
-	const Transformation& GetTransform() { return Transform; }
+	Transformation& GetTransform() { return Transform; }
 
 private:
 	//VertexShader* VShader = nullptr;

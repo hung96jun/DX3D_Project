@@ -2,13 +2,18 @@
 #include "Framework.h"
 #include "Model.h"
 #include "ModelMesh.h"
+#include "ModelClip.h"
 
-Model::Model(string Name)
+Model::Model(string Tag)
+	: Tag(Tag)
 {
+	CONSTRUCTOR_DEBUG();
 }
 
 Model::~Model()
 {
+	DESTRUCTOR_DEBUG();
+
 	for (ModelBone* bone : Bones)
 		SAFE_DELETE(bone);
 
@@ -20,6 +25,17 @@ Model::~Model()
 
 	//for (ModelClip* clip : Clips)
 	//	SAFE_DELETE(clip);
+}
+
+void Model::Update()
+{
+	Transform.Update();
+}
+
+void Model::Render()
+{
+	for (ModelMesh* mesh : Meshes)
+		mesh->Render();
 }
 
 void Model::ReadMesh(wstring File)
@@ -172,6 +188,33 @@ void Model::ReadMaterial(wstring File)
 
 void Model::ReadClip(wstring File)
 {
+	File = L"../Datas/Clips/" + File + L".clip";
+
+	BinaryRead* reader = new BinaryRead(File);
+
+	ModelClip* clip = new ModelClip();
+	clip->SetName(ToString(reader->ReadString()));
+	clip->SetFrameRate(reader->ReadFloat());
+	clip->SetFrameCount(reader->ReadDouble());	// 이부분 매개변수는 UINT이지만 호출된것은 double이므로 save할때 double인지 uint인지 재확인 필요
+
+	UINT keyFrameCount = reader->ReadUInt();
+	for (UINT i = 0; i < keyFrameCount; i++)
+	{
+		KeyFrame* frame = new KeyFrame();
+		frame->BoneName = reader->ReadString();
+
+		UINT size = reader->ReadUInt();
+		if (size > 0)
+		{
+			frame->Positions.assign(size, KeyFrameData());
+			reader->ReadByte((void**)&frame->Positions, sizeof(KeyFrameData) * size);
+		}
+
+		clip->SetKeyFrame(ToString(frame->BoneName), frame);
+	}
+
+	SAFE_DELETE(reader);
+	Clips.push_back(clip);
 }
 
 void Model::BindBone()
@@ -194,7 +237,33 @@ void Model::BineMesh()
 	for (ModelMesh* mesh : Meshes)
 	{
 		mesh->SetBone(Bones[mesh->GetBoneIndex()]);
-		/// 이 부분 확인해서 처리하기
-		mesh->Binding();
+		mesh->SetMaterials(Materials);
 	}
 }
+
+ModelBone* Model::BoneByName(const wstring Name)
+{
+	for (ModelBone* bone : Bones)
+	{
+		if (bone->GetName() == Name)
+			return bone;
+	}
+
+	return nullptr;
+}
+
+Material* Model::MaterialByName(const string Name)
+{
+	for (Material* material : Materials)
+	{
+		if (material->GetTag() == Name)
+			return material;
+	}
+
+	return nullptr;
+}
+
+//ModelClip* Model::ClipByName(UINT Index)
+//{
+//	return nullptr;
+//}

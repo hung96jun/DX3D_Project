@@ -123,7 +123,7 @@ void ModelExporter::ReadBondData(aiNode* Node, int Index, int Parent)
 
 	// Recursion
 	for (UINT i = 0; i < Node->mNumChildren; i++)
-		ReadBondData(Node->mChildren[i], Bones.size(), Index);
+		ReadBondData(Node->mChildren[i], static_cast<int>(Bones.size()), Index);
 }
 
 void ModelExporter::ReadMeshData(aiNode* Node, int Index)
@@ -138,8 +138,8 @@ void ModelExporter::ReadMeshData(aiNode* Node, int Index)
 		UINT index = Node->mMeshes[i];
 		aiMesh* src = Scene->mMeshes[index];
 
-		UINT startVertex = mesh->Vertices.size();
-		UINT startIndex = mesh->Indices.size();
+		UINT startVertex = static_cast<UINT>(mesh->Vertices.size());
+		UINT startIndex = static_cast<UINT>(mesh->Indices.size());
 
 		for (UINT j = 0; j < src->mNumVertices; j++)
 		{
@@ -236,7 +236,7 @@ void ModelExporter::WriteMeshData(string SavePath)
 	CreateFolders(SavePath);
 
 	BinaryWrite* writer = new BinaryWrite(SavePath);
-	writer->WriteUInt(Bones.size());
+	writer->WriteUInt(static_cast<UINT>(Bones.size()));
 	for (BoneData* bone : Bones)
 	{
 		writer->WriteInt(bone->Index);
@@ -245,18 +245,29 @@ void ModelExporter::WriteMeshData(string SavePath)
 		writer->WriteMatrix(bone->Transform);
 	}
 
-	writer->WriteUInt(Meshes.size());
+	writer->WriteUInt(static_cast<UINT>(Meshes.size()));
 	for (MeshData* mesh : Meshes)
 	{
 		writer->WriteInt(mesh->BoneIndex);
 
-		writer->WriteUInt(mesh->Vertices.size());
-		writer->WriteByte(&mesh->Vertices[0], sizeof(VertexModel) * mesh->Vertices.size());
-		
-		writer->WriteUInt(mesh->Indices.size());
-		writer->WriteByte(&mesh->Indices[0], sizeof(UINT) * mesh->Indices.size());
+		writer->WriteUInt(static_cast<UINT>(mesh->Vertices.size()));
+		writer->WriteByte(&mesh->Vertices[0], sizeof(VertexModel) * static_cast<UINT>(mesh->Vertices.size()));
+		//writer->DebugByte<VertexModel>(mesh->Vertices);
 
-		writer->WriteUInt(mesh->MeshParts.size());
+		//{
+		//	void* debug = &mesh->Vertices[0];
+		//	vector<VertexModel>* test = static_cast<vector<VertexModel>*>(debug);
+		//	string temp = "";
+		//	for (int i = 0; i < test->size(); i++)
+		//	{
+		//		temp += ConvertToString<VertexModel>((*test)[i]);
+		//	}
+		//}
+		
+		writer->WriteUInt(static_cast<UINT>(mesh->Indices.size()));
+		writer->WriteByte(&mesh->Indices[0], sizeof(UINT) * static_cast<UINT>(mesh->Indices.size()));
+
+		writer->WriteUInt(static_cast<UINT>(mesh->MeshParts.size()));
 		for (MeshPart* part : mesh->MeshParts)
 		{
 			writer->WriteString(part->MaterialName);

@@ -13,8 +13,10 @@ public:
 	ModelBone();
 	~ModelBone();
 
+public:
 	const int& GetIndex() { return Index; }
 
+	//const int& GetParentIndex() { return (Parent != nullptr ? Parent->GetIndex() : -1); }
 	const int& GetParentIndex() { return ParentIndex; }
 	ModelBone* GetParent() { return Parent; }
 
@@ -41,6 +43,7 @@ public:
 	ModelMeshPart();
 	~ModelMeshPart();
 
+public:
 	void SetMaterial(wstring MatrialFile) { MaterialName = MatrialFile; }
 
 	void SetStartVertex(const UINT StartVertex) { this->StartVertex = StartVertex; }
@@ -52,18 +55,19 @@ public:
 	void Render();
 	void Render(UINT DrawCount);
 
-	void Binding();
+	//void Binding();
+	void SetMaterials(vector<Material*> Materials);
 	void SetShader(wstring ShaderFile);
 
 private:
 	Material* Mat = nullptr;
-	wstring MaterialName;
+	wstring MaterialName = L"";
 
-	UINT StartVertex;
-	UINT VertexCount;
+	UINT StartVertex = 0;
+	UINT VertexCount = 0;
 
-	UINT StartIndex;
-	UINT IndexCount;
+	UINT StartIndex = 0;
+	UINT IndexCount = 0;
 };
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -73,8 +77,7 @@ public:
 	ModelMesh();
 	~ModelMesh();
 
-	void SetTag(const string Tag) { this->Tag = Tag; }
-
+public:
 	void SetVertexCount(const UINT VertexCount) { this->VertexCount = VertexCount; }
 	void SetIndexCount(const UINT IndexCount) { this->IndexCount = IndexCount; }
 
@@ -90,6 +93,7 @@ public:
 	void Render(UINT DrawCount);
 
 	void Binding();
+	void SetMaterials(vector<Material*>& Materials);
 
 	void SetShader(wstring ShaderFile);
 
