@@ -59,7 +59,7 @@ void TextureScene::Initialize()
 {
 }
 
-void TextureScene::Destory()
+void TextureScene::Destroy()
 {
 }
 

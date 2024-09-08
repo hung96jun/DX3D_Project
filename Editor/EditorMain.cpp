@@ -76,7 +76,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     }
 
     EditorManager::Destroy();
-    MemoryDebug::Destory();
+    MemoryDebug::Destroy();
 
     return (int)msg.wParam;
 }

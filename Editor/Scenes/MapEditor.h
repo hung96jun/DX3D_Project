@@ -8,7 +8,7 @@ public:
 
 	void Initialize() override;
 	void Disable() override;
-	void Destory() override;
+	void Destroy() override;
 
 	void Update() override;
 

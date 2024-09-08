@@ -87,9 +87,6 @@
     <ClCompile Include="Framework\Buffers\ConstBuffer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Utilities\BinaryFile.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Renders\Texture.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -147,7 +144,7 @@
     <ClCompile Include="Meshes\Mesh.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Model\ModelMesh.cpp">
+    <ClCompile Include="Model\ModelMesh1.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Model\Model.cpp">
@@ -160,6 +157,15 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Managers\InstanceManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\BinaryRead.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\BinaryWrite.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Model\ModelMesh.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -557,9 +563,6 @@
     <ClInclude Include="Framework\Buffers\ConstBuffer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Utilities\BinaryFile.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Renders\Texture.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -623,7 +626,7 @@
     <ClInclude Include="Meshes\Mesh.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Model\ModelMesh.h">
+    <ClInclude Include="Model\ModelMesh1.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Model\Model.h">
@@ -636,6 +639,15 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Managers\InstanceManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\BinaryRead.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\BinaryWrite.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\ModelMesh.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -678,5 +690,6 @@
     <FxCompile Include="_Shaders\TestInstanceShader.hlsl" />
     <FxCompile Include="_Shaders\TestInstanceShader1.hlsl" />
     <FxCompile Include="_Shaders\TestInstanceShader2.hlsl" />
+    <FxCompile Include="_Shaders\ModelShader.hlsl" />
   </ItemGroup>
 </Project>

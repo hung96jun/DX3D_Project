@@ -13,7 +13,7 @@ void MapEditor::Initialize()
 {
 }
 
-void MapEditor::Destory()
+void MapEditor::Destroy()
 {
 }
 

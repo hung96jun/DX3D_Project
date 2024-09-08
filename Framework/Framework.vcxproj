@@ -160,6 +160,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Model\ModelMesh.cpp" />
+    <ClCompile Include="Utilities\BinaryRead.cpp" />
     <ClCompile Include="Managers\InstanceManager.cpp" />
     <ClCompile Include="Objects\Characters\CharacterBase.cpp" />
     <ClCompile Include="Meshes\Mesh.cpp" />
@@ -167,7 +169,9 @@
     <ClCompile Include="Meshes\Shapes\BoxShape.cpp" />
     <ClCompile Include="Model\ModelClip.cpp" />
     <ClCompile Include="Model\Model.cpp" />
-    <ClCompile Include="Model\ModelMesh.cpp" />
+    <ClCompile Include="Model\ModelMesh1.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Objects\Base\Box.cpp" />
     <ClCompile Include="Objects\Base\ShapeObject.cpp" />
     <ClCompile Include="Objects\Collision\Collider.cpp" />
@@ -177,12 +181,12 @@
     <ClCompile Include="Meshes\Shapes\SphereShape.cpp" />
     <ClCompile Include="Meshes\Shapes\QuadShape.cpp" />
     <ClCompile Include="Framework\Managers\ProjectManager.cpp" />
+    <ClCompile Include="Utilities\BinaryWrite.cpp" />
     <ClCompile Include="Utilities\Debug.cpp" />
     <ClCompile Include="Renders\Material.cpp" />
     <ClCompile Include="Renders\States\RasterizerState.cpp" />
     <ClCompile Include="Renders\Texture.cpp" />
     <ClCompile Include="Renders\States\SamplerState.cpp" />
-    <ClCompile Include="Utilities\BinaryFile.cpp" />
     <ClCompile Include="Framework\Buffers\ConstBuffer.cpp" />
     <ClCompile Include="Utilities\tinyxml2.cpp" />
     <ClCompile Include="Utilities\Utility.cpp" />
@@ -213,6 +217,8 @@
     <ClCompile Include="Viewer\Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Model\ModelMesh.h" />
+    <ClInclude Include="Utilities\BinaryRead.h" />
     <ClInclude Include="Managers\InstanceManager.h" />
     <ClInclude Include="Objects\Characters\CharacterBase.h" />
     <ClInclude Include="Meshes\Mesh.h" />
@@ -220,7 +226,9 @@
     <ClInclude Include="Meshes\Shapes\BoxShape.h" />
     <ClInclude Include="Model\ModelClip.h" />
     <ClInclude Include="Model\Model.h" />
-    <ClInclude Include="Model\ModelMesh.h" />
+    <ClInclude Include="Model\ModelMesh1.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Model\ModelData.h" />
     <ClInclude Include="Objects\Base\Box.h" />
     <ClInclude Include="Objects\Base\ShapeObject.h" />
@@ -231,12 +239,12 @@
     <ClInclude Include="Meshes\Shapes\SphereShape.h" />
     <ClInclude Include="Meshes\Shapes\QuadShape.h" />
     <ClInclude Include="Framework\Managers\ProjectManager.h" />
+    <ClInclude Include="Utilities\BinaryWrite.h" />
     <ClInclude Include="Utilities\Debug.h" />
     <ClInclude Include="Renders\Material.h" />
     <ClInclude Include="Renders\States\RasterizerState.h" />
     <ClInclude Include="Renders\Texture.h" />
     <ClInclude Include="Renders\States\SamplerState.h" />
-    <ClInclude Include="Utilities\BinaryFile.h" />
     <ClInclude Include="Framework\Buffers\ConstBuffer.h" />
     <ClInclude Include="Framework\Buffers\GlobalBuffer.h" />
     <ClInclude Include="Utilities\stb_image.h" />
@@ -388,6 +396,9 @@
     <None Include="_Shaders\Headers\VertexHeader.hlsli" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="_Shaders\ModelShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+    </FxCompile>
     <FxCompile Include="_Shaders\SimpleColorShader.hlsl">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS</EntryPointName>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>

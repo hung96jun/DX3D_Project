@@ -28,7 +28,7 @@ private:
 
 public:
 	static MemoryDebug* Get();
-	static void Destory();
+	static void Destroy();
 
 	void Add(string ClassName);
 	void Delete(string ClassName);

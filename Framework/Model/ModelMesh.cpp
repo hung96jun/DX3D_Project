@@ -20,6 +20,8 @@ ModelBone::~ModelBone()
 ModelMeshPart::ModelMeshPart()
 {
 	CONSTRUCTOR_DEBUG();
+
+	Mat = new Material();
 }
 
 ModelMeshPart::~ModelMeshPart()
@@ -36,6 +38,7 @@ void ModelMeshPart::Update()
 void ModelMeshPart::Render()
 {
 	Mat->Set();
+
 	D3D::GetDC()->DrawIndexed(IndexCount, StartIndex, 0);
 }
 
@@ -95,32 +98,37 @@ ModelMesh::ModelMesh()
 {
 	CONSTRUCTOR_DEBUG();
 
-	BoneBuffer = new ConstBuffer(&BoneInfo, sizeof(BoneDesc));
+	WBuffer = new MatrixBuffer();
+	//BoneBuffer = new ConstBuffer(&BoneInfo, sizeof(BoneDesc));
+	Transform.SetScale(Vector3(0.01f));
 }
 
 ModelMesh::~ModelMesh()
 {
 	DESTRUCTOR_DEBUG();
-	//SAFE_DELETE(PerFrame);
-	
+	////SAFE_DELETE(PerFrame);
+
 	SAFE_DELETE(VBuffer);
 	SAFE_DELETE(IBuffer);
 
-	SAFE_DELETE(BoneBuffer);
+	//SAFE_DELETE(BoneBuffer);
+	SAFE_DELETE(WBuffer);
 
-	for (ModelMeshPart* part : MeshParts)
-		SAFE_DELETE(part);
+	//SAFE_DELETE(Bone);
+
+	//for (ModelMeshPart* part : MeshParts)
+	//	SAFE_DELETE(part);
 }
 
 void ModelMesh::Update()
 {
-	// 이건 뭐지
-	BoneInfo.BoneIndex = BoneIndex;
+	//// 이건 뭐지
+	//BoneInfo.BoneIndex = BoneIndex;
 
-	// PerFrame->Update();
+	//// PerFrame->Update();
 
-	for (ModelMeshPart* part : MeshParts)
-		part->Update();
+	//for (ModelMeshPart* part : MeshParts)
+	//	part->Update();
 
 	Transform.Update();
 }
@@ -135,22 +143,29 @@ void ModelMesh::Render()
 	VBuffer->Set();
 	IBuffer->Set();
 
+	WBuffer->Set(Transform.GetWorld());
+	WBuffer->SetVS(0);
+
+	VShader->Set();
+
 	for (ModelMeshPart* part : MeshParts)
 		part->Render();
 }
 
 void ModelMesh::Render(UINT DrawCount)
 {
-	// 해당 부분 바인드 시점이랑 슬롯 넘버 확인
-	//BoneBuffer->SetVS();
-	
-	//PerFrame->Render();
+	//// 해당 부분 바인드 시점이랑 슬롯 넘버 확인
+	////BoneBuffer->SetVS();
 
-	VBuffer->Set();
-	IBuffer->Set();
+	////PerFrame->Render();
 
-	for (ModelMeshPart* part : MeshParts)
-		part->Render(DrawCount);
+	//VBuffer->Set();
+	//IBuffer->Set();
+
+	//VShader->Set();
+
+	//for (ModelMeshPart* part : MeshParts)
+	//	part->Render(DrawCount);
 }
 
 //void ModelMesh::Binding()
@@ -167,7 +182,7 @@ void ModelMesh::Render(UINT DrawCount)
 
 void ModelMesh::SetMaterials(vector<Material*>& Materials)
 {
-	VBuffer = new VertexBuffer(Vertices.data(), static_cast<UINT>(Vertices.size()), sizeof(VertexModel));
+	VBuffer = new VertexBuffer(Vertices.data(), sizeof(VertexModel), static_cast<UINT>(Vertices.size()));
 	IBuffer = new IndexBuffer(Indices.data(), static_cast<UINT>(Indices.size()));
 
 	for (ModelMeshPart* part : MeshParts)
@@ -181,6 +196,38 @@ void ModelMesh::SetShader(wstring ShaderFile)
 
 	//sBoneBuffer = shader->AsConstantBuffer("CB_Bones");
 
+	VShader = ShaderManager::Get()->AddVS(ShaderFile);
+	
 	for (ModelMeshPart* part : MeshParts)
 		part->SetShader(ShaderFile);
+}
+
+void ModelMesh::GUIRender(string Tag)
+{
+	if (ImGui::TreeNode(Tag.c_str()))
+	{
+		float pos[3];
+		float scale[3];
+		float rot[3];
+
+		pos[0] = Transform.GetPosition().X;
+		pos[1] = Transform.GetPosition().Y;
+		pos[2] = Transform.GetPosition().Z;
+		ImGui::DragFloat3((Tag + "_Position").c_str(), pos, 0.01f);
+		Transform.SetPosition(Vector3(pos[0], pos[1], pos[2]));
+
+		scale[0] = Transform.GetScale().X;
+		scale[1] = Transform.GetScale().Y;
+		scale[2] = Transform.GetScale().Z;
+		ImGui::DragFloat3((Tag + "_Scale").c_str(), scale, 0.01f);
+		Transform.SetScale(Vector3(scale[0], scale[1], scale[2]));
+
+		rot[0] = Transform.GetRotation().X;
+		rot[1] = Transform.GetRotation().Y;
+		rot[2] = Transform.GetRotation().Z;
+		ImGui::DragFloat3((Tag + "_Rotation").c_str(), rot, 0.01f);
+		Transform.SetRotation(Vector3(rot[0], rot[1], rot[2]));
+
+		ImGui::TreePop();
+	}
 }

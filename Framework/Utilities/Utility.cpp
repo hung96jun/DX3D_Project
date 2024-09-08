@@ -3,15 +3,17 @@
 
 const string Utility::ToString(wstring Str)
 {
-    string result;
-    result.assign(Str.begin(), Str.end());
+    string result = "";
+    if (Str.size() > 0)
+        result.assign(Str.begin(), Str.end());
     return result;
 }
 
 const wstring Utility::ToString(string Str)
 {
-    wstring result;
-    result.assign(Str.begin(), Str.end());
+    wstring result = L"";
+    if (Str.size() > 0)
+        result.assign(Str.begin(), Str.end());
     return result;
 }
 
@@ -183,4 +185,30 @@ Float4 Utility::DivisionMatrix(Matrix Source, const int Index)
 {
     XMVECTOR vec = Source.r[Index];
     return Float4(XMVectorGetX(vec), XMVectorGetY(vec), XMVectorGetZ(vec), XMVectorGetW(vec));
+}
+
+void Utility::StringReplace(string* Str, string Dest, string Source)
+{
+    string temp = *Str;
+    size_t startPos = 0;
+    while ((startPos = temp.find(Dest, startPos)) != wstring::npos)
+    {
+        temp.replace(startPos, Dest.length(), Source);
+        startPos += Source.length();
+    }
+
+    *Str = temp;
+}
+
+void Utility::StringReplace(wstring* Str, wstring Dest, wstring Source)
+{
+    wstring temp = *Str;
+    size_t startPos = 0;
+    while ((startPos = temp.find(Dest, startPos)) != wstring::npos)
+    {
+        temp.replace(startPos, Dest.length(), Source);
+        startPos += Source.length();
+    }
+
+    *Str = temp;
 }

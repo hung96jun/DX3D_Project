@@ -13,7 +13,7 @@ void AnimGraphEditor::Initialize()
 {
 }
 
-void AnimGraphEditor::Destory()
+void AnimGraphEditor::Destroy()
 {
 }
 

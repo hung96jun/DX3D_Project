@@ -13,11 +13,13 @@ cbuffer ViewProjectionBuffer : register(b1)
 struct VertexInput
 {
     float4 Position : POSITION0;
+    float4 Color : COLOR;
 };
 
 struct VertexOutput
 {
     float4 Position : SV_POSITION0;
+    float4 Color : COLOR;
 };
 
 VertexOutput VS(VertexInput Input)
@@ -27,12 +29,14 @@ VertexOutput VS(VertexInput Input)
     output.Position = mul(output.Position, View);
     output.Position = mul(output.Position, Projection);
     
+    output.Color = Input.Color;
+    
     return output;
 }
 
 float4 PS(VertexOutput Input) : SV_Target
 {
-    return float4(0.2f, 0.2f, 0.2f, 1.0f);
+    return float4(1.0f, 1.0f, 1.0f, 1.0f);
 }
 
 RasterizerState RS

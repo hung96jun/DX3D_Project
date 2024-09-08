@@ -8,6 +8,8 @@ Model::Model(string Tag)
 	: Tag(Tag)
 {
 	CONSTRUCTOR_DEBUG();
+
+	//WBuffer = new MatrixBuffer();
 }
 
 Model::~Model()
@@ -25,24 +27,51 @@ Model::~Model()
 
 	//for (ModelClip* clip : Clips)
 	//	SAFE_DELETE(clip);
+
+	//SAFE_DELETE(WBuffer);
 }
 
 void Model::Update()
 {
 	Transform.Update();
+	for (ModelMesh* mesh : Meshes)
+		mesh->Update();
 }
 
 void Model::Render()
 {
+	//WBuffer->Set(Transform.GetWorld());
+	//WBuffer->SetVS(0);
+
 	for (ModelMesh* mesh : Meshes)
 		mesh->Render();
 }
 
+void Model::GUIRender()
+{
+	if(ImGui::TreeNode("Model"))
+	{
+		for (int i = 0; i < Meshes.size(); i++)
+			Meshes[i]->GUIRender(to_string(i));
+
+		ImGui::TreePop();
+	}
+}
+
+void Model::SetShader(wstring File)
+{
+	for (ModelMesh* mesh : Meshes)
+		mesh->SetShader(File);
+}
+
 void Model::ReadMesh(wstring File)
 {
-	File = L"../Datas/Models/" + File + L".mesh";
+	File = L"../Datas/Models/" + File + L".txt";
 
-	BinaryRead* reader = new BinaryRead(File);
+	/**
+	* reader 생성하는거 체크
+	*/
+	BinaryRead* reader = new BinaryRead(ToString(File));
 
 	UINT count = 0;
 	count = reader->ReadUInt();
@@ -61,7 +90,8 @@ void Model::ReadMesh(wstring File)
 	for (UINT i = 0; i < count; i++)
 	{
 		ModelMesh* mesh = new ModelMesh();
-		mesh->SetBoneIndex(reader->ReadInt());
+		int index = reader->ReadInt();
+		mesh->SetBoneIndex(index);
 
 		// Vertex Data
 		{
@@ -70,7 +100,11 @@ void Model::ReadMesh(wstring File)
 			vector<VertexModel> vertices;
 			vertices.assign(count, VertexModel());
 
-			reader->ReadByte((void**)&vertices, sizeof(VertexModel) * count);
+			void* ptr = (void*)&(vertices[0]);
+			reader->ReadByte(&ptr, sizeof(VertexModel) * count);
+#if DEBUG == 1
+			reader->DebugByte<VertexModel>(vertices);
+#endif
 			mesh->SetVertices(vertices);
 			mesh->SetVertexCount(count);
 		}
@@ -82,7 +116,8 @@ void Model::ReadMesh(wstring File)
 			vector<UINT> indices;
 			indices.assign(count, UINT());
 
-			reader->ReadByte((void**)&indices, sizeof(UINT) * count);
+			void* ptr = (void*)&(indices[0]);
+			reader->ReadByte(&ptr, sizeof(UINT) * count);
 			mesh->SetIndices(indices);
 			mesh->SetIndexCount(count);
 		}
@@ -107,6 +142,8 @@ void Model::ReadMesh(wstring File)
 	SAFE_DELETE(reader);
 
 	BindBone();
+
+	SetShader(L"SimpleColorShader");
 }
 
 void Model::ReadMaterial(wstring File)
@@ -129,7 +166,8 @@ void Model::ReadMaterial(wstring File)
 		material->SetTag(node->GetText());
 
 		wstring directory = GetDirectory(File);
-		directory.replace(directory.begin(), directory.end(), L"../Datas/Textures", L"");
+		//directory = directory.replace(directory.begin(), directory.end(), L"../Datas/Materials/", L"");
+		StringReplace(&directory, L"../Datas/", L"");
 
 		wstring texture = L"";
 		node = node->NextSiblingElement();
@@ -190,7 +228,7 @@ void Model::ReadClip(wstring File)
 {
 	File = L"../Datas/Clips/" + File + L".clip";
 
-	BinaryRead* reader = new BinaryRead(File);
+	BinaryRead* reader = new BinaryRead(ToString(File));
 
 	ModelClip* clip = new ModelClip();
 	clip->SetName(ToString(reader->ReadString()));

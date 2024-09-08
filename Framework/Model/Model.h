@@ -21,6 +21,9 @@ private:
 public:
 	void Update();
 	void Render();
+	void GUIRender();
+
+	void SetShader(wstring File);
 
 	void ReadMesh(wstring File);
 	void ReadMaterial(wstring File);
@@ -56,5 +59,7 @@ private:
 	vector<ModelMesh*> Meshes;
 	vector<Material*> Materials;
 	vector<ModelClip*> Clips;
+
+	//MatrixBuffer* WBuffer = nullptr;
 };
 

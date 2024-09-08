@@ -49,7 +49,7 @@ void InstanceScene2::Initialize()
 	Mat->SetDiffuseMap(L"Color/Test.png");
 }
 
-void InstanceScene2::Destory()
+void InstanceScene2::Destroy()
 {
 	SAFE_DELETE(VBuffer);
 	SAFE_DELETE(IBuffer);

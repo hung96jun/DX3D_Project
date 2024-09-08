@@ -37,7 +37,7 @@ MemoryDebug* MemoryDebug::Get()
 	return Instance;
 }
 
-void MemoryDebug::Destory()
+void MemoryDebug::Destroy()
 {
 	SAFE_DELETE(Instance);
 }

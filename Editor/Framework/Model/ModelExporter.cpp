@@ -67,7 +67,9 @@ void ModelExporter::ExportMesh(wstring SavePath)
 	ReadSkinData();
 
 	// 경로 확인해서 수정
-	SavePath = L"../Datas/Models/" + SavePath + L".mesh";
+	//SavePath = L"../Datas/Models/" + SavePath + L".mesh";
+	//WriteMeshData(ToString(SavePath));
+	SavePath = L"../Datas/Models/" + SavePath + L".txt";
 	WriteMeshData(ToString(SavePath));
 }
 
@@ -251,11 +253,13 @@ void ModelExporter::WriteMeshData(string SavePath)
 		writer->WriteInt(mesh->BoneIndex);
 
 		writer->WriteUInt(static_cast<UINT>(mesh->Vertices.size()));
-		writer->WriteByte(&mesh->Vertices[0], sizeof(VertexModel) * static_cast<UINT>(mesh->Vertices.size()));
-		//writer->DebugByte<VertexModel>(mesh->Vertices);
+		writer->WriteByte(mesh->Vertices.data(), sizeof(VertexModel) * static_cast<UINT>(mesh->Vertices.size()));
+#if DEBUG == 1
+		writer->DebugByte<VertexModel>(mesh->Vertices);
+#endif
 
 		//{
-		//	void* debug = &mesh->Vertices[0];
+		//	void* debug = mesh->Vertices.data();
 		//	vector<VertexModel>* test = static_cast<vector<VertexModel>*>(debug);
 		//	string temp = "";
 		//	for (int i = 0; i < test->size(); i++)
@@ -265,7 +269,12 @@ void ModelExporter::WriteMeshData(string SavePath)
 		//}
 		
 		writer->WriteUInt(static_cast<UINT>(mesh->Indices.size()));
-		writer->WriteByte(&mesh->Indices[0], sizeof(UINT) * static_cast<UINT>(mesh->Indices.size()));
+		writer->WriteByte(mesh->Indices.data(), sizeof(UINT) * static_cast<UINT>(mesh->Indices.size()));
+#if DEBUG == 1
+		writer->DebugByte<UINT>(mesh->Indices);
+#endif
+
+		to_string(mesh->Indices[0]);
 
 		writer->WriteUInt(static_cast<UINT>(mesh->MeshParts.size()));
 		for (MeshPart* part : mesh->MeshParts)

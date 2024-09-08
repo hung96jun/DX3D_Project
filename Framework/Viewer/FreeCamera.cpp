@@ -2,7 +2,8 @@
 #include "Systems/Time.h"
 #include "Systems/Mouse.h"
 #include "Systems/Keyboard.h"
-#include "Utilities/BinaryFile.h"
+#include "Utilities/BinaryWrite.h"
+#include "Utilities/BinaryRead.h"
 
 FreeCamera::FreeCamera()
 {
@@ -111,7 +112,7 @@ void FreeCamera::GUIRender()
 		{
 			string str = DIALOG->GetFilePathName();
 			wstring path(str.begin(), str.end());
-			BinaryRead* reader = new BinaryRead(path);
+			BinaryRead* reader = new BinaryRead(ToString(path));
 
 			Move = reader->ReadFloat();
 			Rotation = reader->ReadFloat();

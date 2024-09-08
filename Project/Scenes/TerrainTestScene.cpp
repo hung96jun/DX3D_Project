@@ -112,7 +112,7 @@ void TerrainTestScene::Initialize()
 {
 }
 
-void TerrainTestScene::Destory()
+void TerrainTestScene::Destroy()
 {
 }
 

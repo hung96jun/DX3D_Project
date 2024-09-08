@@ -103,19 +103,19 @@ struct VertexUVNormalTangentAlpha
 	Float2 Uv;
 	Float3 Normal;
 	Float3 Tangent;
-	float Alpha[4];
+	//float Alpha[4];
 
 	VertexUVNormalTangentAlpha()
 		: Position(0.0f, 0.0f, 0.0f), Uv(0.0f, 0.0f), Normal(0.0f, 0.0f, 0.0f), Tangent(0.0f, 0.0f, 0.0f) {}
 	VertexUVNormalTangentAlpha(float X, float Y, float Z, float U, float V, float NX, float NY, float NZ,
 		float TX, float TY, float TZ)
 		: Position(X, Y, Z), Uv(U, V), Normal(NX, NY, NZ), Tangent(TX, TY, TZ) {}
-	VertexUVNormalTangentAlpha(Float3 Pos, Float2 Uv, Float3 Normal, Float3 Tangent, float* Alpha)
-		: Position(Pos), Uv(Uv), Normal(Normal), Tangent(Tangent)
-	{
-		for (int i = 0; i < 4; i++)
-			this->Alpha[i] = Alpha[i];
-	}
+	//VertexUVNormalTangentAlpha(Float3 Pos, Float2 Uv, Float3 Normal, Float3 Tangent, float* Alpha)
+	//	: Position(Pos), Uv(Uv), Normal(Normal), Tangent(Tangent)
+	//{
+	//	for (int i = 0; i < 4; i++)
+	//		this->Alpha[i] = Alpha[i];
+	//}
 };
 
 /**
@@ -125,6 +125,7 @@ struct VertexUVNormalTangentBlend
 {
 	Float3 Position;
 	Float2 Uv;
+
 	Float3 Normal;
 	Float3 Tangent;
 	Float4 Indices;

@@ -13,7 +13,7 @@ public:
 
 	void Initialize() override;
 	void Disable() override {};
-	void Destory() override;
+	void Destroy() override;
 
 	void Update() override;
 
@@ -30,7 +30,7 @@ private:
 	//Object* TestObject = nullptr;
 	//Grid* GridObject = nullptr;
 
-	vector<VertexUV> Vertices;
+	vector<Vertex> Vertices;
 	vector<int> Indices;
 
 	Vector3 Pos, Rot, Scale;
@@ -40,19 +40,20 @@ private:
 	
 	VertexBuffer* VBuffer;
 	IndexBuffer* IBuffer;
-	FloatBuffer* FBuffer;
+	//FloatBuffer* FBuffer;
 	MatrixBuffer* WBuffer;
 
 	//Texture* DiffuseMap[2];
 	//Texture* DiffuseMap;
 
-	Matrix World;
+	//Matrix World;
+	Transformation Transform;
 
 	float Color[3] = { 0.5, 0.0, 0.0 };
 
 	vector<Float4> Colors;
 
-	Material* Mat;
+	//Material* Mat;
 
 	float Ratio = 1.0f;
 };

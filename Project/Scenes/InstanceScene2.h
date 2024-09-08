@@ -13,7 +13,7 @@ class InstanceScene2 : public Scene
 public:
 	void Initialize() override;
 	void Disable() override {}
-	void Destory() override;
+	void Destroy() override;
 	void Update() override;
 	void PreRender() override {}
 	void Render() override;

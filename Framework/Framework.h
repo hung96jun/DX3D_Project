@@ -44,7 +44,9 @@
 #include "Framework/Managers/SceneManager.h"
 #include "Framework/Managers/ProjectManager.h"
 
-#include "Utilities/BinaryFile.h"
+//#include "Utilities/BinaryFile.h"
+#include "Utilities/BinaryWrite.h"
+#include "Utilities/BinaryRead.h"
 #include "Utilities/Utility.h"
 #include "Utilities/tinyxml2.h"
 #include "Utilities/Debug.h"

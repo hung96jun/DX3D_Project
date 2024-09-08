@@ -67,7 +67,10 @@ void Material::SetDiffuseMap(const wstring TextureFile)
 	DiffuseFile = L"";
 
 	if (TextureFile.length() > 0)
+	{
 		DiffuseFile = TextureFile;
+		replace(DiffuseFile.begin(), DiffuseFile.end(), '\\', '/');
+	}
 	else
 		DiffuseFile = L"Color/White.png";
 

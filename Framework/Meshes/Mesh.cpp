@@ -12,7 +12,7 @@ Mesh::~Mesh()
 void Mesh::ReadMesh(wstring File)
 {
 	File = L"../Datas/Models/" + File + L".mesh";
-	BinaryRead* reader = new BinaryRead(File);
+	BinaryRead* reader = new BinaryRead(ToString(File));
 	
 	UINT count = 0;
 	count = reader->ReadUInt();

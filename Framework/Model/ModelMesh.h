@@ -1,5 +1,12 @@
 #pragma once
 
+/**
+* 분할시켜서 작업
+* ModelMesh와 ModelMeshPart를 조합해서 먼저 Material없이 Vertex로만 렌더 테스트
+* (아마 ModelBone도 같이 작업을 해야할것 같긴함)
+* 후에 Material 추가하는 방향으로
+*/
+
 struct BoneDesc
 {
 	UINT BoneIndex;
@@ -81,6 +88,7 @@ public:
 	void SetVertexCount(const UINT VertexCount) { this->VertexCount = VertexCount; }
 	void SetIndexCount(const UINT IndexCount) { this->IndexCount = IndexCount; }
 
+	//void SetVertices(const vector<VertexModel>& Vertices) { this->Vertices = Vertices; }
 	void SetVertices(const vector<VertexModel>& Vertices) { this->Vertices = Vertices; }
 	void SetIndices(const vector<UINT>& Indices) { this->Indices = Indices; }
 
@@ -91,6 +99,7 @@ public:
 	void Update();
 	void Render();
 	void Render(UINT DrawCount);
+	void GUIRender(string Tag);
 
 	void Binding();
 	void SetMaterials(vector<Material*>& Materials);
@@ -100,32 +109,33 @@ public:
 	void SetBoneIndex(const int Index) { BoneIndex = Index; }
 	const int GetBondIndex() { return BoneIndex; }
 	ModelBone* GetBone() { return Bone; }
-	
+
 	Transformation& GetTransform() { return Transform; }
 	void SetTransform(Transformation& Transform) { this->Transform = Transform; }
 
 	void AddMeshPart(ModelMeshPart* Part) { MeshParts.push_back(Part); }
 
 private:
-	//VertexShader* VShader = nullptr;
+	VertexShader* VShader = nullptr;
 	//PixelShader* PShader = nullptr;
 
 	Transformation Transform;
 	//PerFrame
 
 	int BoneIndex;
-	ModelBone* Bone;
+	ModelBone* Bone = nullptr;
 	BoneDesc BoneInfo;
 
-	VertexBuffer* VBuffer;
+	VertexBuffer* VBuffer = nullptr;
 	UINT VertexCount;
 	vector<VertexModel> Vertices;
 
-	IndexBuffer* IBuffer;
+	IndexBuffer* IBuffer = nullptr;
 	UINT IndexCount;
 	vector<UINT> Indices;
 
-	ConstBuffer* BoneBuffer;
+	MatrixBuffer* WBuffer = nullptr;
+	ConstBuffer* BoneBuffer = nullptr;
 
 	vector<ModelMeshPart*> MeshParts;
 };

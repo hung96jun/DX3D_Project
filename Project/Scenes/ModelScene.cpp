@@ -11,16 +11,19 @@ void ModelScene::Initialize()
 {
 	TestModel = new Model("Tank");
 	TestModel->ReadMesh(L"Tank/tank");
+	TestModel->ReadMaterial(L"Tank/tank");
+
 	TestModel->Update();
 }
 
-void ModelScene::Destory()
+void ModelScene::Destroy()
 {
 	SAFE_DELETE(TestModel);
 }
 
 void ModelScene::Update()
 {
+	TestModel->Update();
 }
 
 void ModelScene::Render()
@@ -30,4 +33,5 @@ void ModelScene::Render()
 
 void ModelScene::GUIRender()
 {
+	TestModel->GUIRender();
 }

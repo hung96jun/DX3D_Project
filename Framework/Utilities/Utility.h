@@ -37,25 +37,33 @@ namespace Utility
 	void DivisionMatrix(OUT Float4& Dest, Matrix Source, const int Index);
 	Float4 DivisionMatrix(Matrix Source, const int Index);
 
-	//template<typename T>
-	//string ConvertToString(const T& Data)
-	//{
-	//	return "Undefine Type";
-	//}
-	//template<>
-	//string ConvertToString(const VertexModel& Data)
-	//{
-	//	string result = "";
-	//	result += "{";
-	//	result += "\nPos : " + to_string(Data.Position.x) + ", " + to_string(Data.Position.y) + ", " + to_string(Data.Position.z);
-	//	result += "\nUV : " + to_string(Data.Uv.x) + ", " + to_string(Data.Uv.y);
-	//	result += "\nNormal : " + to_string(Data.Normal.x) + ", " + to_string(Data.Normal.y) + ", " + to_string(Data.Normal.z);
-	//	result += "\nTangent : " + to_string(Data.Tangent.x) + ", " + to_string(Data.Tangent.y) + ", " + to_string(Data.Tangent.z);
-	//	result += "\nIndices : " + to_string(Data.Indices.x) + ", " + to_string(Data.Indices.y) + ", " + to_string(Data.Indices.z) + ", " + to_string(Data.Indices.w);
-	//	result += "\nWeights : " + to_string(Data.Weights.x) + ", " + to_string(Data.Weights.y) + ", " + to_string(Data.Weights.z) + ", " + to_string(Data.Weights.w);
-	//	result += "\n}\n";
-	//	return result;
-	//}
+	void StringReplace(string* Str, string Dest, string Source);
+	void StringReplace(wstring* Str, wstring Dest, wstring Source);
+
+	template<typename T>
+	string ConvertToString(const T& Data)
+	{
+		if constexpr (std::is_convertible_v<T, string>)
+			return "Value : " + string(Data) + "\n";
+		else if constexpr (is_arithmetic_v<T>)
+			return "Value : " + to_string(Data) + "\n";
+		else
+			return "Undefine Type\n";
+	}
+	template<>
+	inline string ConvertToString(const VertexModel& Data)
+	{
+		string result = "";
+		result += "{";
+		result += "\nPos : " + to_string(Data.Position.x) + ", " + to_string(Data.Position.y) + ", " + to_string(Data.Position.z);
+		result += "\nUV : " + to_string(Data.Uv.x) + ", " + to_string(Data.Uv.y);
+		result += "\nNormal : " + to_string(Data.Normal.x) + ", " + to_string(Data.Normal.y) + ", " + to_string(Data.Normal.z);
+		result += "\nTangent : " + to_string(Data.Tangent.x) + ", " + to_string(Data.Tangent.y) + ", " + to_string(Data.Tangent.z);
+		result += "\nIndices : " + to_string(Data.Indices.x) + ", " + to_string(Data.Indices.y) + ", " + to_string(Data.Indices.z) + ", " + to_string(Data.Indices.w);
+		result += "\nWeights : " + to_string(Data.Weights.x) + ", " + to_string(Data.Weights.y) + ", " + to_string(Data.Weights.z) + ", " + to_string(Data.Weights.w);
+		result += "\n}\n";
+		return result;
+	}
 }
 
 using namespace Utility;
