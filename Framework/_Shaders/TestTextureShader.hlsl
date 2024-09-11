@@ -1,5 +1,5 @@
-#include "Headers/VertexHeader.hlsli"
-#include "Headers/PixelHeader.hlsli"
+#include "Global/VertexHeader.hlsli"
+#include "Global/PixelHeader.hlsli"
 
 VertexUVOutput VS(VertexUVInput input)
 {

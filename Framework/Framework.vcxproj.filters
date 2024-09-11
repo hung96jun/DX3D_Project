@@ -673,8 +673,8 @@
     <None Include="Libraries\DirectXTex\DirectXTex.inl">
       <Filter>헤더 파일</Filter>
     </None>
-    <None Include="_Shaders\Headers\PixelHeader.hlsli" />
-    <None Include="_Shaders\Headers\VertexHeader.hlsli" />
+    <None Include="_Shaders\Global\PixelHeader.hlsli" />
+    <None Include="_Shaders\Global\VertexHeader.hlsli" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="_Shaders\SimpleShader.hlsl" />

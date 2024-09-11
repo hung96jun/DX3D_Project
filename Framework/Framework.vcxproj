@@ -386,8 +386,8 @@
     <None Include="Libraries\Assimp\vector2.inl" />
     <None Include="Libraries\Assimp\vector3.inl" />
     <None Include="Libraries\DirectXTex\DirectXTex.inl" />
-    <None Include="_Shaders\Headers\PixelHeader.hlsli" />
-    <None Include="_Shaders\Headers\VertexHeader.hlsli" />
+    <None Include="_Shaders\Global\PixelHeader.hlsli" />
+    <None Include="_Shaders\Global\VertexHeader.hlsli" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="_Shaders\ModelShader.hlsl">

@@ -1,24 +1,46 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Structs
 ///////////////////////////////////////////////////////////////////////////////
-struct VertexColorOutput
+struct VertexColorInput
 {
-    float4 Position : SV_Position;
+    float4 Position : POSITION0;
     float4 Color : COLOR0;
-    float4 wvpPosition : POSITION0;
 };
 
-struct VertexUVOutput
+struct VertexUVInput
 {
-    float4 Position : SV_Position;
-    float2 UV : TEXCOORD0;
-    float4 wvpPosition : POSITION0;
+    float4 Position : POSITION0;
+    float2 UV : UV;
+};
+
+struct VertexMeshInput
+{
+    float4 Position : POSITION;
+    float2 UV : UV;
+    
+    float3 Normal : NORMAL;
+    float3 Tangent : TANGENT;
+    
+    float4 Indices : BLENDINDICES;
+    float4 Weights : BLENDWEIGHTS;
 };
 ///////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
 // Constant Buffers
 ///////////////////////////////////////////////////////////////////////////////
+cbuffer WorldBuffer : register(b0)
+{
+    matrix World;
+}
+
+cbuffer ViewProjectionBuffer : register(b1)
+{
+    matrix View;
+    matrix InvView;
+    matrix Projection;
+}
+
 cbuffer MaterialBuffer : register(b2)
 {
     float4 Diffuse;
@@ -29,6 +51,3 @@ cbuffer MaterialBuffer : register(b2)
     float Shininess;
 }
 ///////////////////////////////////////////////////////////////////////////////
-
-SamplerState Samp : register(s0);
-Texture2D DiffuseMap : register(t0);
