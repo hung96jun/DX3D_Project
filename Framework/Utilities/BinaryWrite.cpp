@@ -157,17 +157,6 @@ void BinaryWrite::WriteString(const string& Data)
 #endif
 }
 
-//void BinaryWrite::WriteWString(const wstring& Data)
-//{
-//	WriteUInt(static_cast<UINT>(Data.size()));
-//	const WCHAR* str = Data.c_str();
-//	WriteFile(FileHandle, str, sizeof(WCHAR) * static_cast<DWORD>(Data.size()), &Size, nullptr);
-//
-//#if DEBUG == 1
-//	DebugFile << ToString(Data) << endl;
-//#endif // DEBUG == 1
-//}
-
 void BinaryWrite::WriteByte(void* Data, UINT DataSize)
 {
 	WriteFile(FileHandle, Data, DataSize, &Size, nullptr);

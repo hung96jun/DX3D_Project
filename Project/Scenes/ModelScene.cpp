@@ -9,9 +9,13 @@
 
 void ModelScene::Initialize()
 {
-	TestModel = new Model("Tank");
-	TestModel->ReadMesh(L"Tank/tank");
-	TestModel->ReadMaterial(L"Tank/tank");
+	//TestModel = new Model("Tank");
+	//TestModel->ReadMesh(L"Tank/tank");
+	//TestModel->ReadMaterial(L"Tank/tank");
+
+	TestModel = new Model("Kachujin");
+	TestModel->ReadMesh(L"Kachujin/Mesh");
+	TestModel->ReadMaterial(L"Kachujin/Mesh");
 
 	TestModel->Update();
 }

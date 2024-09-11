@@ -320,13 +320,13 @@ void ModelExporter::ReadMaterialData()
 
 		aiString file;
 		src->GetTexture(aiTextureType_DIFFUSE, 0, &file);
-		mat->SetDiffuseMap(ToString(file.C_Str()));
+		mat->SetDiffuseFile(ToString(file.C_Str()));
 
 		src->GetTexture(aiTextureType_SPECULAR, 0, &file);
-		mat->SetSpecularMap(ToString(file.C_Str()));
+		mat->SetSpecularFile(ToString(file.C_Str()));
 
 		src->GetTexture(aiTextureType_NORMALS, 0, &file);
-		mat->SetNormalMap(ToString(file.C_Str()));
+		mat->SetNormalFile(ToString(file.C_Str()));
 
 		Materials.push_back(mat);
 	}

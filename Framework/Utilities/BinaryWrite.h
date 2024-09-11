@@ -29,11 +29,11 @@ public:
 	template<typename T>
 	void DebugByte(vector<T>& Data)
 	{
-		for (int i = 0; i < Data.size(); i++)
-		{
-			DebugFile << "Index : " + to_string(i) << endl;
-			DebugFile << ConvertToString<T>(Data[i]) << endl;
-		}
+		//for (int i = 0; i < Data.size(); i++)
+		//{
+		//	DebugFile << "Index : " << to_string(i) << endl;
+		//	DebugFile << ConvertToString<T>(Data[i]) << endl;
+		//}
 	}
 #endif
 

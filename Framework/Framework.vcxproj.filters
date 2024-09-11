@@ -144,12 +144,6 @@
     <ClCompile Include="Meshes\Mesh.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Model\ModelMesh1.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Model\Model.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Model\ModelClip.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -166,6 +160,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Model\ModelMesh.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Model\Model.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -626,12 +623,6 @@
     <ClInclude Include="Meshes\Mesh.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Model\ModelMesh1.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Model\Model.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Model\ModelClip.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -645,6 +636,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Utilities\BinaryWrite.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\Model.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Model\ModelMesh.h">

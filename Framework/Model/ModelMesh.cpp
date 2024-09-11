@@ -14,6 +14,29 @@ ModelBone::~ModelBone()
 {
 	DESTRUCTOR_DEBUG();
 }
+
+void ModelBone::Update()
+{
+	//if (Parent == nullptr)
+	//{
+	//	Transform.Update();
+	//	return;
+	//}
+
+	//Vector3 pos, rot, scale;
+	//pos = Parent->Transform.GetPosition();
+	//rot = Parent->Transform.GetRotation();
+	//scale = Vector3(1.0f);
+
+	//Matrix posM, rotM, scaleM;
+	//posM = XMMatrixTranslation(pos.X, pos.Y, pos.Z);
+	//rotM = XMMatrixRotationRollPitchYaw(rot.X, rot.Y, rot.Z);
+	//scaleM = XMMatrixScaling(scale.X, scale.Y, scale.Z);
+	//XMMATRIX parentMatrix = scaleM * rotM * posM;
+	//Transform.Update(parentMatrix);
+
+	Transform.Update();
+}
 ///////////////////////////////////////////////////////////////////////////////
 // ModelMeshPart
 ///////////////////////////////////////////////////////////////////////////////
@@ -81,7 +104,7 @@ void ModelMeshPart::SetMaterials(vector<Material*> Materials)
 		Mat->SetDiffuseMap(srcMaterial->GetDiffuseMap());
 
 	if (srcMaterial->GetSpecularMap() != nullptr)
-		Mat->SetSpecularMap(srcMaterial->GetDiffuseMap());
+		Mat->SetSpecularMap(srcMaterial->GetSpecularMap());
 
 	if (srcMaterial->GetNormalMap() != nullptr)
 		Mat->SetNormalMap(srcMaterial->GetNormalMap());
@@ -100,7 +123,6 @@ ModelMesh::ModelMesh()
 
 	WBuffer = new MatrixBuffer();
 	//BoneBuffer = new ConstBuffer(&BoneInfo, sizeof(BoneDesc));
-	Transform.SetScale(Vector3(0.01f));
 }
 
 ModelMesh::~ModelMesh()
@@ -130,7 +152,7 @@ void ModelMesh::Update()
 	//for (ModelMeshPart* part : MeshParts)
 	//	part->Update();
 
-	Transform.Update();
+	Bone->Update();
 }
 
 void ModelMesh::Render()
@@ -143,7 +165,7 @@ void ModelMesh::Render()
 	VBuffer->Set();
 	IBuffer->Set();
 
-	WBuffer->Set(Transform.GetWorld());
+	WBuffer->Set(Bone->Transform.GetWorld());
 	WBuffer->SetVS(0);
 
 	VShader->Set();
@@ -202,32 +224,13 @@ void ModelMesh::SetShader(wstring ShaderFile)
 		part->SetShader(ShaderFile);
 }
 
-void ModelMesh::GUIRender(string Tag)
+void ModelMesh::GUIRender()
 {
-	if (ImGui::TreeNode(Tag.c_str()))
-	{
-		float pos[3];
-		float scale[3];
-		float rot[3];
+	string Tag;
+	Tag = ToString(Bone->Name);
 
-		pos[0] = Transform.GetPosition().X;
-		pos[1] = Transform.GetPosition().Y;
-		pos[2] = Transform.GetPosition().Z;
-		ImGui::DragFloat3((Tag + "_Position").c_str(), pos, 0.01f);
-		Transform.SetPosition(Vector3(pos[0], pos[1], pos[2]));
+	if (Bone->Transform.GetTag() == "")
+		Bone->Transform.SetTag(ToString(Bone->Name));
 
-		scale[0] = Transform.GetScale().X;
-		scale[1] = Transform.GetScale().Y;
-		scale[2] = Transform.GetScale().Z;
-		ImGui::DragFloat3((Tag + "_Scale").c_str(), scale, 0.01f);
-		Transform.SetScale(Vector3(scale[0], scale[1], scale[2]));
-
-		rot[0] = Transform.GetRotation().X;
-		rot[1] = Transform.GetRotation().Y;
-		rot[2] = Transform.GetRotation().Z;
-		ImGui::DragFloat3((Tag + "_Rotation").c_str(), rot, 0.01f);
-		Transform.SetRotation(Vector3(rot[0], rot[1], rot[2]));
-
-		ImGui::TreePop();
-	}
+	Bone->Transform.GUIRender();
 }

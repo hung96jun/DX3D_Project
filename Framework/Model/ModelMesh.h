@@ -21,16 +21,7 @@ public:
 	~ModelBone();
 
 public:
-	const int& GetIndex() { return Index; }
-
-	//const int& GetParentIndex() { return (Parent != nullptr ? Parent->GetIndex() : -1); }
-	const int& GetParentIndex() { return ParentIndex; }
-	ModelBone* GetParent() { return Parent; }
-
-	wstring GetName() { return Name; }
-
-	Matrix& GetTransform() { return Transform; }
-	void SetTransform(Matrix& Mat) { Transform = Mat; }
+	void Update();
 
 public:
 	int Index;
@@ -39,7 +30,7 @@ public:
 	int ParentIndex;
 	ModelBone* Parent = nullptr;
 
-	Matrix Transform;
+	Transformation Transform;
 	vector<ModelBone*> Childs;
 };
 ///////////////////////////////////////////////////////////////////////////////
@@ -85,6 +76,11 @@ public:
 	~ModelMesh();
 
 public:
+	void Update();
+	void Render();
+	void Render(UINT DrawCount);
+	void GUIRender();
+
 	void SetVertexCount(const UINT VertexCount) { this->VertexCount = VertexCount; }
 	void SetIndexCount(const UINT IndexCount) { this->IndexCount = IndexCount; }
 
@@ -96,11 +92,6 @@ public:
 
 	const int GetBoneIndex() { return BoneIndex; }
 
-	void Update();
-	void Render();
-	void Render(UINT DrawCount);
-	void GUIRender(string Tag);
-
 	void Binding();
 	void SetMaterials(vector<Material*>& Materials);
 
@@ -110,16 +101,12 @@ public:
 	const int GetBondIndex() { return BoneIndex; }
 	ModelBone* GetBone() { return Bone; }
 
-	Transformation& GetTransform() { return Transform; }
-	void SetTransform(Transformation& Transform) { this->Transform = Transform; }
-
 	void AddMeshPart(ModelMeshPart* Part) { MeshParts.push_back(Part); }
 
 private:
 	VertexShader* VShader = nullptr;
 	//PixelShader* PShader = nullptr;
 
-	Transformation Transform;
 	//PerFrame
 
 	int BoneIndex;

@@ -86,7 +86,7 @@ void Material::SetSpecularMap(const wstring TextureFile)
 	else
 		SpecularFile = L"Color/White.png";
 
-	DiffuseMap = Texture::Add(SpecularFile, L"SM");
+	SpecularMap = Texture::Add(SpecularFile, L"SM");
 }
 
 void Material::SetNormalMap(const wstring TextureFile)
@@ -98,7 +98,7 @@ void Material::SetNormalMap(const wstring TextureFile)
 	else
 		NormalFile = L"Color/White.png";
 
-	DiffuseMap = Texture::Add(NormalFile, L"NM");
+	NormalMap = Texture::Add(NormalFile, L"NM");
 }
 
 void Material::Save(string File)

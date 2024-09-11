@@ -10,6 +10,7 @@ public:
 	~Transformation();
 
 	void Update();
+	void Update(Matrix OffsetWorld);
 	void GUIRender();
 
 	const Vector3 GetRight() const { return Right.GetNormalize(); }
@@ -71,6 +72,25 @@ public:
 		result += "\n{ " + to_string(World.r[3].m128_f32[0]) + ", " + to_string(World.r[3].m128_f32[1]) + ", " + to_string(World.r[3].m128_f32[2]) + ", " + to_string(World.r[3].m128_f32[3]) + " }";
 
 		return result;
+	}
+
+	Transformation& operator=(const Matrix& Other)
+	{
+		XMVECTOR s, r, t;
+		XMMatrixDecompose(&s, &r, &t, Other);
+
+		Float3 pos, rot, scale;
+		XMStoreFloat3(&pos, t);
+		XMStoreFloat3(&rot, r);
+		XMStoreFloat3(&scale, s);
+
+		Position = pos;
+		Rotation = rot;
+		Scale = scale;
+
+		Update();
+
+		return *this;
 	}
 
 private:

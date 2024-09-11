@@ -3,10 +3,6 @@
 #include "Math/Vector.h"
 #include "Math/Transformation.h"
 
-#include <iomanip>
-
-#define INTERVAL 12
-
 BinaryRead::BinaryRead(string FilePath)
 {
 	CONSTRUCTOR_DEBUG();
@@ -203,21 +199,11 @@ string BinaryRead::ReadString()
 	return result;
 }
 
-//wstring BinaryRead::ReadWString()
-//{
-//	UINT length = ReadUInt();
-//	WCHAR* result = new WCHAR[length + 1];
-//	ReadFile(FileHandle, result, sizeof(WCHAR) * length, &Size, nullptr);
-//	return result;
-//}
-
 void BinaryRead::ReadByte(void** result, UINT DataSize)
 {
 	ReadFile(FileHandle, *result, DataSize, &Size, nullptr);
 
 #if DEBUG == 1
-	//DebugFile << "ByteData" << endl;
 	DebugFile << "ByteData : " << result << ", " << to_string(Size) << " Byte" << endl;
-	//DebugFile << "ByteData : " << Size << " Byte" << endl;
 #endif // DEBUG == 1
 }

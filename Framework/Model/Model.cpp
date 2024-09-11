@@ -51,8 +51,30 @@ void Model::GUIRender()
 {
 	if(ImGui::TreeNode("Model"))
 	{
+		for (int i = 0; i < Materials.size(); i++)
+		{
+			string temp = "";
+			temp = "Material " + to_string(i);
+			if (ImGui::TreeNode(temp.c_str()))
+			{
+				ImVec2 size = ImVec2(50, 50);
+				ID3D11ShaderResourceView* texture = nullptr;
+				texture = Materials[i]->GetDiffuseMap()->GetSRV();
+				if (texture != nullptr)
+					ImGui::Image(texture, size);
+				texture = Materials[i]->GetSpecularMap()->GetSRV();
+				if (texture != nullptr)
+					ImGui::Image(texture, size);
+				texture = Materials[i]->GetNormalMap()->GetSRV();
+				if (texture != nullptr)
+					ImGui::Image(texture, size);
+
+				ImGui::TreePop();
+			}
+		}
+
 		for (int i = 0; i < Meshes.size(); i++)
-			Meshes[i]->GUIRender(to_string(i));
+			Meshes[i]->GUIRender();
 
 		ImGui::TreePop();
 	}
@@ -75,6 +97,8 @@ void Model::ReadMesh(wstring File)
 
 	UINT count = 0;
 	count = reader->ReadUInt();
+
+	ModelBone* parentBone = nullptr;
 	for (UINT i = 0; i < count; i++)
 	{
 		ModelBone* bone = new ModelBone();
@@ -83,7 +107,20 @@ void Model::ReadMesh(wstring File)
 		bone->ParentIndex = reader->ReadInt();
 		bone->Transform = reader->ReadMatrix();
 
+		while (parentBone != nullptr)
+		{
+			if (bone->ParentIndex == parentBone->Index)
+			{
+				bone->Parent = parentBone;
+				break;
+			}
+
+			else
+				parentBone = parentBone->Parent;
+		}
+
 		Bones.push_back(bone);
+		parentBone = bone;
 	}
 
 	count = reader->ReadUInt();
@@ -143,7 +180,7 @@ void Model::ReadMesh(wstring File)
 
 	BindBone();
 
-	SetShader(L"SimpleColorShader");
+	SetShader(L"ModelShader");
 }
 
 void Model::ReadMaterial(wstring File)
@@ -283,7 +320,7 @@ ModelBone* Model::BoneByName(const wstring Name)
 {
 	for (ModelBone* bone : Bones)
 	{
-		if (bone->GetName() == Name)
+		if (bone->Name == Name)
 			return bone;
 	}
 

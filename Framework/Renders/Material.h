@@ -38,6 +38,10 @@ public:
 	const wstring& GetSpecularFile() const { return SpecularFile; }
 	const wstring& GetNormalFile() const { return NormalFile; }
 
+	void SetDiffuseFile(const wstring& Path) { DiffuseFile = Path; }
+	void SetSpecularFile(const wstring& Path) { SpecularFile = Path; }
+	void SetNormalFile(const wstring& Path) { NormalFile = Path; }
+
 	void Save(string File);
 	void Load(string File);
 

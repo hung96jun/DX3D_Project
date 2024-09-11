@@ -160,6 +160,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Model\Model.cpp" />
     <ClCompile Include="Model\ModelMesh.cpp" />
     <ClCompile Include="Utilities\BinaryRead.cpp" />
     <ClCompile Include="Managers\InstanceManager.cpp" />
@@ -168,10 +169,6 @@
     <ClCompile Include="Meshes\Shapes\CylinderShape.cpp" />
     <ClCompile Include="Meshes\Shapes\BoxShape.cpp" />
     <ClCompile Include="Model\ModelClip.cpp" />
-    <ClCompile Include="Model\Model.cpp" />
-    <ClCompile Include="Model\ModelMesh1.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="Objects\Base\Box.cpp" />
     <ClCompile Include="Objects\Base\ShapeObject.cpp" />
     <ClCompile Include="Objects\Collision\Collider.cpp" />
@@ -217,6 +214,7 @@
     <ClCompile Include="Viewer\Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Model\Model.h" />
     <ClInclude Include="Model\ModelMesh.h" />
     <ClInclude Include="Utilities\BinaryRead.h" />
     <ClInclude Include="Managers\InstanceManager.h" />
@@ -225,10 +223,6 @@
     <ClInclude Include="Meshes\Shapes\CylinderShape.h" />
     <ClInclude Include="Meshes\Shapes\BoxShape.h" />
     <ClInclude Include="Model\ModelClip.h" />
-    <ClInclude Include="Model\Model.h" />
-    <ClInclude Include="Model\ModelMesh1.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="Model\ModelData.h" />
     <ClInclude Include="Objects\Base\Box.h" />
     <ClInclude Include="Objects\Base\ShapeObject.h" />
