@@ -14,7 +14,7 @@ enum class MapType
 class Material
 {
 public:
-	Material(const wstring ShaderFile = L"TestTextureShader");
+	Material(const wstring ShaderFile = L"TextureShader");
 	~Material();
 
 	void Set();

@@ -9,6 +9,9 @@ public:
 	void Render();
 	void GUIRender();
 
+	Material* GetMaterial() { return Mat; }
+	Transformation& GetTransform() { return Transform; }
+
 private:
 	VertexShader* VShader = nullptr;
 	PixelShader* PShader = nullptr;
@@ -24,5 +27,6 @@ private:
 
 	Transformation Transform;
 
-	Texture* BaseMap = nullptr;
+	//Texture* BaseMap = nullptr;
+	Material* Mat = nullptr;
 };

@@ -19,15 +19,27 @@ void FreeCamera::Update()
 {
 	SUPER::Update();
 
-	if (Mouse::Get()->IsPress(1) == false) return;
-
 	Vector3 forward = GetForward();
 	Vector3 up = GetUp();
 	Vector3 right = GetRight();
 
+	Vector3 pos = Vector3::ZeroVector();
+
+	if (Mouse::Get()->GetMouseWheel() > 0)
+	{
+		pos += forward * Move * Time::Get()->GetDeltaTime() * WheelMove;
+		SetPosition(GetPosition() + pos);
+	}
+	else if (Mouse::Get()->GetMouseWheel() < 0)
+	{
+		pos += -forward * Move * Time::Get()->GetDeltaTime() * WheelMove;
+		SetPosition(GetPosition() + pos);
+	}
+
+	if (Mouse::Get()->IsPress(1) == false) return;
+
 	// Move
 	{
-		Vector3 pos = Vector3::ZeroVector();
 
 		if (Keyboard::Get()->IsPress('W'))
 			pos += forward * Move * Time::Get()->GetDeltaTime();
@@ -50,7 +62,7 @@ void FreeCamera::Update()
 	// Rotation
 	{
 		Vector3 rot, value;
-		value = Mouse::Get()->GetWheelValue();
+		value = Mouse::Get()->GetMouseMoveValue();
 
 		rot.X += value.Y * Rotation * Time::Get()->GetDeltaTime();
 		rot.Y += value.X * Rotation * Time::Get()->GetDeltaTime();
@@ -71,6 +83,7 @@ void FreeCamera::GUIRender()
 	ImGui::Begin("Camera");
 
 	ImGui::DragFloat("Camera Move", &Move, 0.01f, 0.0f);
+	ImGui::DragFloat("Camera WheelMove", &WheelMove, 0.1f, 0.0f);
 	ImGui::DragFloat("Camera Rotation", &Rotation, 0.01f, 0.0f);
 
 	string debug = "";

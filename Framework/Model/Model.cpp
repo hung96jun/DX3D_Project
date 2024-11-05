@@ -45,6 +45,9 @@ void Model::Render()
 
 	for (ModelMesh* mesh : Meshes)
 		mesh->Render();
+
+	//for (Material* mat : Materials)
+	//	mat->Set();
 }
 
 void Model::GUIRender()
@@ -80,10 +83,16 @@ void Model::GUIRender()
 	}
 }
 
-void Model::SetShader(wstring File)
+void Model::SetMeshShader(wstring File)
 {
 	for (ModelMesh* mesh : Meshes)
 		mesh->SetShader(File);
+}
+
+void Model::SetMaterialShader(wstring File)
+{
+	for (Material* mat : Materials)
+		mat->SetShader(File);
 }
 
 void Model::ReadMesh(wstring File)
@@ -179,8 +188,6 @@ void Model::ReadMesh(wstring File)
 	SAFE_DELETE(reader);
 
 	BindBone();
-
-	SetShader(L"ModelShader");
 }
 
 void Model::ReadMaterial(wstring File)
@@ -259,6 +266,10 @@ void Model::ReadMaterial(wstring File)
 	} while (materialNode != nullptr);
 
 	BineMesh();
+	//SetMaterialShader(L"ModelShader");
+
+	//for (Material* mat : Materials)
+	//	mat->SetShader(L"ModelShader");
 }
 
 void Model::ReadClip(wstring File)

@@ -57,7 +57,11 @@ Terrain::Terrain(const UINT Width, const UINT Height, const wstring ImageFile, c
 	IBuffer = new IndexBuffer(Indices.data(), (UINT)Indices.size());
 	WBuffer = new MatrixBuffer();
 
-	BaseMap = Texture::Add(L"Block/Dirt.png");
+	//BaseMap = Texture::Add(ImageFile);
+	Mat = new Material();
+	Mat->SetDiffuseMap(ImageFile);
+	Mat->SetSpecularMap(ImageFile);
+	Mat->SetNormalMap(ImageFile);
 
 	Transform.Update();
 }
@@ -73,7 +77,8 @@ Terrain::~Terrain()
 
 void Terrain::Render()
 {
-	BaseMap->PSSet(0);
+	//BaseMap->PSSet(0);
+	Mat->Set();
 
 	WBuffer->Set(Transform.GetWorld());
 	WBuffer->SetVS(0);

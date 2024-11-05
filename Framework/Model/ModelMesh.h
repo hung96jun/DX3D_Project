@@ -54,7 +54,7 @@ public:
 	void Render(UINT DrawCount);
 
 	//void Binding();
-	void SetMaterials(vector<Material*> Materials);
+	void SetMaterials(vector<Material*>& Materials);
 	void SetShader(wstring ShaderFile);
 
 private:

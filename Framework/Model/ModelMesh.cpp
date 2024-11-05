@@ -83,7 +83,7 @@ void ModelMeshPart::Render(UINT DrawCount)
 //	*/
 //}
 
-void ModelMeshPart::SetMaterials(vector<Material*> Materials)
+void ModelMeshPart::SetMaterials(vector<Material*>& Materials)
 {
 	Material* srcMaterial = nullptr;
 	for (Material* mat : Materials)

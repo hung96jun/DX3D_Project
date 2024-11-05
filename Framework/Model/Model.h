@@ -23,7 +23,9 @@ public:
 	void Render();
 	void GUIRender();
 
-	void SetShader(wstring File);
+	//void SetShader(wstring File);
+	void SetMeshShader(wstring File);
+	void SetMaterialShader(wstring File);
 
 	void ReadMesh(wstring File);
 	void ReadMaterial(wstring File);
@@ -62,4 +64,3 @@ private:
 
 	//MatrixBuffer* WBuffer = nullptr;
 };
-

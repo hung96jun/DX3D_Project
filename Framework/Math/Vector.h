@@ -193,6 +193,7 @@ public:
 
 		return *this;
 	}
+
 	Vector3& operator-=(const float& Value)
 	{
 		X -= Value;
@@ -298,7 +299,15 @@ public:
 		W = XMVectorGetW(Value);
 	}
 
+	Vector4& operator=(const float Value[4])
+	{
+		X = Value[0];
+		Y = Value[1];
+		Z = Value[2];
+		W = Value[3];
 
+		return *this;
+	}
 
 	//////////////////////////////////////////////////////////////////////////////
 	// functions

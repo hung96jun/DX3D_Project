@@ -160,6 +160,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Renders\Lights\DirectionLight.cpp" />
+    <ClCompile Include="Renders\Lights\PointLight.cpp" />
+    <ClCompile Include="Renders\PerFrame.cpp" />
+    <ClCompile Include="Renders\Lights\PositionLight.cpp" />
+    <ClCompile Include="Renders\Lights\Light.cpp" />
     <ClCompile Include="Model\Model.cpp" />
     <ClCompile Include="Model\ModelMesh.cpp" />
     <ClCompile Include="Utilities\BinaryRead.cpp" />
@@ -214,6 +219,11 @@
     <ClCompile Include="Viewer\Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Renders\Lights\DirectionLight.h" />
+    <ClInclude Include="Renders\Lights\PointLight.h" />
+    <ClInclude Include="Renders\PerFrame.h" />
+    <ClInclude Include="Renders\Lights\PositionLight.h" />
+    <ClInclude Include="Renders\Lights\Light.h" />
     <ClInclude Include="Model\Model.h" />
     <ClInclude Include="Model\ModelMesh.h" />
     <ClInclude Include="Utilities\BinaryRead.h" />
@@ -386,8 +396,14 @@
     <None Include="Libraries\Assimp\vector2.inl" />
     <None Include="Libraries\Assimp\vector3.inl" />
     <None Include="Libraries\DirectXTex\DirectXTex.inl" />
-    <None Include="_Shaders\Global\PixelHeader.hlsli" />
-    <None Include="_Shaders\Global\VertexHeader.hlsli" />
+    <None Include="_Shaders\Global\ConstantBuffers.hlsli" />
+    <None Include="_Shaders\Global\Functions.hlsli" />
+    <None Include="_Shaders\Global\Global.hlsli" />
+    <None Include="_Shaders\Global\InStructs.hlsli" />
+    <None Include="_Shaders\Global\OutStructs.hlsli" />
+    <None Include="_Shaders\Global\SamplerStates.hlsli" />
+    <None Include="_Shaders\Global\Structs.hlsli" />
+    <None Include="_Shaders\Global\Textures.hlsli" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="_Shaders\ModelShader.hlsl">
@@ -408,11 +424,6 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
     </FxCompile>
     <FxCompile Include="_Shaders\TestInstanceShader2.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
-    </FxCompile>
-    <FxCompile Include="_Shaders\TestTextureShader.hlsl">
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS</EntryPointName>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
     </FxCompile>
     <FxCompile Include="_Shaders\TextureShader.hlsl">

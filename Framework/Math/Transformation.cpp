@@ -17,6 +17,10 @@ Transformation::~Transformation()
 
 void Transformation::Update()
 {
+	/*
+	* Y축 회전이 로컬 기준이 아닌 월드 기준으로 회전
+	* Y축 회전은 월드 기준 회전이 맞는 것 같다. 상황에 따라 다르겠지만 unreal에서는 그렇다.
+	*/
 	World = XMMatrixTransformation(Pivot.GetValue(),
 		XMQuaternionIdentity(), Scale.GetValue(), Pivot.GetValue(),
 		XMQuaternionRotationRollPitchYawFromVector(Rotation.GetValue()),

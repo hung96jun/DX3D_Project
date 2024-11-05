@@ -165,6 +165,21 @@
     <ClCompile Include="Model\Model.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Renders\Lights\Light.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Renders\Lights\PositionLight.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Renders\PerFrame.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Renders\Lights\PointLight.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Renders\Lights\DirectionLight.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utilities\Defines.h">
@@ -644,6 +659,21 @@
     <ClInclude Include="Model\ModelMesh.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Renders\Lights\Light.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\Lights\PositionLight.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\PerFrame.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\Lights\PointLight.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\Lights\DirectionLight.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Libraries\Assimp\color4.inl">
@@ -673,14 +703,19 @@
     <None Include="Libraries\DirectXTex\DirectXTex.inl">
       <Filter>헤더 파일</Filter>
     </None>
-    <None Include="_Shaders\Global\PixelHeader.hlsli" />
-    <None Include="_Shaders\Global\VertexHeader.hlsli" />
+    <None Include="_Shaders\Global\Global.hlsli" />
+    <None Include="_Shaders\Global\InStructs.hlsli" />
+    <None Include="_Shaders\Global\OutStructs.hlsli" />
+    <None Include="_Shaders\Global\Structs.hlsli" />
+    <None Include="_Shaders\Global\Textures.hlsli" />
+    <None Include="_Shaders\Global\SamplerStates.hlsli" />
+    <None Include="_Shaders\Global\ConstantBuffers.hlsli" />
+    <None Include="_Shaders\Global\Functions.hlsli" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="_Shaders\SimpleShader.hlsl" />
     <FxCompile Include="_Shaders\TextureShader.hlsl" />
     <FxCompile Include="_Shaders\SimpleColorShader.hlsl" />
-    <FxCompile Include="_Shaders\TestTextureShader.hlsl" />
     <FxCompile Include="_Shaders\TestInstanceShader.hlsl" />
     <FxCompile Include="_Shaders\TestInstanceShader1.hlsl" />
     <FxCompile Include="_Shaders\TestInstanceShader2.hlsl" />

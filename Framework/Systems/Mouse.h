@@ -42,10 +42,13 @@ public:
 	bool IsUp(DWORD button) { return ButtonMap[button] == static_cast<DWORD>(ButtonInputState::UP); }
 	bool IsPress(DWORD button) { return ButtonMap[button] == static_cast<DWORD>(ButtonInputState::PRESS); }
 
-	Vector3 GetWheelValue()
+	Vector3 GetMouseMoveValue()
 	{
-		return WheelMoveValue;
+		return MouseMoveValue;
 	}
+
+	void SetMouseWheel(const int Delta) { WheelDelta = Delta; }
+	const int GetMouseWheel() { return WheelDelta; }
 
 private:
 	static Mouse* Instance;
@@ -57,12 +60,14 @@ private:
 	byte ButtonBeforeState[MAX_INPUT_MOUSE];
 	byte ButtonMap[MAX_INPUT_MOUSE];
 
-	Vector3 WheelCurStatus;
-	Vector3 WheelBeforeStatus;
-	Vector3 WheelMoveValue;
+	Vector3 MouseCurStatus;
+	Vector3 MouseBeforeStatus;
+	Vector3 MouseMoveValue;
 
 	DWORD DoubleClickTime;
 	DWORD StartDoubleClick[MAX_INPUT_MOUSE];
 	int ButtonCount[MAX_INPUT_MOUSE];
+
+	int WheelDelta = 0.0f;
 };
 

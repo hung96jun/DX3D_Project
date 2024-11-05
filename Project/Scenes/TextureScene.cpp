@@ -15,7 +15,9 @@ TextureScene::TextureScene()
 
 #if INSTANCE_TEST == 0
 	Object = new Box();
-#endif //  
+	Object->GetMaterial()->SetDiffuseMap(L"Landscape/Fieldstone_DM.tga");
+	Object->GetMaterial()->SetSpecularMap(L"Landscape/Fieldstone_SM.tga");
+#endif
 
 #if INSTANCE_TEST == 1
 	for (int i = 0; i < 10; i++)
@@ -84,6 +86,8 @@ void TextureScene::Render()
 	//Object[0]->Render();
 	//Object[1]->Render();
 	//Object->Render();
+
+	//Buffer->SetVS(2);
 
 #if  INSTANCE_TEST == 0
 	Object->Render();

@@ -4,7 +4,7 @@
 class BoxShape : public Shape
 {
 public:
-	BoxShape(const wstring ShaderFile = L"TestTextureShader");
+	BoxShape(const wstring ShaderFile = L"TextureShader");
 	~BoxShape();
 
 	void Create() override;

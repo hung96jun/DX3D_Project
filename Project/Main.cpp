@@ -166,6 +166,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         EndPaint(hWnd, &ps);
     }
     break;
+    case WM_MOUSEWHEEL:
+    {
+        int wheelDelta = GET_WHEEL_DELTA_WPARAM(wParam);
+        if (wheelDelta > 0.0f)
+            Mouse::Get()->SetMouseWheel(wheelDelta);
+        else if (wheelDelta < 0.0f)
+            Mouse::Get()->SetMouseWheel(wheelDelta);
+        else
+            Mouse::Get()->SetMouseWheel(0.0f);
+    }
+    break;
     case WM_DESTROY:
         PostQuitMessage(0);
         break;

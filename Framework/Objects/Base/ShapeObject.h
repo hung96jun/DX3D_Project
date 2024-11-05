@@ -18,6 +18,7 @@ public:
 	virtual void GUIRender() override;
 
 	void SetTag(const string Tag);
+	Material*& GetMaterial() { return Mat; }
 
 protected:
 	Shape* Mesh = nullptr;

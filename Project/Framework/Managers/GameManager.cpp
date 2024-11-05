@@ -6,6 +6,7 @@
 #include "Scenes/TerrainTestScene.h"
 #include "Scenes/InstanceScene2.h"
 #include "Scenes/ModelScene.h"
+#include "Scenes/LightScene.h"
 
 GameManager* GameManager::Instance = nullptr;
 
@@ -14,22 +15,30 @@ GameManager::GameManager()
 {
 	CONSTRUCTOR_DEBUG();
 
-	//SceneManager::Get()->Add("Test", new TestScene());
-	//SceneManager::Get()->Add("Terrain", new TerrainTestScene());
+	{
+		//SceneManager::Get()->Add("Test", new TestScene());
+		//SceneManager::Get()->Add("Terrain", new TerrainTestScene());
+		
+		//SceneManager::Get()->Add("Texture", new TextureScene());
+		
+		//SceneManager::Get()->Add("Instance", new InstanceScene2());
+		SceneManager::Get()->Add("Model", new ModelScene());
+
+		//SceneManager::Get()->Add("Light", new LightScene());
+	}
+
+	{
+		//ActiveScene("Test");
+		//ActiveScene("Terrain");
 	
-	//SceneManager::Get()->Add("Texture", new TextureScene());
-
-	//SceneManager::Get()->Add("Instance", new InstanceScene2());
-	SceneManager::Get()->Add("Model", new ModelScene());
-
-	//ActiveScene("Test");
-	//ActiveScene("Terrain");
+		//ActiveScene("Texture");
 	
-	//ActiveScene("Texture");
+		//ActiveScene("Instance");
+	
+		ActiveScene("Model");
 
-	//ActiveScene("Instance");
-
-	ActiveScene("Model");
+		//ActiveScene("Light");
+	}
 }
 
 GameManager::~GameManager()
@@ -67,8 +76,6 @@ void GameManager::Update()
 
 	Time::Get()->Update();
 	Timer::Get()->Update();
-	Mouse::Get()->Update();
-	Keyboard::Get()->Update();
 
 	Context::Get()->Update();
 	for (pair<string, Scene*> scene : Scenes)
@@ -78,6 +85,9 @@ void GameManager::Update()
 
 		scene.second->Update();
 	}
+
+	Mouse::Get()->Update();
+	Keyboard::Get()->Update();
 }
 
 void GameManager::Render()

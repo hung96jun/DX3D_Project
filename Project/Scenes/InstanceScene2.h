@@ -1,13 +1,5 @@
 #pragma once
 
-struct InstData
-{
-	Float4 Vec1;
-	Float4 Vec2;
-	Float4 Vec3;
-	Float4 Vec4;
-};
-
 class InstanceScene2 : public Scene
 {
 public:
@@ -33,6 +25,11 @@ private:
 
 	VertexBuffer* VBuffer;
 	IndexBuffer* IBuffer;
+	VertexBuffer* InstanceBuffer;
+
+	vector<Transformation> Transforms;
+	//vector<InstData> Instances;
+	vector<Matrix> Instances;
 
 	vector<VertexUV> Vertices;
 	vector<UINT> Indices;
@@ -40,11 +37,7 @@ private:
 	Material* Mat;
 
 	MatrixBuffer* WBuffer;
-
-	VertexBuffer* InstanceBuffer;
-	vector<Transformation> Transforms;
-	vector<InstData> Instances;
-
+	
 	Transformation Transform;
 };
 

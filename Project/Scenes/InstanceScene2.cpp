@@ -20,30 +20,14 @@ void InstanceScene2::Initialize()
 		transform.SetPosition(Math::RandomVector3(20, -20));
 		transform.SetScale(Math::RandomVector3(5, 1));
 
-		//Vector3 pos = Vector3::ZeroVector();
-		//pos.X += (2 * i);
-
-		//transform.SetPosition(pos);
-		//transform.SetScale(Vector3(1.0f));
-
 		transform.Update();
 
 		Transforms.push_back(transform);
 
-		InstData data;
-		data.Vec1 = DivisionMatrix(transform.GetWorld(), 0);
-		data.Vec2 = DivisionMatrix(transform.GetWorld(), 1);
-		data.Vec3 = DivisionMatrix(transform.GetWorld(), 2);
-		data.Vec4 = DivisionMatrix(transform.GetWorld(), 3);
-
-		Instances.push_back(data);
+		Instances.push_back(transform.GetWorld());
 	}
 	
-	//Instances.resize(Transforms.size());
-	//transform(Transforms.begin(), Transforms.end(), Instances.begin(),
-	//	[](Transformation t) { return t.GetWorld(); });
-
-	InstanceBuffer = new VertexBuffer(Instances.data(), sizeof(InstData), Count);
+	InstanceBuffer = new VertexBuffer(Instances.data(), sizeof(Matrix), Count);
 
 	Mat = new Material();
 	Mat->SetDiffuseMap(L"Color/Test.png");
@@ -65,19 +49,13 @@ void InstanceScene2::Update()
 	transform(Transforms.begin(), Transforms.end(), Instances.begin(),
 		[](Transformation t) 
 		{
-			InstData data;
-			data.Vec1 = DivisionMatrix(t.GetWorld(), 0);
-			data.Vec2 = DivisionMatrix(t.GetWorld(), 1);
-			data.Vec3 = DivisionMatrix(t.GetWorld(), 2);
-			data.Vec4 = DivisionMatrix(t.GetWorld(), 3);
-
-			return data;
+			return t.GetWorld();
 		});
 }
 
 void InstanceScene2::Render()
 {
-	VBuffer->Update(Vertices.data(), Vertices.size());
+	//VBuffer->Update(Vertices.data(), Vertices.size());
 	InstanceBuffer->Update(Instances.data(), Count);
 	InstanceBuffer->Set(1);
 
@@ -95,19 +73,26 @@ void InstanceScene2::GUIRender()
 {
 	for (int i = 0; i < Transforms.size(); i++)
 	{
-		float pos[3] = { Transforms[i].GetPosition().X, Transforms[i].GetPosition().Y, Transforms[i].GetPosition().Z };
-		ImGui::SliderFloat3(("Position_" + to_string(i)).c_str(), pos, -50.0f, 50.0f);
-		Transforms[i].SetPosition(Vector3(pos[0], pos[1], pos[2]));
+		string tag = "";
+		tag = "Instance_" + to_string(i);
+		if (ImGui::TreeNode(tag.c_str()))
+		{
+			float pos[3] = { Transforms[i].GetPosition().X, Transforms[i].GetPosition().Y, Transforms[i].GetPosition().Z };
+			ImGui::SliderFloat3(("Position_" + to_string(i)).c_str(), pos, -50.0f, 50.0f);
+			Transforms[i].SetPosition(Vector3(pos[0], pos[1], pos[2]));
 
-		float scale[3] = { Transforms[i].GetScale().X, Transforms[i].GetScale().Y, Transforms[i].GetScale().Z };
-		ImGui::SliderFloat3(("Scale_" + to_string(i)).c_str(), scale, -10.0f, 10.0f);
-		Transforms[i].SetScale(Vector3(scale[0], scale[1], scale[2]));
+			float scale[3] = { Transforms[i].GetScale().X, Transforms[i].GetScale().Y, Transforms[i].GetScale().Z };
+			ImGui::SliderFloat3(("Scale_" + to_string(i)).c_str(), scale, -10.0f, 10.0f);
+			Transforms[i].SetScale(Vector3(scale[0], scale[1], scale[2]));
 
-		float rot[3] = { Transforms[i].GetRotation().X, Transforms[i].GetRotation().Y, Transforms[i].GetRotation().Z };
-		ImGui::SliderFloat3(("Rotation_" + to_string(i)).c_str(), rot, -360.0f, 360.0f);
-		Transforms[i].SetRotation(Vector3(rot[0], rot[1], rot[2]));
+			float rot[3] = { Transforms[i].GetRotation().X, Transforms[i].GetRotation().Y, Transforms[i].GetRotation().Z };
+			ImGui::SliderFloat3(("Rotation_" + to_string(i)).c_str(), rot, -360.0f, 360.0f);
+			Transforms[i].SetRotation(Vector3(rot[0], rot[1], rot[2]));
 
-		Transforms[i].Update();
+			Transforms[i].Update();
+
+			ImGui::TreePop();
+		}
 	}
 }
 

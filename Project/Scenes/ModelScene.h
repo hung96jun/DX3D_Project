@@ -16,5 +16,7 @@ public:
 	
 private:
 	Model* TestModel;
+
+	vector<Transformation> Transforms;
 };
 

@@ -9,9 +9,9 @@ Mouse::Mouse()
 	CONSTRUCTOR_DEBUG();
 
 	Position = Vector3::ZeroVector();
-	WheelCurStatus = Vector3::ZeroVector();
-	WheelBeforeStatus = Vector3::ZeroVector();
-	WheelMoveValue = Vector3::ZeroVector();
+	MouseCurStatus = Vector3::ZeroVector();
+	MouseBeforeStatus = Vector3::ZeroVector();
+	MouseMoveValue = Vector3::ZeroVector();
 
 	ZeroMemory(ButtonCurState, sizeof(byte) * MAX_INPUT_MOUSE);
 	ZeroMemory(ButtonBeforeState, sizeof(byte) * MAX_INPUT_MOUSE);
@@ -78,14 +78,14 @@ void Mouse::Update()
 	GetCursorPos(&point);
 	ScreenToClient(Handle, &point);
 
-	WheelBeforeStatus.X = WheelCurStatus.X;
-	WheelBeforeStatus.Y = WheelCurStatus.Y;
+	MouseBeforeStatus.X = MouseCurStatus.X;
+	MouseBeforeStatus.Y = MouseCurStatus.Y;
 
-	WheelCurStatus.X = static_cast<float>(point.x);
-	WheelCurStatus.Y = static_cast<float>(point.y);
+	MouseCurStatus.X = static_cast<float>(point.x);
+	MouseCurStatus.Y = static_cast<float>(point.y);
 
-	WheelMoveValue = WheelCurStatus - WheelBeforeStatus;
-	WheelBeforeStatus.Z = WheelCurStatus.Z;
+	MouseMoveValue = MouseCurStatus - MouseBeforeStatus;
+	MouseBeforeStatus.Z = MouseCurStatus.Z;
 
 	DWORD buttonStatus = static_cast<DWORD>(GetTickCount64());
 	for (DWORD i = 0; i < MAX_INPUT_MOUSE; i++)
@@ -110,15 +110,18 @@ void Mouse::Update()
 				if (buttonStatus - StartDoubleClick[i] >= DoubleClickTime)
 					ButtonCount[i] = 0;
 			}
+
 			else if (ButtonCount[i] == 2)
 			{
 				if (buttonStatus - StartDoubleClick[i] <= DoubleClickTime)
 					ButtonMap[i] = static_cast<byte>(ButtonInputState::DBLCLK);
 
 				ButtonCount[i] = 0;
-			} // if
-		} // for(i)
+			}
+		}
 	}
+
+	WheelDelta = 0.0f;
 }
 
 LRESULT Mouse::InputProc(UINT message, WPARAM wParam, LPARAM lParam)
@@ -132,8 +135,8 @@ LRESULT Mouse::InputProc(UINT message, WPARAM wParam, LPARAM lParam)
 	if (message == WM_MOUSEWHEEL)
 	{
 		short wheelValue = static_cast<short>(HIWORD(wParam));
-		WheelBeforeStatus.Z = WheelCurStatus.Z;
-		WheelCurStatus.Z += static_cast<float>(wheelValue);
+		MouseBeforeStatus.Z = MouseCurStatus.Z;
+		MouseCurStatus.Z += static_cast<float>(wheelValue);
 	}
 
 	return TRUE;

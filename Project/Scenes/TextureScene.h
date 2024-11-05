@@ -1,6 +1,6 @@
 #pragma once
 
-#define INSTANCE_TEST 1
+#define INSTANCE_TEST 0
 
 class TextureScene : public Scene
 {
