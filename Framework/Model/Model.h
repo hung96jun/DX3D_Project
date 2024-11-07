@@ -21,7 +21,8 @@ private:
 public:
 	void Update();
 	void Render();
-	void GUIRender();
+	void Render(const UINT& DrawCount);
+	void GUIRender(const string Tag = "");
 
 	//void SetShader(wstring File);
 	void SetMeshShader(wstring File);
@@ -30,6 +31,8 @@ public:
 	void ReadMesh(wstring File);
 	void ReadMaterial(wstring File);
 	void ReadClip(wstring File);
+
+	Transformation& GetTransform() { return Transform; }
 
 	const UINT BoneCount() { return static_cast<UINT>(Bones.size()); }
 	vector<ModelBone*> GetBones() { return Bones; }

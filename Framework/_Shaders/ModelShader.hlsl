@@ -64,7 +64,7 @@ VertexMeshOutput VS(VertexMeshInput input)
 
 float4 PS(VertexMeshOutput input) : SV_Target0
 {
-    //float4 result = DiffuseMap.Sample(Samp, input.UV);
+    float4 result = DiffuseMap.Sample(Samp, input.UV);
     
-    return float4(1.0f, 0.0f, 0.0f, 0.0f);
+    return result;
 }

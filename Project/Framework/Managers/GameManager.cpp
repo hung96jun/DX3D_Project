@@ -7,6 +7,7 @@
 #include "Scenes/InstanceScene2.h"
 #include "Scenes/ModelScene.h"
 #include "Scenes/LightScene.h"
+#include "Scenes/ModelInstanceScene.h"
 
 GameManager* GameManager::Instance = nullptr;
 
@@ -22,8 +23,9 @@ GameManager::GameManager()
 		//SceneManager::Get()->Add("Texture", new TextureScene());
 		
 		//SceneManager::Get()->Add("Instance", new InstanceScene2());
-		SceneManager::Get()->Add("Model", new ModelScene());
-
+		//SceneManager::Get()->Add("Model", new ModelScene());
+		SceneManager::Get()->Add("ModelInstance", new ModelInstanceScene());
+		 
 		//SceneManager::Get()->Add("Light", new LightScene());
 	}
 
@@ -35,7 +37,8 @@ GameManager::GameManager()
 	
 		//ActiveScene("Instance");
 	
-		ActiveScene("Model");
+		//ActiveScene("Model");
+		ActiveScene("ModelInstance");
 
 		//ActiveScene("Light");
 	}

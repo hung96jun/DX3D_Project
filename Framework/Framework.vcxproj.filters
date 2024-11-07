@@ -720,5 +720,6 @@
     <FxCompile Include="_Shaders\TestInstanceShader1.hlsl" />
     <FxCompile Include="_Shaders\TestInstanceShader2.hlsl" />
     <FxCompile Include="_Shaders\ModelShader.hlsl" />
+    <FxCompile Include="_Shaders\ModelInstanceShader.hlsl" />
   </ItemGroup>
 </Project>

@@ -16,10 +16,7 @@ void ModelScene::Initialize()
 	TestModel = new Model("Kachujin");
 	TestModel->ReadMesh(L"Kachujin/Mesh");
 	TestModel->ReadMaterial(L"Kachujin/Mesh");
-	TestModel->
-
-
-	SetMeshShader(L"ModelShader");
+	TestModel->SetMeshShader(L"ModelShader");
 	TestModel->Update();
 }
 

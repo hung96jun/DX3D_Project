@@ -406,6 +406,9 @@
     <None Include="_Shaders\Global\Textures.hlsli" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="_Shaders\ModelInstanceShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+    </FxCompile>
     <FxCompile Include="_Shaders\ModelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
     </FxCompile>

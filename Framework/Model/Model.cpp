@@ -50,9 +50,15 @@ void Model::Render()
 	//	mat->Set();
 }
 
-void Model::GUIRender()
+void Model::Render(const UINT& DrawCount)
 {
-	if(ImGui::TreeNode("Model"))
+	for (ModelMesh* mesh : Meshes)
+		mesh->Render(DrawCount);
+}
+
+void Model::GUIRender(const string Tag)
+{
+	if(ImGui::TreeNode(("Model" + Tag).c_str()))
 	{
 		for (int i = 0; i < Materials.size(); i++)
 		{
@@ -268,8 +274,8 @@ void Model::ReadMaterial(wstring File)
 	BineMesh();
 	//SetMaterialShader(L"ModelShader");
 
-	//for (Material* mat : Materials)
-	//	mat->SetShader(L"ModelShader");
+	for (Material* mat : Materials)
+		mat->SetShader(L"ModelShader");
 }
 
 void Model::ReadClip(wstring File)

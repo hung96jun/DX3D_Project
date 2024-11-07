@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Framework\Managers\GameManager.cpp" />
     <ClCompile Include="Scenes\LightScene.cpp" />
+    <ClCompile Include="Scenes\ModelInstanceScene.cpp" />
     <ClCompile Include="Scenes\ModelScene.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Scenes\InstanceScene2.cpp" />
@@ -32,6 +33,7 @@
   <ItemGroup>
     <ClInclude Include="Framework\Managers\GameManager.h" />
     <ClInclude Include="Scenes\LightScene.h" />
+    <ClInclude Include="Scenes\ModelInstanceScene.h" />
     <ClInclude Include="Scenes\ModelScene.h" />
     <ClInclude Include="Scenes\InstanceScene2.h" />
     <ClInclude Include="stdafx.h" />

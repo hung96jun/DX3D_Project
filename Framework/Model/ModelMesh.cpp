@@ -68,7 +68,7 @@ void ModelMeshPart::Render()
 void ModelMeshPart::Render(UINT DrawCount)
 {
 	Mat->Set();
-	D3D::GetDC()->DrawIndexedInstanced(IndexCount, DrawCount, StartIndex, 0, 0U);
+	D3D::GetDC()->DrawIndexedInstanced(DrawCount, DrawCount, StartIndex, 0, 0);
 }
 
 //void ModelMeshPart::Binding()
@@ -85,29 +85,48 @@ void ModelMeshPart::Render(UINT DrawCount)
 
 void ModelMeshPart::SetMaterials(vector<Material*>& Materials)
 {
-	Material* srcMaterial = nullptr;
-	for (Material* mat : Materials)
+	//////////////////////////////////////////////////////////////////////////////
+	// Material을 여러 MeshPart에서 중복해서 사용할 경우 사용하는 코드
+	// Material의 정보를 받아와 별도의 Material을 생성해서 관리하기 때문에
+	// 개별의 Material을 다룰 때 사용하기 용이하다.
+	//////////////////////////////////////////////////////////////////////////////
+	//Material** srcMaterial = nullptr;
+	//for (Material*& mat : Materials)
+	//{
+	//	if (mat->GetTag() == ToString(MaterialName))
+	//		srcMaterial = &mat;
+	//}
+
+	//if ((*srcMaterial) == nullptr) return;
+
+	//Mat = new Material();
+	//Mat->SetAmbient((*srcMaterial)->GetAmbient());
+	//Mat->SetDiffuse((*srcMaterial)->GetDiffuse());
+	//Mat->SetSpecular((*srcMaterial)->GetSpecular());
+	//Mat->SetEmissive((*srcMaterial)->GetEmissive());
+
+	//if ((*srcMaterial)->GetDiffuseMap() != nullptr)
+	//	Mat->SetDiffuseMap((*srcMaterial)->GetDiffuseMap());
+
+	//if ((*srcMaterial)->GetSpecularMap() != nullptr)
+	//	Mat->SetSpecularMap((*srcMaterial)->GetSpecularMap());
+
+	//if ((*srcMaterial)->GetNormalMap() != nullptr)
+	//	Mat->SetNormalMap((*srcMaterial)->GetNormalMap());
+	//////////////////////////////////////////////////////////////////////////////
+
+	//////////////////////////////////////////////////////////////////////////////
+	// Material을 여러 MeshPart에서 개별로 사용할 경우
+	// Materials가 Model에서 vector로 가지고 있기 때문에
+	// Model에 있는 Material을 수정할 경우 동일하게 수정이 되어
+	// 개별 Material일 경우 Model에서 관리하기 용이하다.
+	//////////////////////////////////////////////////////////////////////////////
+	for (Material*& mat : Materials)
 	{
 		if (mat->GetTag() == ToString(MaterialName))
-			srcMaterial = mat;
+			Mat = mat;
 	}
-
-	if (srcMaterial == nullptr) return;
-
-	Mat = new Material();
-	Mat->SetAmbient(srcMaterial->GetAmbient());
-	Mat->SetDiffuse(srcMaterial->GetDiffuse());
-	Mat->SetSpecular(srcMaterial->GetSpecular());
-	Mat->SetEmissive(srcMaterial->GetEmissive());
-
-	if (srcMaterial->GetDiffuseMap() != nullptr)
-		Mat->SetDiffuseMap(srcMaterial->GetDiffuseMap());
-
-	if (srcMaterial->GetSpecularMap() != nullptr)
-		Mat->SetSpecularMap(srcMaterial->GetSpecularMap());
-
-	if (srcMaterial->GetNormalMap() != nullptr)
-		Mat->SetNormalMap(srcMaterial->GetNormalMap());
+	//////////////////////////////////////////////////////////////////////////////
 }
 
 void ModelMeshPart::SetShader(wstring ShaderFile)
@@ -157,7 +176,7 @@ void ModelMesh::Update()
 
 void ModelMesh::Render()
 {
-	// 해당 부분 바인드 시점이랑 슬롯 넘버 확인
+	// 해당 부분 바인드 시점이랑 슬롯 넘버 ^확인
 	//BoneBuffer->SetVS();
 
 	//PerFrame->Render();
@@ -181,13 +200,16 @@ void ModelMesh::Render(UINT DrawCount)
 
 	////PerFrame->Render();
 
-	//VBuffer->Set();
-	//IBuffer->Set();
+	VBuffer->Set();
+	IBuffer->Set();
 
-	//VShader->Set();
+	//WBuffer->Set(Bone->Transform.GetWorld());
+	//WBuffer->SetVS(0);
 
-	//for (ModelMeshPart* part : MeshParts)
-	//	part->Render(DrawCount);
+	VShader->Set();
+
+	for (ModelMeshPart* part : MeshParts)
+		part->Render(DrawCount);
 }
 
 //void ModelMesh::Binding()
@@ -220,8 +242,8 @@ void ModelMesh::SetShader(wstring ShaderFile)
 
 	VShader = ShaderManager::Get()->AddVS(ShaderFile);
 	
-	for (ModelMeshPart* part : MeshParts)
-		part->SetShader(ShaderFile);
+	//for (ModelMeshPart* part : MeshParts)
+	//	part->SetShader(ShaderFile);
 }
 
 void ModelMesh::GUIRender()
