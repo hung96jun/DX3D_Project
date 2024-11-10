@@ -22,12 +22,15 @@ public:
 
 public:
 	void Update();
+	void GUIRender();
+
+	void BoneRender();
 
 public:
-	int Index;
-	wstring Name;
+	int Index = -1;
+	wstring Name = L"";
 
-	int ParentIndex;
+	int ParentIndex = -1;
 	ModelBone* Parent = nullptr;
 
 	Transformation Transform;
@@ -50,6 +53,7 @@ public:
 	void SetIndexCount(const UINT IndexCount) { this->IndexCount = IndexCount; }
 
 	void Update();
+	//void Set();
 	void Render();
 	void Render(UINT DrawCount);
 
@@ -110,6 +114,7 @@ private:
 	//PerFrame
 
 	int BoneIndex;
+	// Root Bone
 	ModelBone* Bone = nullptr;
 	BoneDesc BoneInfo;
 

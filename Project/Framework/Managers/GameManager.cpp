@@ -9,6 +9,8 @@
 #include "Scenes/LightScene.h"
 #include "Scenes/ModelInstanceScene.h"
 
+#define SCENE_MODE 1
+
 GameManager* GameManager::Instance = nullptr;
 
 GameManager::GameManager()
@@ -22,9 +24,16 @@ GameManager::GameManager()
 		
 		//SceneManager::Get()->Add("Texture", new TextureScene());
 		
-		//SceneManager::Get()->Add("Instance", new InstanceScene2());
-		//SceneManager::Get()->Add("Model", new ModelScene());
+		
+#if SCENE_MODE == 0
+		SceneManager::Get()->Add("Model", new ModelScene());
+#endif
+#if SCENE_MODE == 1
 		SceneManager::Get()->Add("ModelInstance", new ModelInstanceScene());
+#endif
+#if SCENE_MODE == 2
+		SceneManager::Get()->Add("Instance", new InstanceScene2());
+#endif
 		 
 		//SceneManager::Get()->Add("Light", new LightScene());
 	}
@@ -35,10 +44,15 @@ GameManager::GameManager()
 	
 		//ActiveScene("Texture");
 	
-		//ActiveScene("Instance");
-	
-		//ActiveScene("Model");
+#if SCENE_MODE == 0
+		ActiveScene("Model");
+#endif
+#if SCENE_MODE == 1
 		ActiveScene("ModelInstance");
+#endif
+#if SCENE_MODE == 2
+		ActiveScene("Instance");
+#endif
 
 		//ActiveScene("Light");
 	}

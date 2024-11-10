@@ -65,5 +65,5 @@ private:
 	vector<Material*> Materials;
 	vector<ModelClip*> Clips;
 
-	//MatrixBuffer* WBuffer = nullptr;
+	MatrixBuffer* WBuffer = nullptr;
 };

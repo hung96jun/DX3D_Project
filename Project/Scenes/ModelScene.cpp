@@ -17,6 +17,7 @@ void ModelScene::Initialize()
 	TestModel->ReadMesh(L"Kachujin/Mesh");
 	TestModel->ReadMaterial(L"Kachujin/Mesh");
 	TestModel->SetMeshShader(L"ModelShader");
+	TestModel->GetTransform().SetScale(Vector3(0.1f));
 	TestModel->Update();
 }
 

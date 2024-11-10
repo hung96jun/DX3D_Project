@@ -16,13 +16,13 @@ public:
 	
 private:
 	Model* TestModel;
-	//Model* TestModel1;
+	//Model* TestModel1;s
 
 	vector<Transformation> Transforms;
 	vector<Matrix> Instances;
 
 	VertexBuffer* InstanceBuffer = nullptr;
 
-	const UINT Count = 10;
+	const UINT Count = 5;
 };
 

@@ -25,22 +25,24 @@ void FreeCamera::Update()
 
 	Vector3 pos = Vector3::ZeroVector();
 
-	if (Mouse::Get()->GetMouseWheel() > 0)
+	if (Keyboard::Get()->IsPress(VK_CONTROL) == true)
 	{
-		pos += forward * Move * Time::Get()->GetDeltaTime() * WheelMove;
-		SetPosition(GetPosition() + pos);
-	}
-	else if (Mouse::Get()->GetMouseWheel() < 0)
-	{
-		pos += -forward * Move * Time::Get()->GetDeltaTime() * WheelMove;
-		SetPosition(GetPosition() + pos);
+		if (Mouse::Get()->GetMouseWheel() > 0)
+		{
+			pos += forward * Move * Time::Get()->GetDeltaTime() * WheelMove;
+			SetPosition(GetPosition() + pos);
+		}
+		else if (Mouse::Get()->GetMouseWheel() < 0)
+		{
+			pos += -forward * Move * Time::Get()->GetDeltaTime() * WheelMove;
+			SetPosition(GetPosition() + pos);
+		}
 	}
 
 	if (Mouse::Get()->IsPress(1) == false) return;
 
 	// Move
 	{
-
 		if (Keyboard::Get()->IsPress('W'))
 			pos += forward * Move * Time::Get()->GetDeltaTime();
 		else if (Keyboard::Get()->IsPress('S'))

@@ -9,29 +9,16 @@
 
 void ModelInstanceScene::Initialize()
 {
-	//TestModel = new Model("Tank");
-	//TestModel->ReadMesh(L"Tank/tank");
-	//TestModel->ReadMaterial(L"Tank/tank");
-
 	TestModel = new Model("Kachujin");
 	TestModel->ReadMesh(L"Kachujin/Mesh");
 	TestModel->ReadMaterial(L"Kachujin/Mesh");
 	TestModel->SetMeshShader(L"ModelInstanceShader");
-	TestModel->GetTransform().SetScale(Vector3(1.0f));
-	TestModel->Update();
-
-	//TestModel1 = new Model("Kachujin");
-	//TestModel1->ReadMesh(L"Kachujin/Mesh");
-	//TestModel1->ReadMaterial(L"Kachujin/Mesh");
-	//TestModel1->SetMeshShader(L"ModelInstanceShader");
-	//TestModel1->GetTransform().SetScale(Vector3(1.0f));
-	//TestModel1->Update();
 
 	for (int i = 0; i < Count; i++)
 	{
 		Transformation transform;
-		transform.SetPosition(Vector3(i * 100.0f, 0.0f, 0.0f));
-		transform.SetScale(Vector3(1.0f));
+		transform.SetPosition(Vector3(i * 20.0f, 0.0f, 0.0f));
+		transform.SetScale(Vector3(0.1f));
 
 		transform.Update();
 
@@ -50,7 +37,7 @@ void ModelInstanceScene::Destroy()
 
 void ModelInstanceScene::Update()
 {
-	TestModel->Update();
+	//TestModel->Update();
 	//TestModel1->Update();
 
 	transform(Transforms.begin(), Transforms.end(), Instances.data(),
@@ -72,6 +59,21 @@ void ModelInstanceScene::Render()
 
 void ModelInstanceScene::GUIRender()
 {
-	TestModel->GUIRender("_0");
+	//TestModel->GUIRender("_0");
 	//TestModel1->GUIRender("_1");
+
+	if (ImGui::TreeNode("Instance Transform"))
+	{
+		for (int i = 0; i < Transforms.size(); i++)
+		{
+			if (ImGui::TreeNode((to_string(i) + "_Instance").c_str()))
+			{
+				Transforms[i].GUIRender();
+
+				ImGui::TreePop();
+			}
+		}
+
+		ImGui::TreePop();
+	}
 }

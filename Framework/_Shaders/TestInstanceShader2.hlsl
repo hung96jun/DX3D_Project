@@ -33,23 +33,14 @@ cbuffer ViewProjectionBuffer : register(b1)
     matrix Projection;
 }
 
-cbuffer WorldBuffer : register(b0)
-{
-    matrix World;
-}
-
 SamplerState Samp : register(s0);
 Texture2D DiffuseMap : register(t0);
 
 VertexOutput VS(VertexInstancing input)
 {
     VertexOutput output;
-    matrix world;
-    world._11_12_13_14 = input.Matrix1;
-    world._21_22_23_24 = input.Matrix2;
-    world._31_32_33_34 = input.Matrix3;
-    world._41_42_43_44 = input.Matrix4;
-    
+    matrix world = matrix(input.Matrix1, input.Matrix2, input.Matrix3, input.Matrix4);
+
     output.Position = mul(input.Position, world);
     output.Position = mul(output.Position, View);
     output.Position = mul(output.Position, Projection);

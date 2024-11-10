@@ -37,6 +37,35 @@ void ModelBone::Update()
 
 	Transform.Update();
 }
+
+void ModelBone::GUIRender()
+{
+	string tag = "";
+	tag = ToString(Name);
+	if (ImGui::TreeNode(tag.c_str()))
+	{
+		string temp = "";
+		temp += "Index : " + to_string(Index);
+		temp += "\nParent : " + to_string(ParentIndex);
+		if(Parent != nullptr)
+			temp += ", " + ToString(Parent->Name);
+		temp += "\nName : " + ToString(Name);
+		ImGui::Text(temp.c_str());
+		Transform.GUIRender();
+		if (ImGui::TreeNode("Childs"))
+		{
+			temp = "";
+			for (int i = 0; i < Childs.size(); i++)
+			{
+				temp = to_string(Childs[i]->Index) + " - " + ToString(Childs[i]->Name);
+				ImGui::Text(temp.c_str());
+			}
+			ImGui::TreePop();
+		}
+
+		ImGui::TreePop();
+	}
+}
 ///////////////////////////////////////////////////////////////////////////////
 // ModelMeshPart
 ///////////////////////////////////////////////////////////////////////////////
@@ -58,6 +87,11 @@ void ModelMeshPart::Update()
 {
 }
 
+//void ModelMeshPart::Set()
+//{
+//	Mat->Set();
+//}
+
 void ModelMeshPart::Render()
 {
 	Mat->Set();
@@ -68,7 +102,7 @@ void ModelMeshPart::Render()
 void ModelMeshPart::Render(UINT DrawCount)
 {
 	Mat->Set();
-	D3D::GetDC()->DrawIndexedInstanced(DrawCount, DrawCount, StartIndex, 0, 0);
+	D3D::GetDC()->DrawIndexedInstanced(IndexCount, DrawCount, StartIndex, 0, 0);
 }
 
 //void ModelMeshPart::Binding()
@@ -184,8 +218,8 @@ void ModelMesh::Render()
 	VBuffer->Set();
 	IBuffer->Set();
 
-	WBuffer->Set(Bone->Transform.GetWorld());
-	WBuffer->SetVS(0);
+	//WBuffer->Set(Bone->Transform.GetWorld());
+	//WBuffer->SetVS(0);
 
 	VShader->Set();
 
@@ -195,16 +229,8 @@ void ModelMesh::Render()
 
 void ModelMesh::Render(UINT DrawCount)
 {
-	//// 해당 부분 바인드 시점이랑 슬롯 넘버 확인
-	////BoneBuffer->SetVS();
-
-	////PerFrame->Render();
-
 	VBuffer->Set();
 	IBuffer->Set();
-
-	//WBuffer->Set(Bone->Transform.GetWorld());
-	//WBuffer->SetVS(0);
 
 	VShader->Set();
 
@@ -242,8 +268,8 @@ void ModelMesh::SetShader(wstring ShaderFile)
 
 	VShader = ShaderManager::Get()->AddVS(ShaderFile);
 	
-	//for (ModelMeshPart* part : MeshParts)
-	//	part->SetShader(ShaderFile);
+	for (ModelMeshPart* part : MeshParts)
+		part->SetShader(ShaderFile);
 }
 
 void ModelMesh::GUIRender()
@@ -254,5 +280,5 @@ void ModelMesh::GUIRender()
 	if (Bone->Transform.GetTag() == "")
 		Bone->Transform.SetTag(ToString(Bone->Name));
 
-	Bone->Transform.GUIRender();
+	//Bone->Transform.GUIRender();
 }

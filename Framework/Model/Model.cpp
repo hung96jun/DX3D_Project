@@ -9,7 +9,7 @@ Model::Model(string Tag)
 {
 	CONSTRUCTOR_DEBUG();
 
-	//WBuffer = new MatrixBuffer();
+	WBuffer = new MatrixBuffer();
 }
 
 Model::~Model()
@@ -28,7 +28,7 @@ Model::~Model()
 	//for (ModelClip* clip : Clips)
 	//	SAFE_DELETE(clip);
 
-	//SAFE_DELETE(WBuffer);
+	SAFE_DELETE(WBuffer);
 }
 
 void Model::Update()
@@ -40,8 +40,8 @@ void Model::Update()
 
 void Model::Render()
 {
-	//WBuffer->Set(Transform.GetWorld());
-	//WBuffer->SetVS(0);
+	WBuffer->Set(Transform.GetWorld());
+	WBuffer->SetVS(0);
 
 	for (ModelMesh* mesh : Meshes)
 		mesh->Render();
@@ -58,6 +58,16 @@ void Model::Render(const UINT& DrawCount)
 
 void Model::GUIRender(const string Tag)
 {
+	if (ImGui::Begin("ModelBone"))
+	{
+		for (int i = 0; i < Bones.size(); i++)
+		{
+			Bones[i]->GUIRender();
+		}
+
+		ImGui::End();
+	}
+
 	if(ImGui::TreeNode(("Model" + Tag).c_str()))
 	{
 		for (int i = 0; i < Materials.size(); i++)
@@ -82,9 +92,14 @@ void Model::GUIRender(const string Tag)
 			}
 		}
 
-		for (int i = 0; i < Meshes.size(); i++)
-			Meshes[i]->GUIRender();
+		//for (int i = 0; i < Meshes.size(); i++)
+		//	Meshes[i]->GUIRender();
+		ImGui::TreePop();
+	}
 
+	if (ImGui::TreeNode((Tag + "_Transform").c_str()))
+	{
+		Transform.GUIRender();
 		ImGui::TreePop();
 	}
 }
@@ -122,11 +137,15 @@ void Model::ReadMesh(wstring File)
 		bone->ParentIndex = reader->ReadInt();
 		bone->Transform = reader->ReadMatrix();
 
+		if (i == 0)
+			bone->Transform.SetOwner(&Transform);
+
 		while (parentBone != nullptr)
 		{
 			if (bone->ParentIndex == parentBone->Index)
 			{
 				bone->Parent = parentBone;
+				parentBone->Childs.push_back(bone);
 				break;
 			}
 
